@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "extendedcombat:nether_steel_block"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "extendedcombat:nether_steel_ingot"
+  }
+}
