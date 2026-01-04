@@ -4,8 +4,13 @@ import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.misc.ModKeybinds;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -27,27 +32,42 @@ import java.beans.EventHandler;
 public class ExtendedCombat {
 
     public static final String MOD_ID = "extendedcombat";
-
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("extended_combat_items",
+            () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.extended_combat_items")).withTabsBefore(CreativeModeTabs.COMBAT)
+                    .icon(() -> ModItems.NETHER_STEEL_GREATSWORD.get().getDefaultInstance()).displayItems((parameters, output) -> {
+        output.accept(ModItems.NETHER_STEEL_INGOT.get());
+        output.accept(ModItems.HANDLE);// Add the example item to the tab. For your own tabs, this method is preferred over the event
+        output.accept(ModItems.NETHER_STEEL_UPGRADE);
+        // Add the example item to the tab. For your own tabs, this method is preferred over the event
+        output.accept(ModBlocks.NETHER_STEEL_BLOCK);// Add the example item to the tab. For your own tabs, this method is preferred over the event
+        output.accept(ModBlocks.ECHO_STEEL_BLOCK);// Add the example item to the tab. For your own tabs, this method is preferred over the event
+        output.accept(ModBlocks.WARDING_STONE);// Add the example item to the tab. For your own tabs, this method is preferred over the event
+        output.accept(ModBlocks.FRAMED_GLASS_PANEL);// Add the example item to the tab. For your own tabs, this method is preferred over the event
+    }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public ExtendedCombat(IEventBus modEventBus, ModContainer modContainer) {
+    public ExtendedCombat(IEventBus eventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+        eventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
+        ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
 
-        ModEnchantmentEffects.register(modEventBus);
+        ModEnchantmentEffects.register(eventBus);
 
         // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
+        eventBus.addListener(this::addCreative);
+        CREATIVE_MODE_TABS.register(eventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

@@ -1,12 +1,14 @@
 package dev.kirro.extendedcombat.block;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.block.custom.FramedGlassPanelBlock;
 import dev.kirro.extendedcombat.block.custom.WardingStoneBlock;
 import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -32,9 +34,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NETHER_STEEL_BLOCK = registerBlock("nether_steel_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(6f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
+    public static final DeferredBlock<Block> ECHO_STEEL_BLOCK = registerBlock("echo_steel_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(6f).requiresCorrectToolForDrops().sound(SoundType.SCULK_CATALYST)));
+
     public static final DeferredBlock<Block> WARDING_STONE = registerBlock("warding_stone",
             () -> new WardingStoneBlock(BlockBehaviour.Properties.of()
                     .strength(1f).sound(SoundType.DEEPSLATE_BRICKS).noOcclusion()));
+
+    public static final DeferredBlock<Block> FRAMED_GLASS_PANEL = registerBlock("framed_glass_panel",
+            () -> new FramedGlassPanelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> _STAINED_GLASS_PANEL = registerBlock("_stained_glass_panel",
+            () -> new FramedGlassPanelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
 
 
     public static void register(IEventBus eventBus) {

@@ -1,0 +1,44 @@
+{
+  "dash": {
+    "subtitle": "sounds.extendedcombat.dash",
+    "sounds": [
+      "extendedcombat:dash"
+    ]
+  },
+  "air_jump": {
+    "subtitle": "sounds.extendedcombat.air_jump",
+    "sounds": [
+      "extendedcombat:air_jump"
+    ]
+  },
+  "blink": {
+    "subtitle": "sounds.extendedcombat.blink",
+    "sounds": [
+      "extendedcombat:blink"
+    ]
+  },
+  "hood_lower": {
+    "subtitle": "sounds.extendedcombat.hood_lower",
+    "sounds": [
+      "extendedcombat:hood_lower"
+    ]
+  },
+  "hood_raise": {
+    "subtitle": "sounds.extendedcombat.hood_raise",
+    "sounds": [
+      "extendedcombat:hood_raise"
+    ]
+  },
+  "mask_unequip": {
+    "subtitle": "sounds.extendedcombat.mask_unequip",
+    "sounds": [
+      "extendedcombat:mask_unequip"
+    ]
+  },
+  "mask_equip": {
+    "subtitle": "sounds.extendedcombat.mask_equip",
+    "sounds": [
+      "extendedcombat:mask_equip"
+    ]
+  }
+}

@@ -33,18 +33,6 @@ public class PickSwordItem extends SwordItem {
                 ||state.is(Blocks.COBWEB);
     }
 
-
-
-    @Override
-    public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
-        return true;
-    }
-
-    @Override
-    public boolean isDamageable(ItemStack stack) {
-        return false;
-    }
-
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miner) {
         // Don't damage the item
@@ -55,7 +43,6 @@ public class PickSwordItem extends SwordItem {
     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         stack.hurtAndBreak(0, attacker, EquipmentSlot.MAINHAND);
     }
-
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {

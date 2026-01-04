@@ -16,8 +16,6 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
-import virtuoel.pehkui.api.ScaleTypes;
 
 import java.util.List;
 import java.util.Map;
@@ -54,9 +52,6 @@ public class ModArmorItem extends ArmorItem {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if(entity instanceof Player player && !level.isClientSide() && hasFullSuitOfArmorOn(player)) {
             evaluateArmorEffects(player);
-            ScaleTypes.BASE.getScaleData(player).setTargetScale(1.25f);
-        } else if (entity instanceof Player player && !level.isClientSide() && !hasFullSuitOfArmorOn(player)) {
-            ScaleTypes.BASE.getScaleData(player).resetScale();
         }
     }
 

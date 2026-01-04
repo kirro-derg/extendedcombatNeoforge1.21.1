@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nether_steel_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "extendedcombat:nether_steel_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "extendedcombat:nether_steel_ingot_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nether_steel_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "extendedcombat:nether_steel_ingot_from_block"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/crop",
+	"textures": {
+		"1": "extendedcombat:block/black_apple_bush_stage0",
+		"particle": "extendedcombat:block/black_apple_bush_stage0"
+	},
+	"elements": [
+		{
+			"from": [10, 0, 16.5],
+			"to": [12, 4, 16.5],
+			"rotation": {"angle": -45, "axis": "y", "origin": [20, 0, 8.5]},
+			"faces": {
+				"north": {"uv": [4, 12, 6, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#1"},
+				"south": {"uv": [6, 12, 4, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#1"},
+				"up": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#1"}
+			}
+		},
+		{
+			"from": [10, 0, 6],
+			"to": [10, 4, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 9.25, 5]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 0], "texture": "#1"},
+				"east": {"uv": [6, 12, 4, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 0], "texture": "#1"},
+				"west": {"uv": [4, 12, 6, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#1"}
+			}
+		}
+	]
+}

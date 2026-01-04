@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -77,8 +78,8 @@ public class WardingStoneBlock extends Block {
         return false;
     }
 
-    //@Override
-    //public static VoxelShape getOutlineShape(double x1, double y1, double z1, double x2, double y2, double z2) {
-    //    return Shapes.box(1f / 16f, 0f, 1f / 16f, 15f / 16f, 1f, 15f / 16f);
-    //}
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return Shapes.box(1f / 16f, 0f, 1f / 16f, 15f / 16f, 1f, 15f / 16f);
+    }
 }
