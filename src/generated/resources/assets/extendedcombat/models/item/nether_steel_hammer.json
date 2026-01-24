@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "extendedcombat:item/nether_steel_hammer"
+  }
+}

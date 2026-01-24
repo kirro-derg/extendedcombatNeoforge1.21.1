@@ -1,0 +1,32 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.extendedcombat.fluid_walker"
+  },
+  "effects": {
+    "extendedcombat:fluid_walker": {
+      "speed": {
+        "type": "minecraft:add",
+        "value": {
+          "type": "minecraft:linear",
+          "base": 1.3,
+          "per_level_above_first": 0.4
+        }
+      }
+    }
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "feet"
+  ],
+  "supported_items": "#extendedcombat:enchantable/fluid_walker",
+  "weight": 5
+}

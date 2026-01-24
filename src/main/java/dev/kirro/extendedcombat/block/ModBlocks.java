@@ -1,54 +1,73 @@
 package dev.kirro.extendedcombat.block;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.ModConfig;
+import dev.kirro.extendedcombat.block.custom.BlackAppleBushBlock;
 import dev.kirro.extendedcombat.block.custom.FramedGlassPanelBlock;
 import dev.kirro.extendedcombat.block.custom.WardingStoneBlock;
 import dev.kirro.extendedcombat.item.ModItems;
-import net.minecraft.client.resources.model.Material;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.client.model.obj.ObjMaterialLibrary;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.function.Supplier;
 
-public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExtendedCombat.MOD_ID);
+public interface ModBlocks {
+    DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExtendedCombat.MOD_ID);
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
+    private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
+
+    private static <T extends Block> DeferredBlock<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static final DeferredBlock<Block> NETHER_STEEL_BLOCK = registerBlock("nether_steel_block",
+    DeferredBlock<Block> NETHER_STEEL_BLOCK = registerBlockWithItem("nether_steel_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(6f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-    public static final DeferredBlock<Block> ECHO_STEEL_BLOCK = registerBlock("echo_steel_block",
+    DeferredBlock<Block> ECHO_STEEL_BLOCK = registerBlockWithItem("echo_steel_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(6f).requiresCorrectToolForDrops().sound(SoundType.SCULK_CATALYST)));
 
-    public static final DeferredBlock<Block> WARDING_STONE = registerBlock("warding_stone",
+    DeferredBlock<Block> WARDING_STONE = registerBlockWithItem("warding_stone",
             () -> new WardingStoneBlock(BlockBehaviour.Properties.of()
-                    .strength(1f).sound(SoundType.DEEPSLATE_BRICKS).noOcclusion()));
+                    .strength(1f).sound(SoundType.DEEPSLATE_BRICKS).noOcclusion().lightLevel(state -> 4)) {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln1"));
+                    tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln2" + ModConfig.wardingStoneRadius + "wsln2E"));
+                    tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln3"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
-    public static final DeferredBlock<Block> FRAMED_GLASS_PANEL = registerBlock("framed_glass_panel",
+    DeferredBlock<Block> FRAMED_GLASS_PANEL = registerBlockWithItem("framed_glass_panel",
             () -> new FramedGlassPanelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> _STAINED_GLASS_PANEL = registerBlock("_stained_glass_panel",
+    DeferredBlock<Block> _STAINED_GLASS_PANEL = registerBlockWithItem("_stained_glass_panel",
             () -> new FramedGlassPanelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    DeferredBlock<Block> BLACK_APPLE_BUSH = registerBlockWithoutItem("black_apple_bush",
+            () -> new BlackAppleBushBlock(BlockBehaviour.Properties.of().strength(0.05f).sound(SoundType.SWEET_BERRY_BUSH).randomTicks().noCollission().pushReaction(PushReaction.DESTROY).noLootTable()));
 
 
-    public static void register(IEventBus eventBus) {
+    static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
 }

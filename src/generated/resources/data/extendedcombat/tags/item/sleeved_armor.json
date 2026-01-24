@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:chainmail_chestplate",
+    "minecraft:leather_chestplate",
+    "minecraft:iron_chestplate",
+    "minecraft:golden_chestplate",
+    "minecraft:diamond_chestplate",
+    "minecraft:netherite_chestplate",
+    "extendedcombat:nether_steel_chestplate",
+    "extendedcombat:echo_steel_chestplate",
+    "#extendedcombat:cloak"
+  ]
+}

@@ -1,11 +1,17 @@
 package dev.kirro.extendedcombat.block.custom;
 
+import dev.kirro.extendedcombat.Config;
+import dev.kirro.extendedcombat.ModConfig;
+import dev.kirro.extendedcombat.villager.ModPoi;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -81,5 +87,24 @@ public class WardingStoneBlock extends Block {
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Shapes.box(1f / 16f, 0f, 1f / 16f, 15f / 16f, 1f, 15f / 16f);
+    }
+
+    public static boolean isNearby(LevelAccessor level, BlockPos pos, boolean original) {
+        int radius = Config.wardingStoneActiveRadius;
+
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return original;
+        }
+
+        PoiManager poi = serverLevel.getPoiManager();
+
+        boolean nearby = poi.getInRange(
+                entry -> entry.value().equals(ModPoi.WARDING_STONE_POI.value()),
+                pos,
+                radius,
+                PoiManager.Occupancy.ANY
+        ).findAny().isPresent();
+
+        return original && !nearby;
     }
 }

@@ -1,0 +1,18 @@
+{
+  "parent": "extendedcombat:item/greatsword_template_handheld",
+  "base": {
+    "parent": "extendedcombat:item/greatsword_template_handheld",
+    "textures": {
+      "layer0": "extendedcombat:item/echo_steel_greatsword_handheld"
+    }
+  },
+  "loader": "neoforge:separate_transforms",
+  "perspectives": {
+    "gui": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "extendedcombat:item/echo_steel_greatsword"
+      }
+    }
+  }
+}

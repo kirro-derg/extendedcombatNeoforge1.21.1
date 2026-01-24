@@ -1,0 +1,6 @@
+{
+  "parent": "extendedcombat:item/greatsword_template_handheld",
+  "textures": {
+    "layer0": "extendedcombat:item/netherite_greatsword_handheld"
+  }
+}

@@ -20,7 +20,7 @@ import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 
-public class PickSwordItem extends SwordItem {
+public class PickSwordItem extends GreatswordItem {
 
     public PickSwordItem(Tier tier, Item.Properties properties) {
         super(tier, properties);
@@ -29,7 +29,7 @@ public class PickSwordItem extends SwordItem {
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         return state.is(BlockTags.MINEABLE_WITH_PICKAXE)
-                ||state.is(BlockTags.MINEABLE_WITH_AXE)
+                ||state.is(BlockTags.WOOL)
                 ||state.is(Blocks.COBWEB);
     }
 
@@ -40,17 +40,12 @@ public class PickSwordItem extends SwordItem {
     }
 
     @Override
-    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.hurtAndBreak(0, attacker, EquipmentSlot.MAINHAND);
-    }
-
-    @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (state.is(Blocks.COBWEB)) {
-            return 15.0F; // Fast like a sword
+            return 15.0F;
         }
-        if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_AXE)) {
-            return this.getTier().getSpeed(); // Use tier mining speed
+        if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.WOOL)) {
+            return this.getTier().getSpeed();
         }
         return super.getDestroySpeed(stack, state);
     }

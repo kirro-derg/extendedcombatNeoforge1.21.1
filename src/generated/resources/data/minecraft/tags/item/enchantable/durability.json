@@ -1,0 +1,13 @@
+{
+  "values": [
+    "#extendedcombat:nether_steel_wearables",
+    "#extendedcombat:nether_steel_tools",
+    "extendedcombat:wooden_hammer",
+    "extendedcombat:stone_hammer",
+    "extendedcombat:iron_hammer",
+    "extendedcombat:golden_hammer",
+    "extendedcombat:diamond_hammer",
+    "extendedcombat:netherite_hammer",
+    "extendedcombat:nether_steel_hammer"
+  ]
+}

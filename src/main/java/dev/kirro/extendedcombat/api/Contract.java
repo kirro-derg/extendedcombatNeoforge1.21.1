@@ -1,0 +1,19 @@
+package dev.kirro.extendedcombat.api;
+
+import org.jetbrains.annotations.NonNls;
+
+import java.lang.annotation.*;
+
+@Documented
+@Retention(RetentionPolicy.CLASS)
+@Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
+public @interface Contract {
+
+
+    @NonNls String value() default "";
+
+    boolean pure() default false;
+
+    @NonNls
+    String mutates() default "";
+}

@@ -1,28 +1,103 @@
 {
-  "itemgroup.extended_combat_items": "Extended Combat",
+  "itemGroup.extended_combat_items": "Extended Combat Items",
 
   "item.extendedcombat.nether_steel_ingot": "Nether Steel Ingot",
-  "item.extendedcombat.handle": "Sturdy Handle",
+  "item.extendedcombat.echo_steel_ingot": "Echo Steel Ingot",
+  "item.extendedcombat.handle": "Wooden Handle",
   "item.extendedcombat.nether_steel_upgrade": "Nether Steel Upgrade Template",
-  "item.extendedcombat.ghost_charm": "ghost Charm",
+  "item.extendedcombat.echo_steel_upgrade": "Echo Steel Upgrade Template",
 
+  "item.extendedcombat.wooden_greatsword": "Wooden Greatsword",
+  "item.extendedcombat.stone_greatsword": "Stone Greatsword",
+  "item.extendedcombat.iron_greatsword": "Iron Greatsword",
+  "item.extendedcombat.golden_greatsword": "Golden Greatsword",
+  "item.extendedcombat.diamond_greatsword": "Diamond Greatsword",
+  "item.extendedcombat.netherite_greatsword": "Netherite Greatsword",
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
+  "item.extendedcombat.echo_steel_greatsword": "Echo Steel Greatsword",
+
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
 
+  "item.extendedcombat.wooden_hammer": "Wooden Hammer",
+  "item.extendedcombat.stone_hammer": "Stone Hammer",
+  "item.extendedcombat.iron_hammer": "Iron Hammer",
+  "item.extendedcombat.golden_hammer": "Golden Hammer",
+  "item.extendedcombat.diamond_hammer": "Diamond Hammer",
+  "item.extendedcombat.netherite_hammer": "Netherite Hammer",
+  "item.extendedcombat.nether_steel_hammer": "Nether Steel Hammer",
+  "item.extendedcombat.echo_steel_hammer": "Echo Steel Hammer",
+
+  "item.extendedcombat.black_apple_seed": "Black Apple Seed",
+  "item.extendedcombat.black_apple": "Black Apple",
+  "item.extendedcombat.golden_steak": "Golden Steak",
+  "item.extendedcombat.honey_bread": "Honey Bread",
+
+  "item.extendedcombat.milk_bottle": "Milk",
+  "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk",
+  "item.extendedcombat.chocolate_milk_bottle": "Chocolate Milk",
+
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
+  "block.extendedcombat.echo_steel_block": "Block of Echo Steel",
   "block.extendedcombat.warding_stone": "Warding Stone",
+  "block.extendedcombat.framed_glass_panel": "Framed Glass Panel",
+  "block.extendedcombat._stained_glass_panel": "_Stained Glass Panel",
+  "block.extendedcombat.black_apple_bush": "Black Apple Seed",
+
   "tooltip.extendedcombat.warding_stone_ln1": "Once placed, this stone will disable",
   "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a 55 block radius",
   "tooltip.extendedcombat.warding_stone_ln3": "around itself",
-  "tooltip.extendedcombat.nether_steel_ingot": "This metal has strangely durable properties, and seems to absorb experience points rather well",
-  "block.extendedcombat.framed_glass_panel": "Framed Glass Panel",
-  "block.extendedcombat.flat_block": "Flat Block",
-  "block.extendedcombat.heavy_door": "Heavy Door",
+
+  "tooltip.milk_bottle.milk": "Removes Neutral Status Effects",
+  "tooltip.milk_bottle.sweet_berry_milk": "Removes Harmful Status Effects",
+  "tooltip.milk_bottle.chocolate_milk": "Removes Beneficial Status Effects",
 
   "item.extendedcombat.nether_steel_helmet": "Nether Steel Helmet",
   "item.extendedcombat.nether_steel_chestplate": "Nether Steel Chestplate",
   "item.extendedcombat.nether_steel_leggings": "Nether Steel Leggings",
   "item.extendedcombat.nether_steel_boots": "Nether Steel Boots",
+  "item.extendedcombat.echo_steel_helmet": "Echo Steel Helmet",
+  "item.extendedcombat.echo_steel_chestplate": "Echo Steel Chestplate",
+  "item.extendedcombat.echo_steel_leggings": "Echo Steel Leggings",
+  "item.extendedcombat.echo_steel_boots": "Echo Steel Boots",
 
-  "key.extendedcombat.dash": "dash key"
+  "item.extendedcombat.hunter_mask": "Mask",
+  "item.extendedcombat.nether_steel_mask": "Mask",
+  "item.extendedcombat.echo_steel_mask": "Mask",
+
+  "item.extendedcombat.hunter_cloak": "Cloak",
+  "item.extendedcombat.nether_steel_cloak": "Cloak",
+  "item.extendedcombat.echo_steel_cloak": "Cloak",
+
+  "item.extendedcombat.hunter_leggings": "Pants",
+  "item.extendedcombat.nether_steel_hunter_leggings": "Pants",
+  "item.extendedcombat.echo_steel_hunter_leggings": "Pants",
+
+  "item.extendedcombat.hunter_boots": "Boots",
+  "item.extendedcombat.nether_steel_hunter_boots": "Boots",
+  "item.extendedcombat.echo_steel_hunter_boots": "Boots",
+
+  "tooltip.extendedcombat.wool.cloak_tooltip": "Wool",
+  "tooltip.extendedcombat.nether_steel.cloak_tooltip": "Nether Steel",
+  "tooltip.extendedcombat.echo_steel.cloak_tooltip": "Echo Steel",
+  "tooltip.extendedcombat.wool.mask_tooltip": "Wool",
+  "tooltip.extendedcombat.nether_steel.mask_tooltip": "Nether Steel",
+  "tooltip.extendedcombat.echo_steel.mask_tooltip": "Echo Steel",
+
+  "item.extendedcombat.echo_reinforced_elytra": "Echo Steel Reinforced Elytra",
+
+  "enchantment.extendedcombat.dash": "Dash",
+  "enchantment.extendedcombat.air_jump": "Air Jump",
+  "enchantment.extendedcombat.blink": "Blink",
+  "enchantment.extendedcombat.obscurity": "Obscurity",
+  "enchantment.extendedcombat.vanity": "Vanity",
+  "enchantment.extendedcombat.stealth": "Stealth",
+  "enchantment.extendedcombat.keepsake": "Keepsake",
+  "enchantment.extendedcombat.burst": "Burst",
+  "enchantment.extendedcombat.concussion": "Concussion",
+  "enchantment.extendedcombat.fluid_walker": "Fluid Walker",
+  "enchantment.extendedcombat.swiftness": "Swiftness",
+  "enchantment.extendedcombat.watergel": "Watergel",
+
+  "key.extendedcombat.dash": "Dash",
+  "key.extendedcombat.blink": "Blink"
 }

@@ -1,0 +1,28 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.extendedcombat.swiftness"
+  },
+  "effects": {
+    "extendedcombat:swiftness": {
+      "multiplierBuff": {
+        "type": "minecraft:add",
+        "value": 0.5
+      }
+    }
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "legs"
+  ],
+  "supported_items": "#extendedcombat:enchantable/swiftness",
+  "weight": 5
+}

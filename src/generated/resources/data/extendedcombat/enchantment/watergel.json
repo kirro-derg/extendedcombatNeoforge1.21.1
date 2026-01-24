@@ -1,0 +1,28 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.extendedcombat.watergel"
+  },
+  "effects": {
+    "extendedcombat:watergel": {
+      "watergel": {
+        "type": "minecraft:add",
+        "value": 1.0
+      }
+    }
+  },
+  "max_cost": {
+    "base": 75,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 65,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "legs"
+  ],
+  "supported_items": "#extendedcombat:enchantable/watergel",
+  "weight": 5
+}

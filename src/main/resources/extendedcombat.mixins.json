@@ -4,8 +4,16 @@
   "package": "dev.kirro.extendedcombat.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "airmovement.PlayerMixin",
+    "block.MonsterMixin",
+    "block.MonsterMixin$BatMixin",
+    "block.MonsterMixin$SlimeMixin"
   ],
   "client": [
+    "client.CapeLayerMixin",
+    "client.ElytraLayerMixin",
+    "client.HideOffhandItemMixin",
+    "client.PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

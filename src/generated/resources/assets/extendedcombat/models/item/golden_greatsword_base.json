@@ -1,0 +1,6 @@
+{
+  "parent": "extendedcombat:item/greatsword_template_handheld",
+  "textures": {
+    "layer0": "extendedcombat:item/golden_greatsword_handheld"
+  }
+}

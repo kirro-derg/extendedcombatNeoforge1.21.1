@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.datagen;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.enchantment.ModEnchantments;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -38,5 +39,6 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ModModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModDataPackProvider(packOutput, lookupProvider));
     }
 }
