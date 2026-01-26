@@ -14,15 +14,11 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ClientHooks;
@@ -30,23 +26,15 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
 @OnlyIn(Dist.CLIENT)
 public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T, M> {
-    private final A innerModel;
-    private final A outerModel;
+    private final A sleeveModel;
 
-    public ArmorSleeveLayer(RenderLayerParent<T, M> renderer, A innerModel) {
+    public ArmorSleeveLayer(RenderLayerParent<T, M> renderer, A sleeveModel) {
         super(renderer);
-        this.innerModel = innerModel;
-        this.outerModel = innerModel;
+        this.sleeveModel = sleeveModel;
     }
 
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.renderArmorPiece(poseStack, buffer, livingEntity, EquipmentSlot.CHEST, packedLight, this.getArmorModel(EquipmentSlot.CHEST), limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
-    }
-
-    /** @deprecated */
-    @Deprecated
-    private void renderArmorPiece(PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity, EquipmentSlot slot, int packedLight, A model) {
-        this.renderArmorPiece(poseStack, bufferSource, livingEntity, slot, packedLight, model, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+        this.renderArmorPiece(poseStack, buffer, livingEntity, EquipmentSlot.CHEST, packedLight, this.sleeveModel, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
     }
 
     private void renderArmorPiece(PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity, EquipmentSlot slot, int packedLight, A p_model, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -55,26 +43,13 @@ public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>
         if (var15 instanceof ArmorItem armoritem && itemstack.is(ModItemTags.SLEEVED_ARMOR)) {
             if (armoritem.getEquipmentSlot() == slot) {
                 this.getParentModel().copyPropertiesTo(p_model);
-                this.setPartVisibility(p_model, slot);
+                this.setPartVisibility(p_model);
                 Model model = this.getArmorModelHook(livingEntity, itemstack, slot, p_model);
-                boolean flag = this.usesInnerModel(slot);
-                ArmorMaterial armormaterial = armoritem.getMaterial().value();
                 IClientItemExtensions extensions = IClientItemExtensions.of(itemstack);
                 extensions.setupModelAnimations(livingEntity, itemstack, slot, model, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch);
-                int fallbackColor = extensions.getDefaultDyeColor(itemstack);
-
-                for(int layerIdx = 0; layerIdx < armormaterial.layers().size(); ++layerIdx) {
-                    ArmorMaterial.Layer armormaterial$layer = armormaterial.layers().get(layerIdx);
-                    int j = extensions.getArmorLayerTintColor(itemstack, livingEntity, armormaterial$layer, layerIdx, fallbackColor);
-                    if (j != 0) {
-                        ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, armormaterial$layer, flag, slot);
-                        this.renderModel(poseStack, bufferSource, packedLight, model, j, getTextureId(itemstack));
-                    }
-                }
-
-                if (itemstack.hasFoil()) {
-                    this.renderGlint(poseStack, bufferSource, packedLight, model);
-                }
+                int i = extensions.getDefaultDyeColor(itemstack);
+                this.renderModel(poseStack, bufferSource, packedLight, model, i, getTextureId(itemstack));
+                if (itemstack.hasFoil()) this.renderGlint(poseStack, bufferSource, packedLight, model);
             }
         }
 
@@ -91,27 +66,10 @@ public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>
         }
     }
 
-    protected void setPartVisibility(A model, EquipmentSlot slot) {
+    protected void setPartVisibility(A model) {
         model.setAllVisible(false);
-        switch (slot) {
-            case HEAD:
-                model.head.visible = true;
-                model.hat.visible = true;
-                break;
-            case CHEST:
-                model.rightArm.visible = true;
-                model.leftArm.visible = true;
-                break;
-            case LEGS:
-                model.body.visible = true;
-                model.rightLeg.visible = true;
-                model.leftLeg.visible = true;
-                break;
-            case FEET:
-                model.rightLeg.visible = true;
-                model.leftLeg.visible = true;
-        }
-
+        model.rightArm.visible = true;
+        model.leftArm.visible = true;
     }
 
     private void renderModel(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, Model model, int dyeColor, ResourceLocation textureLocation) {
@@ -121,14 +79,6 @@ public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>
 
     private void renderGlint(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, Model model) {
         model.renderToBuffer(poseStack, bufferSource.getBuffer(RenderType.armorEntityGlint()), packedLight, OverlayTexture.NO_OVERLAY);
-    }
-
-    private A getArmorModel(EquipmentSlot slot) {
-        return (this.usesInnerModel(slot) ? this.innerModel : this.outerModel);
-    }
-
-    private boolean usesInnerModel(EquipmentSlot slot) {
-        return slot == EquipmentSlot.LEGS;
     }
 
     protected Model getArmorModelHook(T entity, ItemStack itemStack, EquipmentSlot slot, A model) {

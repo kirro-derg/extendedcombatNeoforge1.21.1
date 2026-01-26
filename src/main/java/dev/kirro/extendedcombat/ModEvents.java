@@ -1,7 +1,5 @@
 package dev.kirro.extendedcombat;
 
-import com.mojang.serialization.MapCodec;
-import dev.kirro.extendedcombat.api.ServerTickDispatcher;
 import dev.kirro.extendedcombat.behavior.enchantment.*;
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
@@ -10,29 +8,21 @@ import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.item.custom.HammerItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.*;
 
-//@EventBusSubscriber(modid = ExtendedCombat.MOD_ID)
 public class ModEvents {
     private static final Set<BlockPos> HARVESTED_BLOCKS = new HashSet<>();
     @SubscribeEvent
@@ -65,12 +55,18 @@ public class ModEvents {
         Player player = client.player;
         if (player != null) {
             AirJumpBehavior airJumpBehavior = player.getData(ModDataAttachments.AIR_JUMP);
-            DashBehavior dashBehavior = player.getData(ModDataAttachments.DASH);
+            AirMovementBehavior airMovementBehavior = player.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
+            DashBehavior dashBehavior = player.getData(ModDataAttachments.DASH);
+            FluidMovementBehavior fluidMovementBehavior = player.getData(ModDataAttachments.FLUID_MOVEMENT);
+            HideWoolHoodBehavior hideHoodBehavior = player.getData(ModDataAttachments.HIDE_HOOD);
 
             airJumpBehavior.clientTick(player);
-            dashBehavior.clientTick(player);
+            airMovementBehavior.clientTick(player);
             blinkBehavior.clientTick(player);
+            dashBehavior.clientTick(player);
+            fluidMovementBehavior.clientTick(player);
+            hideHoodBehavior.clientTick(player);
         }
     }
 
@@ -99,24 +95,21 @@ public class ModEvents {
     public static void serverTick(ServerTickEvent.Post event) {
         for (ServerPlayer serverPlayer : event.getServer().getPlayerList().getPlayers()) {
             AirJumpBehavior airJumpBehavior = serverPlayer.getData(ModDataAttachments.AIR_JUMP);
-            DashBehavior dashBehavior = serverPlayer.getData(ModDataAttachments.DASH);
+            AirMovementBehavior airMovementBehavior = serverPlayer.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blinkBehavior = serverPlayer.getData(ModDataAttachments.BLINK);
+            DashBehavior dashBehavior = serverPlayer.getData(ModDataAttachments.DASH);
+            FluidMovementBehavior fluidMovementBehavior = serverPlayer.getData(ModDataAttachments.FLUID_MOVEMENT);
+            HideWoolHoodBehavior hideHoodBehavior = serverPlayer.getData(ModDataAttachments.HIDE_HOOD);
+
 
             airJumpBehavior.serverTick(serverPlayer);
-            dashBehavior.serverTick(serverPlayer);
+            airMovementBehavior.serverTick(serverPlayer);
             blinkBehavior.serverTick(serverPlayer);
+            dashBehavior.serverTick(serverPlayer);
+            fluidMovementBehavior.serverTick(serverPlayer);
+            hideHoodBehavior.serverTick(serverPlayer);
 
             XPRepairTracker.tick(serverPlayer);
         }
-
-
-    }
-
-
-
-    @SubscribeEvent
-    public static void playerTick(PlayerTickEvent.Post event) {
-        Player player = event.getEntity();
-        Level level = player.level();
     }
 }

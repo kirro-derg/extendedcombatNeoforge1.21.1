@@ -25,6 +25,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -54,7 +55,8 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
     private void renderHand(PoseStack poseStack, MultiBufferSource buffer, int combinedLight, AbstractClientPlayer player,
                             ModelPart arm, ModelPart sleeve, CallbackInfo ci) {
         ItemStack stack = extendedcombat$getArmor(player);
-        int i = stack.is(ItemTags.DYEABLE) ? FastColor.ABGR32.alpha(DyedItemColor.getOrDefault(stack, -6265536)) : 1;
+        IClientItemExtensions extensions = IClientItemExtensions.of(stack);
+        int i = extensions.getDefaultDyeColor(stack);
         if (extendedcombat$getArmor(player).is(ModItemTags.SLEEVED_ARMOR)) {
             ci.cancel();
             PlayerModel<AbstractClientPlayer> playermodel = this.getModel();
