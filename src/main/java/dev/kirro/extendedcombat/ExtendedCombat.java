@@ -69,6 +69,7 @@ public class ExtendedCombat {
         output.accept(ModItems.ECHO_STEEL_GREATSWORD);
 
         output.accept(ModItems.NETHER_STEEL_PICKAXE);
+        output.accept(ModItems.ECHO_STEEL_PICKAXE);
 
         output.accept(ModItems.WOODEN_HAMMER);
         output.accept(ModItems.STONE_HAMMER);

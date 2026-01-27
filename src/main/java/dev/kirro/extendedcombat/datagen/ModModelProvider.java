@@ -53,6 +53,7 @@ public class ModModelProvider extends ItemModelProvider {
         basicItem(ModItems.NETHER_STEEL_UPGRADE.get());
         basicItem(ModItems.ECHO_STEEL_UPGRADE.get());
         handheldItem(ModItems.NETHER_STEEL_PICKAXE.get());
+        handheldItem(ModItems.ECHO_STEEL_PICKAXE.get());
         handheldItem(ModItems.WOODEN_HAMMER.get());
         handheldItem(ModItems.STONE_HAMMER.get());
         handheldItem(ModItems.IRON_HAMMER.get());

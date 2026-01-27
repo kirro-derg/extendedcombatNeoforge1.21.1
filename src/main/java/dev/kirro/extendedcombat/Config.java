@@ -16,14 +16,14 @@ public class Config {
 
     private static final ModConfigSpec.BooleanValue DISABLE_DURABILITY = BUILDER
             .comment("Whether to disable item durability")
-            .define("logDirtBlock", true);
+            .define("disableDurability", true);
 
     private static final ModConfigSpec.IntValue WARDING_STONE_RADIUS = BUILDER
             .defineInRange("wardingStoneActiveRadius", 55, 0, 100);
 
     private static final ModConfigSpec.BooleanValue AIR_MOVEMENT = BUILDER
-            .comment("Whether")
-            .define("logDirtBlock", true);
+            .comment("Whether to increase mobility while in air")
+            .define("airMovement", true);
 
 
     // a list of strings that are treated as resource locations for items
@@ -43,8 +43,5 @@ public class Config {
         disableDurability = DISABLE_DURABILITY.get();
         wardingStoneActiveRadius = WARDING_STONE_RADIUS.get();
         airMovementActive = AIR_MOVEMENT.get();
-
-        // convert the list of strings into a set of items
-        //items = ITEM_STRINGS.get().stream().map(itemName -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName))).collect(Collectors.toSet());
     }
 }

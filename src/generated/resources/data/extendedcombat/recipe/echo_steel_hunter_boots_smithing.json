@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "extendedcombat:echo_steel_ingot"
+  },
+  "base": {
+    "item": "extendedcombat:nether_steel_hunter_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:echo_steel_hunter_boots"
+  },
+  "template": {
+    "item": "extendedcombat:echo_steel_upgrade"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:cobbled_deepslate"
+    },
+    "S": {
+      "item": "minecraft:soul_soil"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DSD",
+    "DSD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:warding_stone"
+  }
+}

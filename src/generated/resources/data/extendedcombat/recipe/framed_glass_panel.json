@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "P": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NPN",
+    "NNN"
+  ],
+  "result": {
+    "count": 4,
+    "id": "extendedcombat:framed_glass_panel"
+  }
+}

@@ -155,6 +155,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         ;
 
         tag(ModItemTags.ECHO_STEEL_ITEMS)
+                .add(ModItems.ECHO_STEEL_PICKAXE.get())
                 .add(ModItems.ECHO_STEEL_HAMMER.get())
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
         ;
@@ -218,6 +219,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.MINING_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_GREATSWORD.get())
                 .add(ModItems.NETHER_STEEL_PICKAXE.get())
+                .add(ModItems.ECHO_STEEL_PICKAXE.get())
                 .add(ModItems.WOODEN_HAMMER.get())
                 .add(ModItems.STONE_HAMMER.get())
                 .add(ModItems.IRON_HAMMER.get())
@@ -231,6 +233,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.PICKAXES)
                 .add(ModItems.NETHER_STEEL_GREATSWORD.get())
                 .add(ModItems.NETHER_STEEL_PICKAXE.get())
+                .add(ModItems.ECHO_STEEL_PICKAXE.get())
                 .add(ModItems.WOODEN_HAMMER.get())
                 .add(ModItems.STONE_HAMMER.get())
                 .add(ModItems.IRON_HAMMER.get())
@@ -274,45 +277,61 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_LEGGINGS.get())
                 .add(ModItems.ECHO_STEEL_CHESTPLATE.get())
                 .add(ModItems.ECHO_STEEL_HELMET.get())
+                .add(ModItems.NETHER_STEEL_CLOAK.get())
+                .add(ModItems.NETHER_STEEL_MASK.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
                 .replace(false)
         ;
 
 
         tag(ItemTags.HEAD_ARMOR)
                 .add(ModItems.NETHER_STEEL_HELMET.get())
+                .add(ModItems.NETHER_STEEL_MASK.get())
                 .replace(false)
         ;
         tag(ItemTags.CHEST_ARMOR)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
+                .add(ModItems.NETHER_STEEL_CLOAK.get())
                 .replace(false)
         ;
         tag(ItemTags.LEG_ARMOR)
                 .add(ModItems.NETHER_STEEL_LEGGINGS.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
                 .replace(false)
         ;
         tag(ItemTags.FOOT_ARMOR)
                 .add(ModItems.NETHER_STEEL_BOOTS.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
                 .replace(false)
         ;
 
         tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_HELMET.get())
                 .add(ModItems.ECHO_STEEL_HELMET.get())
+                .add(ModItems.NETHER_STEEL_MASK.get())
+                .add(ModItems.ECHO_STEEL_MASK.get())
                 .replace(false)
         ;
         tag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
                 .add(ModItems.ECHO_STEEL_CHESTPLATE.get())
+                .add(ModItems.NETHER_STEEL_CLOAK.get())
+                .add(ModItems.ECHO_STEEL_CLOAK.get())
                 .replace(false)
         ;
         tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_LEGGINGS.get())
                 .add(ModItems.ECHO_STEEL_LEGGINGS.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
+                .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
                 .replace(false)
         ;
         tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_BOOTS.get())
                 .add(ModItems.ECHO_STEEL_BOOTS.get())
+                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
+                .add(ModItems.ECHO_STEEL_HUNTER_BOOTS.get())
                 .replace(false)
         ;
     }

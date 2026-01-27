@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "extendedcombat:echo_steel_ingot"
+  },
+  "base": {
+    "item": "extendedcombat:nether_steel_mask"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:echo_steel_mask"
+  },
+  "template": {
+    "item": "extendedcombat:echo_steel_upgrade"
+  }
+}

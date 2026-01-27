@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "M": {
+      "item": "minecraft:magma_cream"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "NGN",
+    "MMM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:nether_steel_ingot"
+  }
+}

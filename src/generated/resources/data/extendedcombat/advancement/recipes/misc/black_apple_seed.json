@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_black_apple": {
+      "conditions": {
+        "items": [
+          {
+            "items": "extendedcombat:black_apple"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "extendedcombat:black_apple_seed"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_black_apple"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "extendedcombat:black_apple_seed"
+    ]
+  }
+}

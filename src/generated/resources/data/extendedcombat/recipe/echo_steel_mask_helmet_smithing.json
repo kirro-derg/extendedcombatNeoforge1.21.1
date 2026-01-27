@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:black_wool"
+  },
+  "base": {
+    "item": "extendedcombat:echo_steel_helmet"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:echo_steel_mask"
+  },
+  "template": {
+    "item": "minecraft:black_wool"
+  }
+}

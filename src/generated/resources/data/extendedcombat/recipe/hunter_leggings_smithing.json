@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:black_wool"
+  },
+  "base": {
+    "item": "minecraft:netherite_leggings"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:hunter_leggings"
+  },
+  "template": {
+    "item": "minecraft:black_wool"
+  }
+}

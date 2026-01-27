@@ -1,6 +1,8 @@
 {
   "values": [
     "extendedcombat:nether_steel_leggings",
-    "extendedcombat:echo_steel_leggings"
+    "extendedcombat:echo_steel_leggings",
+    "extendedcombat:nether_steel_hunter_leggings",
+    "extendedcombat:echo_steel_hunter_leggings"
   ]
 }

@@ -7,13 +7,36 @@
     "airmovement.PlayerMixin",
     "block.MonsterMixin",
     "block.MonsterMixin$BatMixin",
-    "block.MonsterMixin$SlimeMixin"
+    "block.MonsterMixin$SlimeMixin",
+    "client.ArmorStandMixin",
+    "enchantment.airJump.LivingEntityMixin",
+    "enchantment.blink.EntityMixin",
+    "enchantment.dash.LivingEntityMixin",
+    "enchantment.fluidWalker.LivingEntityMixin",
+    "enchantment.fluidWalker.PowderSnowBlockMixin",
+    "enchantment.obscurity.EndermanMixin",
+    "enchantment.stealth.EntityMixin",
+    "enchantment.watergel.EntityMixin",
+    "item.AbstractContainerMenuMixin",
+    "item.CowMixin",
+    "item.ItemStackMixin",
+    "item.LivingEntityMixin",
+    "item.PiglinAiMixin",
+    "item.RecipeMixin"
   ],
   "client": [
     "client.CapeLayerMixin",
     "client.ElytraLayerMixin",
     "client.HideOffhandItemMixin",
-    "client.PlayerRendererMixin"
+    "client.PlayerRendererMixin",
+    "client.ScreenEffectRendererMixin",
+    "client.TwoHandedGreatswordMixin",
+    "enchantment.blink.HumanoidArmorLayerMixin",
+    "enchantment.blink.ItemInHandLayerMixin",
+    "enchantment.fluidWalker.FogRendererMixin",
+    "enchantment.obscurity.LivingEntityRendererMixin",
+    "enchantment.vanity.HumanoidArmorLayerMixin",
+    "item.HumanoidArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "extendedcombat:nether_steel_ingot"
+  },
+  "base": {
+    "item": "extendedcombat:hunter_mask"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:nether_steel_mask"
+  },
+  "template": {
+    "item": "extendedcombat:nether_steel_upgrade"
+  }
+}

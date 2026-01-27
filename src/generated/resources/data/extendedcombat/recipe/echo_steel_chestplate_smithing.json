@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "extendedcombat:echo_steel_ingot"
+  },
+  "base": {
+    "item": "extendedcombat:nether_steel_chestplate"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:echo_steel_chestplate"
+  },
+  "template": {
+    "item": "extendedcombat:echo_steel_upgrade"
+  }
+}

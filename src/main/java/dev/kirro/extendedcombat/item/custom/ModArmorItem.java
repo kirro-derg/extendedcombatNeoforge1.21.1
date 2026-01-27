@@ -46,6 +46,8 @@ public class ModArmorItem extends ArmorItem {
             (new ImmutableMap.Builder<Holder<ArmorMaterial>, List<MobEffectInstance>>())
                     .put(ModArmorMaterials.NETHER_STEEL,
                             List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 1, false, false)))
+                    .put(ModArmorMaterials.ECHO_STEEL,
+                            List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 1, false, false)))
                     .build();
 
     @Override
@@ -61,7 +63,7 @@ public class ModArmorItem extends ArmorItem {
             List<MobEffectInstance> mapEffect = entry.getValue();
 
             if(hasPlayerCorrectArmorOn(mapArmorMaterial, player)) {
-                addEffectToPlayer (player, mapEffect);
+                addEffectToPlayer(player, mapEffect);
             }
         }
     }

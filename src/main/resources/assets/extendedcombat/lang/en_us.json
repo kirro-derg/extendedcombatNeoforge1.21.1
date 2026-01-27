@@ -17,6 +17,7 @@
   "item.extendedcombat.echo_steel_greatsword": "Echo Steel Greatsword",
 
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
+  "item.extendedcombat.echo_steel_pickaxe": "Echo Steel Pickaxe",
 
   "item.extendedcombat.wooden_hammer": "Wooden Hammer",
   "item.extendedcombat.stone_hammer": "Stone Hammer",
@@ -99,5 +100,9 @@
   "enchantment.extendedcombat.watergel": "Watergel",
 
   "key.extendedcombat.dash": "Dash",
-  "key.extendedcombat.blink": "Blink"
+  "key.extendedcombat.blink": "Blink",
+
+  "extendedcombat.configuration.disableDurability": "Disable Durability",
+  "extendedcombat.configuration.airMovement": "Increase Air Movement speed",
+  "extendedcombat.configuration.wardingStoneActiveRadius": "Warding Stone Radius"
 }

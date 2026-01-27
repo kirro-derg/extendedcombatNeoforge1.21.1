@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": {
+      "item": "extendedcombat:handle"
+    },
+    "I": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " II",
+    "III",
+    "HI "
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:wooden_greatsword"
+  }
+}

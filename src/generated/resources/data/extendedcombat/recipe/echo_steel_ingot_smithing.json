@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:echo_shard"
+  },
+  "base": {
+    "item": "extendedcombat:nether_steel_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:echo_steel_ingot"
+  },
+  "template": {
+    "item": "extendedcombat:echo_steel_upgrade"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "extendedcombat:black_apple"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "extendedcombat:black_apple_seed"
+  }
+}

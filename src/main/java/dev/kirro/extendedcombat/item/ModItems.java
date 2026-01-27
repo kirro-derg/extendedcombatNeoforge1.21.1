@@ -54,6 +54,9 @@ public interface ModItems {
     DeferredItem<Item> NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
                     .attributes(PickaxeItem.createAttributes(ModToolTiers.NETHER_STEEL, 8, -2.8f))));
+    DeferredItem<Item> ECHO_STEEL_PICKAXE = registerItem("echo_steel_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ECHO_STEEL, 8, -2.8f))));
 
     DeferredItem<Item> WOODEN_HAMMER = registerItem("wooden_hammer",
             () -> new HammerItem(Tiers.WOOD, new Item.Properties()
@@ -99,20 +102,20 @@ public interface ModItems {
             () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1)));
 
     DeferredItem<Item> HUNTER_MASK = registerItem("hunter_mask", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.HELMET, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_MASK = registerItem("nether_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(8124)));
-    DeferredItem<Item> ECHO_STEEL_MASK = registerItem("echo_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(9124)));
+    DeferredItem<Item> NETHER_STEEL_MASK = registerItem("nether_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_MASK = registerItem("echo_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(9124).fireResistant()));
 
     DeferredItem<Item> HUNTER_CLOAK = registerItem("hunter_cloak", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_CLOAK = registerItem("nether_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(8124)));
-    DeferredItem<Item> ECHO_STEEL_CLOAK = registerItem("echo_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(9124)));
+    DeferredItem<Item> NETHER_STEEL_CLOAK = registerItem("nether_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_CLOAK = registerItem("echo_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(9124).fireResistant()));
 
     DeferredItem<Item> HUNTER_LEGGINGS = registerItem("hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = registerItem("nether_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124)));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = registerItem("echo_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = registerItem("nether_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = registerItem("echo_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124).fireResistant()));
 
     DeferredItem<Item> HUNTER_BOOTS = registerItem("hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.BOOTS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = registerItem("nether_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124)));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = registerItem("nether_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
 
     DeferredItem<Item> ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
             () -> new ModElytra(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(864).rarity(Rarity.RARE)));
@@ -158,7 +161,8 @@ public interface ModItems {
             entries.insertAfter(Items.DIAMOND_HOE.getDefaultInstance(), DIAMOND_HAMMER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(Items.NETHERITE_HOE.getDefaultInstance(), NETHERITE_HAMMER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHERITE_HAMMER.toStack(), NETHER_STEEL_PICKAXE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_PICKAXE.toStack(), NETHER_STEEL_HAMMER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHER_STEEL_PICKAXE.toStack(), ECHO_STEEL_PICKAXE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(ECHO_STEEL_PICKAXE.toStack(), NETHER_STEEL_HAMMER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_HAMMER.toStack(), ECHO_STEEL_HAMMER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
         if(entries.getTabKey() == CreativeModeTabs.COMBAT) {

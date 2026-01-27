@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_greatsword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "extendedcombat:iron_greatsword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:diamond_greatsword_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_iron_greatsword"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:diamond_greatsword_smithing"
+    ]
+  }
+}

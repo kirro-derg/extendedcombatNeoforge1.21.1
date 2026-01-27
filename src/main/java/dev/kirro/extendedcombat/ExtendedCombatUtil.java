@@ -124,6 +124,18 @@ public class ExtendedCombatUtil {
         return entity.level().clip(new ClipContext(entity.position(), entity.position().add(0, -altitude, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, entity)).getType() == HitResult.Type.MISS;
     }
 
+    public static boolean isFlameResistant(LivingEntity entity) {
+        ItemStack helmet = entity.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chestplate = entity.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack leggings = entity.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
+
+        return helmet.is(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && chestplate.is(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && leggings.is(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && boots.is(ModItemTags.FLAME_RESISTANT_ARMOR);
+    }
+
     public static boolean isUnbreakable(ItemStack stack) {
         return Config.disableDurability && !stack.isEmpty() && stack.has(DataComponents.MAX_DAMAGE) && !stack.is(ModItemTags.ALWAYS_HAS_DURABILITY) || EnchantmentHelper.has(stack, ModEnchantmentEffects.KEEPSAKE.get());
     }
