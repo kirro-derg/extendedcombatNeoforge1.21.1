@@ -1,20 +1,15 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.ModEvents;
-import dev.kirro.extendedcombat.api.AutoSyncedComponent;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.custom.BurstEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.DashPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;

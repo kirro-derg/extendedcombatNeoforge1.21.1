@@ -1,8 +1,6 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.AutoSyncedComponent;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.custom.AirJumpEnchantmentEffect;
@@ -10,15 +8,11 @@ import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.neoforged.neoforge.attachment.AttachmentSyncHandler;
-import net.neoforged.neoforge.attachment.IAttachmentHolder;
-import org.jetbrains.annotations.Nullable;
 
 public class AirJumpBehavior implements CommonTickingComponent {
     private boolean canRecharge = false, canUse = false;

@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.block;
 
+import dev.kirro.extendedcombat.Config;
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.ModConfig;
 import dev.kirro.extendedcombat.block.custom.BlackAppleBushBlock;
 import dev.kirro.extendedcombat.block.custom.FramedGlassPanelBlock;
 import dev.kirro.extendedcombat.block.custom.WardingStoneBlock;
@@ -53,7 +53,7 @@ public interface ModBlocks {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln1"));
-                    tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln2" + ModConfig.wardingStoneRadius + "wsln2E"));
+                    tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln2" + Config.wardingStoneActiveRadius + "wsln2E"));
                     tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln3"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }

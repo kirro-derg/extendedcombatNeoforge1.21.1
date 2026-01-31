@@ -1,15 +1,12 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.extendedcombat.Config;
-import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.ModConfig;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,12 +1,8 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
-import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.ModEvents;
-import dev.kirro.extendedcombat.api.AutoSyncedComponent;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
 import dev.kirro.extendedcombat.enchantment.custom.BlinkEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
@@ -14,9 +10,7 @@ import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 public class BlinkBehavior implements CommonTickingComponent {

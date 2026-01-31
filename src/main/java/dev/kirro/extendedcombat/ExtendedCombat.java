@@ -45,7 +45,7 @@ public class ExtendedCombat {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("extended_combat_items",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXTENDEDCOMBAT_ITEMS = CREATIVE_MODE_TABS.register("extended_combat_items",
             () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.extended_combat_items")).withTabsBefore(CreativeModeTabs.COMBAT)
                     .icon(() -> ModItems.NETHER_STEEL_GREATSWORD.get().getDefaultInstance()).displayItems((parameters, output) -> {
         output.accept(ModItems.NETHER_STEEL_INGOT);
@@ -121,7 +121,6 @@ public class ExtendedCombat {
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(ModEvents.class);
         //NeoForge.EVENT_BUS.addListener(ModEvents::registerBindings);
 
@@ -143,15 +142,6 @@ public class ExtendedCombat {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
-    }
-
-    // Add the block item to the building blocks tab
-
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
 
     }
 

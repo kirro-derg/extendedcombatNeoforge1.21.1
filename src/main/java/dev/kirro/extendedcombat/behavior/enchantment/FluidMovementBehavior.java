@@ -1,16 +1,11 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.AutoSyncedComponent;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

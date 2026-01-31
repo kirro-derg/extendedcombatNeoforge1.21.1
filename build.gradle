@@ -28,10 +28,6 @@ repositories {
     }
 
     maven {
-        url = "https://maven.midnightdust.eu/releases"
-    }
-
-    maven {
         name = "Ladysnake Mods"
         url = "https://maven.ladysnake.org/releases"
     }
@@ -147,8 +143,6 @@ dependencies {
     // implementation project(":myproject")
     jarJar(implementation("org.sinytra.forgified-fabric-api:fabric-api-base:${FFAPI_base_version}"))
     jarJar(implementation("org.sinytra.forgified-fabric-api:fabric-networking-api-v1:${FFAPI_network_version}"))
-    //jarJar(implementation("org.sinytra.forgified-fabric-api:forgified-fabric-api:${FFAPI_version}"))
-    jarJar(implementation("eu.midnightdust:midnightlib:${midnightlib_version}"))
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

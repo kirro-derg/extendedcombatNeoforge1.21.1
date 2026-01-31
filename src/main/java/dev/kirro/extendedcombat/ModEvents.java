@@ -127,6 +127,26 @@ public class ModEvents {
         dashHud(guiGraphics, minecraft);
     }
 
+    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[4];
+    private static final ResourceLocation BLINK_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/blink_background");
+    private static final ResourceLocation BLINK_PROGRESS_TEXTURE = ExtendedCombat.id("hud/blink_progress");
+    private static final ResourceLocation DASH_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/dash_background");
+    private static final ResourceLocation DASH_PROGRESS_TEXTURE = ExtendedCombat.id("hud/dash_progress");
+
+    static {
+        for(int i = 0; i < AIR_JUMP_TEXTURES.length; i++) {
+            AIR_JUMP_TEXTURES[i] = ExtendedCombat.id("hud/air_jump_" + i);
+        }
+    }
+
+    private static ResourceLocation getTexture(int i) {
+        i %= AIR_JUMP_TEXTURES.length;
+        if (i < 0) {
+            i += AIR_JUMP_TEXTURES.length;
+        }
+        return AIR_JUMP_TEXTURES[i];
+    }
+
     public static void airJumpHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             AirJumpBehavior airJump = minecraft.cameraEntity.getData(ModDataAttachments.AIR_JUMP);
@@ -149,26 +169,6 @@ public class ModEvents {
             }
         }
     }
-
-    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[4];
-    static {
-        for(int i = 0; i < AIR_JUMP_TEXTURES.length; i++) {
-            AIR_JUMP_TEXTURES[i] = ExtendedCombat.id("hud/air_jump_" + i);
-        }
-    }
-
-    private static ResourceLocation getTexture(int i) {
-        i %= AIR_JUMP_TEXTURES.length;
-        if (i < 0) {
-            i += AIR_JUMP_TEXTURES.length;
-        }
-        return AIR_JUMP_TEXTURES[i];
-    }
-
-    private static final ResourceLocation BLINK_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/blink_background");
-    private static final ResourceLocation BLINK_PROGRESS_TEXTURE = ExtendedCombat.id("hud/blink_progress");
-    private static final ResourceLocation DASH_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/dash_background");
-    private static final ResourceLocation DASH_PROGRESS_TEXTURE = ExtendedCombat.id("hud/dash_progress");
 
     public static void blinkHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
