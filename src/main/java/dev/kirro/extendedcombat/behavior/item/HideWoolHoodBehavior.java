@@ -7,10 +7,15 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 
 public class HideWoolHoodBehavior implements CommonTickingComponent {
+    private final Player player;
     private boolean hoodHidden, hoodUsed;
     private boolean maskHidden, maskUsed;
     private int hoodTick = 0;
     private int maskTick = 0;
+
+    public HideWoolHoodBehavior(Player player) {
+        this.player = player;
+    }
 
     @Override
     public void writeToNbt(CompoundTag tag, HolderLookup.Provider holderLookup) {
@@ -25,7 +30,7 @@ public class HideWoolHoodBehavior implements CommonTickingComponent {
     }
 
     @Override
-    public void tick(Player player) {
+    public void tick() {
         if (hoodTick > 0) {
             hoodTick--;
         } else if (hoodTick == 0) {
@@ -40,18 +45,18 @@ public class HideWoolHoodBehavior implements CommonTickingComponent {
     }
 
     @Override
-    public void clientTick(Player player) {
-        tick(player);
+    public void clientTick() {
+        tick();
     }
 
-    public void useHood(Player player) {
+    public void useHood() {
         player.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0f, 1.0f);
         setHoodHidden(!hoodHidden);
         setHoodUsed(true);
         setHoodTick(1);
     }
 
-    public void useMask(Player player) {
+    public void useMask() {
         player.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0f, 1.0f);
         setMaskHidden(!maskHidden);
         setMaskUsed(true);

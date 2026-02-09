@@ -1,0 +1,36 @@
+{
+  "remove": [
+    "minecraft:unbreaking",
+    "minecraft:bane_of_arthropods",
+    "minecraft:smite",
+    "minecraft:fire_protection",
+    "minecraft:projectile_protection",
+    "minecraft:thorns"
+  ],
+  "values": [
+    {
+      "id": "extendedcombat:obscurity",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:stealth",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:concussion",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:fluid_walker",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:swiftness",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:watergel",
+      "required": false
+    }
+  ]
+}

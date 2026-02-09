@@ -137,6 +137,6 @@ public class ExtendedCombatUtil {
     }
 
     public static boolean isUnbreakable(ItemStack stack) {
-        return Config.disableDurability && !stack.isEmpty() && stack.has(DataComponents.MAX_DAMAGE) && !stack.is(ModItemTags.ALWAYS_HAS_DURABILITY) || EnchantmentHelper.has(stack, ModEnchantmentEffects.KEEPSAKE.get());
+        return Config.disableDurability && !stack.isEmpty() && stack.has(DataComponents.MAX_DAMAGE) && !stack.is(ModItemTags.ALWAYS_HAS_DURABILITY);
     }
 }

@@ -2,7 +2,7 @@ package dev.kirro.extendedcombat.enchantment.payload;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
+import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -31,8 +31,8 @@ public record BlinkPayload() implements CustomPacketPayload {
         public void receive(BlinkPayload payload, ServerPlayNetworking.Context context) {
             ServerPlayer player = context.player();
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
-            if (blink.hasBlink() && blink.canUse()) {
-                blink.use(player);
+            if (blink != null && blink.hasBlink() && blink.canUse()) {
+                blink.use();
 
                 BlinkSyncPayload.broadcast(player, blink.isInvisible(), blink.getDuration());
                 ExtendedCombatUtil.setBlinking(player.getUUID(), blink.isInvisible(), blink.getDuration());

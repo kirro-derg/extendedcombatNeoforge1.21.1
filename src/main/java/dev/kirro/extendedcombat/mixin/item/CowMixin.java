@@ -19,7 +19,7 @@ public class CowMixin {
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     private void fillBottle(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.is(Items.GLASS_BOTTLE) && ((Cow)(Object) this).isBaby()) {
+        if (stack.is(Items.GLASS_BOTTLE) && !((Cow)(Object) this).isBaby()) {
             player.playSound(SoundEvents.COW_MILK, 1.0f, 1.0f);
             ItemStack filledBottle = ItemUtils.createFilledResult(stack, player, ModItems.MILK_BOTTLE.toStack());
             player.setItemInHand(hand, filledBottle);

@@ -31,7 +31,7 @@ public abstract class ItemStackMixin {
     private void extendedcombat$disablesDurability(int amount, ServerLevel serverLevel, LivingEntity living, Consumer<Item> consumer, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
         if (living instanceof ServerPlayer player) {
-            if (player != null && ExtendedCombatUtil.isUnbreakable(stack) || EnchantmentHelper.has(stack, ModEnchantmentEffects.KEEPSAKE.get())) {
+            if (player != null && ExtendedCombatUtil.isUnbreakable(stack)) {
                 this.setDamageValue(0);
                 CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(player, stack, getDamageValue());
             }
@@ -40,7 +40,7 @@ public abstract class ItemStackMixin {
 
     @Inject(method = "isDamageableItem", at = @At("HEAD"), cancellable = true)
     private void extendedcombat$disablesDurability(CallbackInfoReturnable<Boolean> cir) {
-        if (ExtendedCombatUtil.isUnbreakable((ItemStack) (Object) this) || EnchantmentHelper.has(((ItemStack) (Object) this), ModEnchantmentEffects.KEEPSAKE.get())) {
+        if (ExtendedCombatUtil.isUnbreakable((ItemStack) (Object) this)) {
             cir.setReturnValue(false);
         }
     }

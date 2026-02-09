@@ -86,16 +86,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_helmet_smithing"));
 
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_PICKAXE), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_PICKAXE.get())
-                .unlocks("has_echo_shard", has(Items.ECHO_SHARD))
-                .save(recipeOutput, ExtendedCombat.id("echo_steel_pickaxe_smithing"));
-
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_INGOT), Ingredient.of(Items.ECHO_SHARD), RecipeCategory.MISC, ModItems.ECHO_STEEL_INGOT.get())
-                .unlocks("has_nether_steel_upgrade", has(Items.ECHO_SHARD))
-                .save(recipeOutput, ExtendedCombat.id("echo_steel_ingot_smithing"));
-
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_PICKAXE), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_PICKAXE.get())
                 .unlocks(getHasName(ModItems.ECHO_STEEL_UPGRADE), has(ModItems.ECHO_STEEL_UPGRADE))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_pickaxe_smithing"));
+
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.SCULK_CATALYST), Ingredient.of(ModItems.NETHER_STEEL_INGOT), Ingredient.of(Items.ECHO_SHARD), RecipeCategory.MISC, ModItems.ECHO_STEEL_INGOT.get())
+                .unlocks("has_nether_steel_upgrade", has(Items.ECHO_SHARD))
+                .save(recipeOutput, ExtendedCombat.id("echo_steel_ingot_smithing"));
 
         // wool item recipes
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(Items.NETHERITE_CHESTPLATE), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.HUNTER_CLOAK.get())
@@ -323,7 +319,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" OO")
                 .define('O', Items.WHEAT)
                 .unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT))
-                .save(recipeOutput);
+                .save(recipeOutput, "bread_qol");
 
         // QOL recipes
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.PAPER, 3)
@@ -331,7 +327,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" OO")
                 .define('O', Items.SUGAR_CANE)
                 .unlockedBy(getHasName(Items.SUGAR_CANE), has(Items.SUGAR_CANE))
-                .save(recipeOutput);
+                .save(recipeOutput, "paper_qol");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.STRING, 4)
                 .requires(ItemTags.WOOL)

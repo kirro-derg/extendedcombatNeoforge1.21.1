@@ -12,17 +12,17 @@
     }
   },
   "max_cost": {
-    "base": 75,
+    "base": 10,
     "per_level_above_first": 10
   },
   "max_level": 1,
   "min_cost": {
-    "base": 65,
+    "base": 5,
     "per_level_above_first": 10
   },
   "slots": [
     "legs"
   ],
   "supported_items": "#extendedcombat:enchantable/watergel",
-  "weight": 5
+  "weight": 25
 }

@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.core.HolderLookup;
@@ -12,6 +13,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class FluidMovementBehavior implements CommonTickingComponent {
+    private final Player player;
+
+    public FluidMovementBehavior(Player player) {
+        this.player = player;
+    }
 
     @Override
     public void writeToNbt(CompoundTag tag, HolderLookup.Provider holderLookup) {
@@ -24,7 +30,7 @@ public class FluidMovementBehavior implements CommonTickingComponent {
     }
 
     @Override
-    public void tick(Player player) {
+    public void tick() {
     }
 
     private ItemStack getArmor(Player player, EquipmentSlot slot) {
@@ -32,9 +38,9 @@ public class FluidMovementBehavior implements CommonTickingComponent {
     }
 
     @Override
-    public void clientTick(Player player) {
-        tick(player);
-        AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
+    public void clientTick() {
+        tick();
+        AirMovementBehavior airMovement = player.getExistingDataOrNull(ModDataAttachments.AIR_MOVEMENT);
         if (EnchantmentHelper.has(getArmor(player, EquipmentSlot.FEET), ModEnchantmentEffects.FLUID_WALKER.get()) && ExtendedCombatUtil.isTouchingFluid(player)) {
             airMovement.bypass();
         }

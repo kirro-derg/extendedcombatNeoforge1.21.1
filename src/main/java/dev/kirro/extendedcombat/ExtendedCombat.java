@@ -8,6 +8,7 @@ import dev.kirro.extendedcombat.item.ModDataComponents;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.item.payload.HideHoodClientPayload;
 import dev.kirro.extendedcombat.item.payload.HideHoodServerPayload;
+import dev.kirro.extendedcombat.loot.ModLootModifiers;
 import dev.kirro.extendedcombat.villager.ModPoi;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -131,6 +132,7 @@ public class ExtendedCombat {
         ModDataComponents.register(eventBus);
         ModDataAttachments.register(eventBus);
         ModPoi.register(eventBus);
+        ModLootModifiers.register(eventBus);
         registerPayloads();
 
         // Register the item to a creative tab

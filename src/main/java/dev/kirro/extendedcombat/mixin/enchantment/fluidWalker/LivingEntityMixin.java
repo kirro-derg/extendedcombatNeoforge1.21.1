@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.custom.FluidWalkerEnchantmentEffect;
 import dev.kirro.extendedcombat.item.ModItems;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -55,10 +57,10 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @ModifyReturnValue(method = "calculateFallDamage", at = @At(value = "RETURN"))
-    private int handFallDamage(int original) {
+    private int handleFallDamage(int original) {
         if ((Object) this instanceof Player player) {
             ItemStack stack = player.getItemBySlot(EquipmentSlot.FEET);
-            if (stack.is(ModItems.NETHER_STEEL_BOOTS) || stack.is(ModItems.ECHO_STEEL_BOOTS)) {
+            if (stack.is(ModItemTags.NETHER_STEEL_WEARABLES) || stack.is(ModItemTags.ECHO_STEEL_WEARABLES) || stack.is(ModItemTags.HUNTER_BOOTS)) {
                 return (int) (original * 0.7f);
             }
         }

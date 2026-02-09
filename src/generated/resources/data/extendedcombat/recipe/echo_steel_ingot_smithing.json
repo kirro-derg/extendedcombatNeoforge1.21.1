@@ -11,6 +11,6 @@
     "id": "extendedcombat:echo_steel_ingot"
   },
   "template": {
-    "item": "extendedcombat:echo_steel_upgrade"
+    "item": "minecraft:sculk_catalyst"
   }
 }

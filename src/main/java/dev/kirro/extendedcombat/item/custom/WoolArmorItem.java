@@ -20,7 +20,7 @@ public class WoolArmorItem extends ModArmorItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
         if (stack.getItem() instanceof WoolArmorItem item) {
             ResourceLocation id = ResourceLocation.parse(item.getMaterial().getRegisteredName());
-            tooltip.add(Component.translatable("tooltip.extendedcombat." + id.getPath() + ".cloak_tooltip").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("tooltip.extendedcombat." + id.getPath() + ".cloak_tooltip").withStyle(ChatFormatting.BLUE));
         }
         super.appendHoverText(stack, context, tooltip, type);
     }

@@ -20,14 +20,8 @@ public interface ModItemTags {
     TagKey<Item> HUNTER_LEGGINGS = create("hunter_leggings");
     TagKey<Item> HUNTER_BOOTS = create("hunter_boots");
     TagKey<Item> FLAME_RESISTANT_ARMOR = create("flame_resistant_armor");
-    TagKey<Item> DASH_ENCHANTABLE = create("enchantable/dash");
-    TagKey<Item> AIR_JUMP_ENCHANTABLE = create("enchantable/air_jump");
-    TagKey<Item> BLINK_ENCHANTABLE = create("enchantable/blink");
     TagKey<Item> OBSCURITY_ENCHANTABLE = create("enchantable/obscurity");
-    TagKey<Item> VANITY_ENCHANTABLE = create("enchantable/vanity");
     TagKey<Item> STEALTH_ENCHANTABLE = create("enchantable/stealth");
-    TagKey<Item> KEEPSAKE_ENCHANTABLE = create("enchantable/keepsake");
-    TagKey<Item> BURST_ENCHANTABLE = create("enchantable/burst");
     TagKey<Item> CONCUSSION_ENCHANTABLE = create("enchantable/concussion");
     TagKey<Item> FLUID_WALKER_ENCHANTABLE = create("enchantable/fluid_walker");
     TagKey<Item> SWIFTNESS_ENCHANTABLE = create("enchantable/swiftness");

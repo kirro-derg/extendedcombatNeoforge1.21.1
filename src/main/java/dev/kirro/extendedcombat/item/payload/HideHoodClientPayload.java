@@ -30,8 +30,8 @@ public record HideHoodClientPayload() implements CustomPacketPayload {
         public void receive(HideHoodClientPayload payload, ServerPlayNetworking.Context context) {
             Player player = context.player();
             HideWoolHoodBehavior hood = player.getData(ModDataAttachments.HIDE_HOOD);
-            if (hood.isHoodUsed()) hood.useHood(player);
-            else if (hood.isMaskUsed()) hood.useMask(player);
+            if (hood.isHoodUsed()) hood.useHood();
+            else if (hood.isMaskUsed()) hood.useMask();
             PlayerLookup.tracking(context.player()).forEach(foundPlayer -> HideHoodServerPayload.send(foundPlayer, player.getId()));
         }
     }

@@ -12,7 +12,8 @@ import java.util.function.Supplier;
 
 public enum ModToolTiers implements Tier {
     NETHER_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 8124, 20f, 7f, 44, () -> Ingredient.of(Items.NETHERITE_INGOT)),
-    ECHO_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 9124, 23f, 8f, 44, () -> Ingredient.of(ModItems.ECHO_STEEL_INGOT));
+    ECHO_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 9124, 23f, 8f, 44, () -> Ingredient.of(ModItems.ECHO_STEEL_INGOT)),
+    FIRE_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 10124, 26f, 9f, 44, () -> Ingredient.of(ModItems.NETHER_STEEL_INGOT));
 
     private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;

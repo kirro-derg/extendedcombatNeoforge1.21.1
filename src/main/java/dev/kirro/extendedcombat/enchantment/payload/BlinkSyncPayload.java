@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.enchantment.payload;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
+import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;

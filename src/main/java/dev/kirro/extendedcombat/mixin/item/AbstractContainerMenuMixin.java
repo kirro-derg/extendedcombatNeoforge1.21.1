@@ -35,11 +35,11 @@ public class AbstractContainerMenuMixin {
             HideWoolHoodBehavior hoodBehavior = player.getData(ModDataAttachments.HIDE_HOOD);
             if (clickType == ClickType.QUICK_MOVE && stack.getItem() instanceof WoolArmorItem) {
                 if (stack.is(ModItemTags.CLOAK)) {
-                    hoodBehavior.useHood(player);
+                    hoodBehavior.useHood();
                     WoolArmorItem.cycleData(stack, !stack.getOrDefault(ModDataComponents.HIDDEN, false));
                 }
                 if (stack.is(ModItemTags.MASK)) {
-                    hoodBehavior.useMask(player);
+                    hoodBehavior.useMask();
                     HunterMaskItem.cycleData(stack, !stack.getOrDefault(ModDataComponents.HIDDEN, false));
                 }
                 ci.cancel();

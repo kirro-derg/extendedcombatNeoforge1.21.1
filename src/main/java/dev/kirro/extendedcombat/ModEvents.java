@@ -1,13 +1,15 @@
 package dev.kirro.extendedcombat;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
+import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
+import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
+import dev.kirro.extendedcombat.behavior.ability.DashBehavior;
 import dev.kirro.extendedcombat.behavior.enchantment.*;
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
-import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.item.custom.HammerItem;
-import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
@@ -17,7 +19,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -59,62 +60,61 @@ public class ModEvents {
         Minecraft client = Minecraft.getInstance();
         Player player = client.player;
         if (player != null) {
-            AirJumpBehavior airJumpBehavior = player.getData(ModDataAttachments.AIR_JUMP);
-            AirMovementBehavior airMovementBehavior = player.getData(ModDataAttachments.AIR_MOVEMENT);
-            BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
-            DashBehavior dashBehavior = player.getData(ModDataAttachments.DASH);
-            FluidMovementBehavior fluidMovementBehavior = player.getData(ModDataAttachments.FLUID_MOVEMENT);
-            HideWoolHoodBehavior hideHoodBehavior = player.getData(ModDataAttachments.HIDE_HOOD);
+            AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
+            AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
+            BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
+            DashBehavior dash = player.getData(ModDataAttachments.DASH);
+            FluidMovementBehavior fluid = player.getData(ModDataAttachments.FLUID_MOVEMENT);
+            HideWoolHoodBehavior hood = player.getData(ModDataAttachments.HIDE_HOOD);
+            WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
 
-            airJumpBehavior.clientTick(player);
-            airMovementBehavior.clientTick(player);
-            blinkBehavior.clientTick(player);
-            dashBehavior.clientTick(player);
-            fluidMovementBehavior.clientTick(player);
-            hideHoodBehavior.clientTick(player);
+            airJump.clientTick();
+            airMovement.clientTick();
+            blink.clientTick();
+            dash.clientTick();
+            fluid.clientTick();
+            hood.clientTick();
+            watergel.clientTick();
         }
     }
 
     @SubscribeEvent
     public static void equipmentChange(LivingEquipmentChangeEvent event) {
         EquipmentSlot slot = event.getSlot();
-        LivingEntity player = event.getEntity();
-        if (slot.isArmor()) {
-            if (EnchantmentHelper.has(event.getTo(), ModEnchantmentEffects.AIR_JUMP.get())) {
-                AirJumpBehavior airJumpBehavior = player.getData(ModDataAttachments.AIR_JUMP);
-                airJumpBehavior.reset((Player) player);
-            }
-            if (EnchantmentHelper.has(event.getTo(), ModEnchantmentEffects.DASH.get())) {
-                DashBehavior dashBehavior = player.getData(ModDataAttachments.DASH);
-                dashBehavior.reset((Player) player);
-            }
-
-            if (EnchantmentHelper.has(event.getTo(), ModEnchantmentEffects.BLINK.get())) {
-                BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
-                blinkBehavior.reset((Player) player);
+        LivingEntity entity = event.getEntity();
+        if (entity instanceof Player player) {
+            AirJumpBehavior airJumpBehavior = player.getData(ModDataAttachments.AIR_JUMP);
+            DashBehavior dashBehavior = player.getData(ModDataAttachments.DASH);
+            BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
+            if (slot.isArmor()) {
+                airJumpBehavior.reset();
+                dashBehavior.reset();
+                blinkBehavior.reset();
             }
         }
     }
 
     @SubscribeEvent
     public static void serverTick(ServerTickEvent.Post event) {
-        for (ServerPlayer serverPlayer : event.getServer().getPlayerList().getPlayers()) {
-            AirJumpBehavior airJumpBehavior = serverPlayer.getData(ModDataAttachments.AIR_JUMP);
-            AirMovementBehavior airMovementBehavior = serverPlayer.getData(ModDataAttachments.AIR_MOVEMENT);
-            BlinkBehavior blinkBehavior = serverPlayer.getData(ModDataAttachments.BLINK);
-            DashBehavior dashBehavior = serverPlayer.getData(ModDataAttachments.DASH);
-            FluidMovementBehavior fluidMovementBehavior = serverPlayer.getData(ModDataAttachments.FLUID_MOVEMENT);
-            HideWoolHoodBehavior hideHoodBehavior = serverPlayer.getData(ModDataAttachments.HIDE_HOOD);
+        for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+            AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
+            AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
+            BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
+            DashBehavior dash = player.getData(ModDataAttachments.DASH);
+            FluidMovementBehavior fluid = player.getData(ModDataAttachments.FLUID_MOVEMENT);
+            HideWoolHoodBehavior hood = player.getData(ModDataAttachments.HIDE_HOOD);
+            WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
 
 
-            airJumpBehavior.serverTick(serverPlayer);
-            airMovementBehavior.serverTick(serverPlayer);
-            blinkBehavior.serverTick(serverPlayer);
-            dashBehavior.serverTick(serverPlayer);
-            fluidMovementBehavior.serverTick(serverPlayer);
-            hideHoodBehavior.serverTick(serverPlayer);
+            airJump.serverTick();
+            airMovement.serverTick();
+            blink.serverTick();
+            dash.serverTick();
+            fluid.serverTick();
+            hood.serverTick();
+            watergel.serverTick();
 
-            XPRepairTracker.tick(serverPlayer);
+            XPRepairTracker.tick(player);
         }
     }
 
@@ -125,13 +125,16 @@ public class ModEvents {
         airJumpHud(guiGraphics, minecraft);
         blinkHud(guiGraphics, minecraft);
         dashHud(guiGraphics, minecraft);
+        watergelHud(guiGraphics, minecraft);
     }
 
-    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[4];
+    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[11];
     private static final ResourceLocation BLINK_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/blink_background");
     private static final ResourceLocation BLINK_PROGRESS_TEXTURE = ExtendedCombat.id("hud/blink_progress");
     private static final ResourceLocation DASH_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/dash_background");
     private static final ResourceLocation DASH_PROGRESS_TEXTURE = ExtendedCombat.id("hud/dash_progress");
+    private static final ResourceLocation WATERGEL_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/watergel_background");
+    private static final ResourceLocation WATERGEL_PROGRESS_TEXTURE = ExtendedCombat.id("hud/watergel_progress");
 
     static {
         for(int i = 0; i < AIR_JUMP_TEXTURES.length; i++) {
@@ -199,6 +202,24 @@ public class ModEvents {
                     guiGraphics.blitSprite(DASH_BACKGROUND_TEXTURE, 15, 6, 0, 0, x, y, (int) ((dash.getCooldown() / (float) dash.getLastCooldown()) * 15), 6);
                 } else {
                     guiGraphics.blitSprite(DASH_BACKGROUND_TEXTURE, x, y, 15, 6);
+                }
+                guiGraphics.setColor(1, 1, 1, 1);
+                RenderSystem.disableBlend();
+            }
+        }
+    }
+
+    public static void watergelHud(GuiGraphics guiGraphics, Minecraft minecraft) {
+        if (minecraft != null) {
+            WatergelBehavior watergel = minecraft.cameraEntity.getData(ModDataAttachments.WATERGEL);
+            if (watergel.getCanUse() && watergel.getCooldown() > 0 && Minecraft.renderNames()) {
+                RenderSystem.enableBlend();
+                int x = guiGraphics.guiWidth() / 3 + 9, y = guiGraphics.guiHeight() - 7;
+                for (int i = 0; i < 5; i++) {
+                    guiGraphics.blitSprite(WATERGEL_BACKGROUND_TEXTURE, x, y - (i * 3), 7, 7);
+                }
+                for (int i = 0; i < watergel.getUsesLeft(); i++) {
+                    guiGraphics.blitSprite(WATERGEL_PROGRESS_TEXTURE, 7, 7, 0, 0, x, y - (i * 3), 7, 7);
                 }
                 guiGraphics.setColor(1, 1, 1, 1);
                 RenderSystem.disableBlend();

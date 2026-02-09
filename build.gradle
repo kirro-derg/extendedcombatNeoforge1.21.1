@@ -142,6 +142,7 @@ dependencies {
     // Example project dependency using a sister or child project:
     // implementation project(":myproject")
     jarJar(implementation("org.sinytra.forgified-fabric-api:fabric-api-base:${FFAPI_base_version}"))
+    jarJar(implementation("org.sinytra.forgified-fabric-api:fabric-entity-events-v1:${FFAPI_entity_events_version}"))
     jarJar(implementation("org.sinytra.forgified-fabric-api:fabric-networking-api-v1:${FFAPI_network_version}"))
 
     // For more info:

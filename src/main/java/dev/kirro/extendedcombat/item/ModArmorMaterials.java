@@ -45,7 +45,7 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.CHESTPLATE, 8);
                 attribute.put(ArmorItem.Type.HELMET, 3);
                 attribute.put(ArmorItem.Type.BODY, 11);
-            }), 44, 5f, 0.7f, SoundEvents.ARMOR_EQUIP_LEATHER, Ingredient.of(ItemTags.WOOL));
+            }), 44, 4f, 0.5f, SoundEvents.ARMOR_EQUIP_LEATHER, Ingredient.of(ItemTags.WOOL));
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance, Holder<SoundEvent> equipSound,

@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.item.custom.ModElytra;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.CapeLayer;
@@ -33,7 +34,7 @@ public class CapeLayerMixin {
             at = @At("HEAD"), cancellable = true)
     private void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, AbstractClientPlayer livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         ItemStack stack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
-        if (stack.getItem() instanceof ElytraItem) {
+        if (stack.getItem() instanceof ModElytra) {
             ci.cancel();
         }
     }

@@ -51,6 +51,10 @@ public interface ModItems {
             () -> new AxeSwordItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
                     .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.4f, 0.75f))));
 
+    DeferredItem<Item> FIRE_SWORD = registerItem("fire_sword",
+            () -> new HeatBladeItem(ModToolTiers.FIRE_STEEL, new Item.Properties().fireResistant()
+                    .attributes(GreatswordItem.createAttributes(ModToolTiers.FIRE_STEEL, 7, -2.1f, 0.75f))));
+
     DeferredItem<Item> NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
                     .attributes(PickaxeItem.createAttributes(ModToolTiers.NETHER_STEEL, 8, -2.8f))));
@@ -84,22 +88,22 @@ public interface ModItems {
                     .attributes(DiggerItem.createAttributes(ModToolTiers.ECHO_STEEL, 1f, -3.2f))));
 
     DeferredItem<Item> NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
-            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
     DeferredItem<Item> NETHER_STEEL_CHESTPLATE = registerItem("nether_steel_chestplate",
-            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
     DeferredItem<Item> NETHER_STEEL_LEGGINGS = registerItem("nether_steel_leggings",
-            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
     DeferredItem<Item> NETHER_STEEL_BOOTS = registerItem("nether_steel_boots",
-            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
 
     DeferredItem<Item> ECHO_STEEL_HELMET = registerItem("echo_steel_helmet",
-            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
     DeferredItem<Item> ECHO_STEEL_CHESTPLATE = registerItem("echo_steel_chestplate",
-            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
     DeferredItem<Item> ECHO_STEEL_LEGGINGS = registerItem("echo_steel_leggings",
-            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
     DeferredItem<Item> ECHO_STEEL_BOOTS = registerItem("echo_steel_boots",
-            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1)));
+            () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
 
     DeferredItem<Item> HUNTER_MASK = registerItem("hunter_mask", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.HELMET, new Item.Properties().durability(512)));
     DeferredItem<Item> NETHER_STEEL_MASK = registerItem("nether_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(8124).fireResistant()));
@@ -109,15 +113,15 @@ public interface ModItems {
     DeferredItem<Item> NETHER_STEEL_CLOAK = registerItem("nether_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(8124).fireResistant()));
     DeferredItem<Item> ECHO_STEEL_CLOAK = registerItem("echo_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> HUNTER_LEGGINGS = registerItem("hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = registerItem("nether_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = registerItem("echo_steel_hunter_leggings", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_LEGGINGS = registerItem("hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = registerItem("nether_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = registerItem("echo_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> HUNTER_BOOTS = registerItem("hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.BOOTS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = registerItem("nether_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_BOOTS = registerItem("hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.BOOTS, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = registerItem("nether_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
+    DeferredItem<Item> ECHO_REINFORCED_ELYTRA = registerItem("echo_steel_reinforced_elytra",
             () -> new ModElytra(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(864).rarity(Rarity.RARE)));
 
     DeferredItem<Item> BLACK_APPLE = registerItem("black_apple",

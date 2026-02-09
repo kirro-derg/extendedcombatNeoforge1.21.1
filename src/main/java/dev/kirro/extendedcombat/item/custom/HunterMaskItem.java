@@ -26,7 +26,7 @@ public class HunterMaskItem extends WoolArmorItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
         if (stack.getItem() instanceof WoolArmorItem item) {
             String id = item.getMaterial().getRegisteredName().replace("extendedcombat:", "");
-            tooltip.add(Component.translatable("tooltip.extendedcombat." + id + ".mask_tooltip").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("tooltip.extendedcombat." + id + ".mask_tooltip").withStyle(ChatFormatting.BLUE));
         }
     }
 

@@ -1,5 +1,7 @@
 package dev.kirro.extendedcombat.mixin.enchantment.watergel;
 
+import dev.kirro.extendedcombat.behavior.enchantment.WatergelBehavior;
+import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,8 +21,11 @@ public class EntityMixin {
         if ((Object) this instanceof Player player) {
             ItemStack stack = player.getItemBySlot(EquipmentSlot.LEGS);
             if (EnchantmentHelper.has(stack, ModEnchantmentEffects.WATERGEL.get())) {
+                WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
                 if (player.getMainHandItem().getItem() instanceof TridentItem || player.getOffhandItem().getItem() instanceof TridentItem) {
-                    cir.setReturnValue(true);
+                    if (watergel.canUse() && watergel.getCanUse()) {
+                        cir.setReturnValue(true);
+                    }
                 }
             }
         }

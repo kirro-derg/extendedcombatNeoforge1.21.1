@@ -2,7 +2,7 @@ package dev.kirro.extendedcombat.enchantment.payload;
 
 
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.behavior.enchantment.DashBehavior;
+import dev.kirro.extendedcombat.behavior.ability.DashBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -31,8 +31,8 @@ public record DashPayload() implements CustomPacketPayload {
         public void receive(DashPayload payload, ServerPlayNetworking.Context context) {
             Player player = context.player();
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            if (dash.hasDash() && dash.canUse(player)) {
-                dash.use(player);
+            if (dash != null && dash.hasDash() && dash.canUse()) {
+                dash.use();
                 PlayerLookup.tracking(player).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, player.getId()));
             }
         }

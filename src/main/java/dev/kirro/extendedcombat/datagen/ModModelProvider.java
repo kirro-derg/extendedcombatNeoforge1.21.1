@@ -52,6 +52,7 @@ public class ModModelProvider extends ItemModelProvider {
         basicItem(ModItems.ECHO_STEEL_INGOT.get());
         basicItem(ModItems.NETHER_STEEL_UPGRADE.get());
         basicItem(ModItems.ECHO_STEEL_UPGRADE.get());
+        basicItem(ModItems.ECHO_REINFORCED_ELYTRA.get());
         handheldItem(ModItems.NETHER_STEEL_PICKAXE.get());
         handheldItem(ModItems.ECHO_STEEL_PICKAXE.get());
         handheldItem(ModItems.WOODEN_HAMMER.get());
@@ -78,6 +79,8 @@ public class ModModelProvider extends ItemModelProvider {
         createVariants(GREATSWORD_TEMPLATE, ModItems.NETHERITE_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.NETHER_STEEL_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.ECHO_STEEL_GREATSWORD.get());
+
+        createVariants(GREATSWORD_TEMPLATE, ModItems.FIRE_SWORD.get());
 
         trimmedArmorItem(ModItems.NETHER_STEEL_BOOTS);
         trimmedArmorItem(ModItems.NETHER_STEEL_LEGGINGS);

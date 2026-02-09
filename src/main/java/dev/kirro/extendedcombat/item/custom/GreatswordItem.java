@@ -74,6 +74,11 @@ public class GreatswordItem extends SwordItem {
     }
 
     @Override
+    public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
+        return true;
+    }
+
+    @Override
     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker.getMainHandItem().is(this) && !((Player) attacker).getCooldowns().isOnCooldown(this)) {
             int duration = ConcussionEnchantmentEffect.getDuration(attacker);

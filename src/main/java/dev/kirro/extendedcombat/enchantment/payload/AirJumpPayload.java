@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.enchantment.payload;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.behavior.enchantment.AirJumpBehavior;
+import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -30,8 +30,8 @@ public record AirJumpPayload() implements CustomPacketPayload {
         public void receive(AirJumpPayload payload, ServerPlayNetworking.Context context) {
             Player player = context.player();
             AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
-            if (airJump.getCanUse() && airJump.canUse(player)) {
-                airJump.use(player);
+            if (airJump != null && airJump.getCanUse() && airJump.canUse()) {
+                airJump.use();
                 PlayerLookup.tracking(player).forEach(foundPlayer -> AirJumpParticlePayload.send(foundPlayer, player.getId()));
             }
         }

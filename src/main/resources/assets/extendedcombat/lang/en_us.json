@@ -33,9 +33,9 @@
   "item.extendedcombat.golden_steak": "Golden Steak",
   "item.extendedcombat.honey_bread": "Honey Bread",
 
-  "item.extendedcombat.milk_bottle": "Milk",
-  "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk",
-  "item.extendedcombat.chocolate_milk_bottle": "Chocolate Milk",
+  "item.extendedcombat.milk_bottle": "Milk Bottle",
+  "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk Bottle",
+  "item.extendedcombat.chocolate_milk_bottle": "Chocolate Milk Bottle",
 
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
   "block.extendedcombat.echo_steel_block": "Block of Echo Steel",
@@ -69,9 +69,9 @@
   "item.extendedcombat.nether_steel_cloak": "Cloak",
   "item.extendedcombat.echo_steel_cloak": "Cloak",
 
-  "item.extendedcombat.hunter_leggings": "Pants",
-  "item.extendedcombat.nether_steel_hunter_leggings": "Pants",
-  "item.extendedcombat.echo_steel_hunter_leggings": "Pants",
+  "item.extendedcombat.hunter_leggings": "Leggings",
+  "item.extendedcombat.nether_steel_hunter_leggings": "Leggings",
+  "item.extendedcombat.echo_steel_hunter_leggings": "Leggings",
 
   "item.extendedcombat.hunter_boots": "Boots",
   "item.extendedcombat.nether_steel_hunter_boots": "Boots",
@@ -84,7 +84,7 @@
   "tooltip.extendedcombat.nether_steel.mask_tooltip": "Nether Steel",
   "tooltip.extendedcombat.echo_steel.mask_tooltip": "Echo Steel",
 
-  "item.extendedcombat.echo_reinforced_elytra": "Echo Steel Reinforced Elytra",
+  "item.extendedcombat.echo_steel_reinforced_elytra": "Echo Steel Reinforced Elytra",
 
   "enchantment.extendedcombat.dash": "Dash",
   "enchantment.extendedcombat.air_jump": "Air Jump",
