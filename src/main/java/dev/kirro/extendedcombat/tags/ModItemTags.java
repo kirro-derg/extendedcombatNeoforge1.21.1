@@ -10,7 +10,7 @@ public interface ModItemTags {
     TagKey<Item> ALWAYS_HAS_DURABILITY = create("always_has_durability");
     TagKey<Item> REPAIRABLE_ITEMS = create("repairable_items");
     TagKey<Item> NETHER_STEEL_WEARABLES = create("nether_steel_wearables");
-    TagKey<Item> NETHER_STEEL_ITEMS = create("nether_steel_tools");
+    TagKey<Item> NETHER_STEEL_ITEMS = create("nether_steel_items");
     TagKey<Item> ECHO_STEEL_WEARABLES = create("echo_steel_wearables");
     TagKey<Item> ECHO_STEEL_ITEMS = create("echo_items");
     TagKey<Item> GREATSWORDS = create("greatswords");

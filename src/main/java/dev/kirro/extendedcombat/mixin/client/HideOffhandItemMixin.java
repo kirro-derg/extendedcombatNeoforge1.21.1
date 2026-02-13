@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.kirro.extendedcombat.item.custom.GreatswordItem;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.PlayerItemInHandLayer;
 import net.minecraft.world.entity.HumanoidArm;
@@ -20,8 +21,7 @@ public class HideOffhandItemMixin {
                                      HumanoidArm arm, PoseStack poseStack, MultiBufferSource buffer, int packedLight,
                                      CallbackInfo ci) {
         if (!livingEntity.isUsingItem()) {
-            if (arm.equals(livingEntity.getMainArm().getOpposite()) && livingEntity.getMainHandItem().getItem()
-                    instanceof GreatswordItem) ci.cancel();
+            if (arm.equals(livingEntity.getMainArm().getOpposite()) && livingEntity.getMainHandItem().is(ModItemTags.GREATSWORDS)) ci.cancel();
         }
     }
 }
