@@ -57,7 +57,7 @@ public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>
 
     private ResourceLocation getTextureId(ItemStack stack) {
         ResourceLocation texturePath = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        ResourceLocation truncatedPath = ResourceLocation.parse(texturePath.getPath().replace("_chestplate", ""));
+        ResourceLocation truncatedPath = ResourceLocation.parse(texturePath.getPath().replace("_chestplate", "").replace("_reinforced_elytra", ""));
 
         if (!(stack.getItem() instanceof WoolArmorItem)) {
             return ExtendedCombat.id("textures/models/armor/" + truncatedPath.getPath() + "_sleeve_overlay.png");
