@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:black_wool"
+    "tag": "minecraft:wool"
   },
   "base": {
     "item": "extendedcombat:nether_steel_leggings"
@@ -11,6 +11,6 @@
     "id": "extendedcombat:nether_steel_hunter_leggings"
   },
   "template": {
-    "item": "minecraft:black_wool"
+    "tag": "minecraft:wool"
   }
 }
