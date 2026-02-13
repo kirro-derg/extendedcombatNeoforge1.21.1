@@ -94,68 +94,68 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_ingot_smithing"));
 
         // wool item recipes
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(Items.NETHERITE_CHESTPLATE), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.HUNTER_CLOAK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(Items.NETHERITE_CHESTPLATE), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.HUNTER_CLOAK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("wool_cloak_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.NETHER_STEEL_UPGRADE), Ingredient.of(ModItems.HUNTER_CLOAK), Ingredient.of(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_CLOAK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_cloak_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_CLOAK), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_CLOAK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_cloak_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.NETHER_STEEL_CHESTPLATE), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_CLOAK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.NETHER_STEEL_CHESTPLATE), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_CLOAK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_cloak_chestplate_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.ECHO_STEEL_CHESTPLATE), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_CLOAK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.ECHO_STEEL_CHESTPLATE), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_CLOAK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_cloak_chestplate_smithing"));
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(Items.NETHERITE_HELMET), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.HUNTER_MASK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(Items.NETHERITE_HELMET), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.HUNTER_MASK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("hunter_mask_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.NETHER_STEEL_UPGRADE), Ingredient.of(ModItems.HUNTER_MASK), Ingredient.of(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_MASK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_mask_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_MASK), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_MASK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_mask_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.NETHER_STEEL_HELMET), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_MASK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.NETHER_STEEL_HELMET), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_MASK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_mask_helmet_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.ECHO_STEEL_HELMET), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_MASK.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.ECHO_STEEL_HELMET), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_MASK.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_mask_helmet_smithing"));
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(Items.NETHERITE_LEGGINGS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.HUNTER_LEGGINGS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(Items.NETHERITE_LEGGINGS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.HUNTER_LEGGINGS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("hunter_leggings_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.NETHER_STEEL_UPGRADE), Ingredient.of(ModItems.HUNTER_LEGGINGS), Ingredient.of(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_hunter_leggings_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_HUNTER_LEGGINGS), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_hunter_leggings_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.NETHER_STEEL_LEGGINGS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.NETHER_STEEL_LEGGINGS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_hunter_leggings_leggings_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.ECHO_STEEL_LEGGINGS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.ECHO_STEEL_LEGGINGS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_hunter_leggings_leggings_smithing"));
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(Items.NETHERITE_BOOTS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.HUNTER_BOOTS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(Items.NETHERITE_BOOTS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.HUNTER_BOOTS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("hunter_boots_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.NETHER_STEEL_UPGRADE), Ingredient.of(ModItems.HUNTER_BOOTS), Ingredient.of(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_hunter_boots_smithing"));
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_HUNTER_BOOTS), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_BOOTS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_hunter_boots_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.NETHER_STEEL_BOOTS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.NETHER_STEEL_BOOTS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("nether_steel_hunter_boots_boots_smithing"));
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.BLACK_WOOL), Ingredient.of(ModItems.ECHO_STEEL_BOOTS), Ingredient.of(Items.BLACK_WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_BOOTS.get())
-                .unlocks(getHasName(Items.BLACK_WOOL), has(Items.BLACK_WOOL))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ItemTags.WOOL), Ingredient.of(ModItems.ECHO_STEEL_BOOTS), Ingredient.of(ItemTags.WOOL), RecipeCategory.MISC, ModItems.ECHO_STEEL_HUNTER_BOOTS.get())
+                .unlocks(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                 .save(recipeOutput, ExtendedCombat.id("echo_steel_hunter_boots_boots_smithing"));
 
         // miscellaneous item recipes
