@@ -3,7 +3,8 @@ package dev.kirro.extendedcombat.behavior.ability;
 
 import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.Ability;
+import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
 import net.minecraft.client.Minecraft;
@@ -14,7 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 
-public class BlinkBehavior implements CommonTickingComponent {
+public class BlinkBehavior implements TickingAttachment, Ability {
     private final Player player;
     private boolean canRecharge = false, hasBlink = false, wasPressingKey = false, invisible = false;
     private int cooldown = 0, lastCooldown = 0, duration = 0;
@@ -39,16 +40,21 @@ public class BlinkBehavior implements CommonTickingComponent {
         tag.putBoolean("Invisible", invisible);
     }
 
+    @Override
+    public EquipmentSlot slot() {
+        return EquipmentSlot.CHEST;
+    }
+
     private int level() {
-        return this.getLevel(this.player, EquipmentSlot.CHEST);
+        return this.getLevel(this.player, slot());
     }
 
     private int cooldown() {
-        return Mth.floor(this.getValue(level(), 15, -5) * 20);
+        return Mth.floor(this.getValue(level(), 15, -5f) * 20);
     }
 
     private int duration() {
-        return Mth.floor(this.getValue(level(), 2, 3) * 20);
+        return Mth.floor(this.getValue(level(), 2, 3f) * 20);
     }
 
     @Override

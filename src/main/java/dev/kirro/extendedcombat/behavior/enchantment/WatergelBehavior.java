@@ -2,25 +2,22 @@ package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.TickingAttachment;
+import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
+import dev.kirro.extendedcombat.item.ModDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
-public class WatergelBehavior implements CommonTickingComponent, Ability {
+public class WatergelBehavior implements TickingAttachment, Ability {
     private final Player player;
     private boolean canRecharge = false, canUse = false;
-    private int cooldown = 0, lastCooldown = 0, usageCooldown = 0, usesLeft = 0, maxUses = 0;
+    private int cooldown = 1, lastCooldown = 0, usageCooldown = 0, usesLeft = 0, maxUses = 0;
 
     public WatergelBehavior(Player player) {
         this.player = player;
@@ -31,8 +28,8 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
         canRecharge = tag.getBoolean("CanRecharge");
         cooldown = tag.getInt("Cooldown");
         lastCooldown = tag.getInt("LastCooldown");
-        usageCooldown = tag.getInt("JumpCooldown");
-        usesLeft = tag.getInt("JumpsLeft");
+        usageCooldown = tag.getInt("UsageCooldown");
+        usesLeft = tag.getInt("UsesLeft");
     }
 
     @Override
@@ -40,13 +37,21 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
         tag.putBoolean("CanRecharge", canRecharge);
         tag.putInt("Cooldown", cooldown);
         tag.putInt("LastCooldown", lastCooldown);
-        tag.putInt("JumpCooldown", usageCooldown);
-        tag.putInt("JumpsLeft", usesLeft);
+        tag.putInt("UsageCooldown", usageCooldown);
+        tag.putInt("UsesLeft", usesLeft);
+    }
+
+    @Override
+    public EquipmentSlot slot() {
+        return EquipmentSlot.LEGS;
+    }
+
+    public boolean has() {
+        return EnchantmentHelper.has(slotItem(player), ModEnchantmentEffects.WATERGEL.get());
     }
 
     private int level() {
-        return EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.LEGS), ModEnchantmentEffects.WATERGEL.get()) ?
-                this.getLevel(this.player, EquipmentSlot.LEGS) : 0;
+        return this.getLevel(this.player, slot(), EnchantmentHelper.has(slotItem(player), ModEnchantmentEffects.WATERGEL.get()));
     }
 
     private int cooldown() {
@@ -58,12 +63,13 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
     }
 
     private int usageAmount() {
-        return Mth.floor(this.getValue(level(), 5));
+        return Mth.floor(this.getValue(level(), 5, 0.5f));
     }
 
     @Override
     public void tick() {
-        int playerCooldown = Mth.floor(this.getValue(level(), 0.5f) * 20);
+        usesLeft = slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0);
+        int playerCooldown = cooldown();
         maxUses = usageAmount();
         canUse = maxUses > 0;
         if (canUse) {
@@ -79,7 +85,8 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
             }
 
             if (cooldown == 0 && usesLeft < maxUses) {
-                usesLeft++;
+                slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) + 1);
+                //usesLeft++;
                 setCooldown(playerCooldown);
             }
             if (usageCooldown > 0) {
@@ -89,7 +96,6 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
             canRecharge = false;
             setCooldown(0);
             usageCooldown = 0;
-            usesLeft = 0;
         }
     }
 
@@ -133,11 +139,13 @@ public class WatergelBehavior implements CommonTickingComponent, Ability {
         }
         canRecharge = false;
         usageCooldown = usageCooldown();
-        usesLeft--;
+        slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) - 1);
+        //usesLeft--;
     }
 
     public void reset() {
         setCooldown(cooldown());
+        slotItem(player).set(ModDataComponents.CHARGE, 0);
         usesLeft = 0;
     }
 }

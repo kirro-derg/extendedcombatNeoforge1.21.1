@@ -2,7 +2,8 @@ package dev.kirro.extendedcombat.behavior.ability;
 
 import dev.kirro.extendedcombat.Config;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.Ability;
+import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -15,7 +16,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class AirMovementBehavior implements CommonTickingComponent {
+public class AirMovementBehavior implements TickingAttachment, Ability {
     private final Player player;
     private int resetDelay = 0, airTime = 0, multiplierTicks = 0;
     private final int multiplyAfter = 10;
@@ -37,14 +38,18 @@ public class AirMovementBehavior implements CommonTickingComponent {
         nbt.putInt("AirTime", airTime);
     }
 
+    @Override
+    public EquipmentSlot slot() {
+        return EquipmentSlot.CHEST;
+    }
+
     private int multiplyAfter() {
         return EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.LEGS), ModEnchantmentEffects.SWIFTNESS.get()) ? 5 : multiplyAfter;
     }
 
     @Override
     public void tick() {
-        ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
-        if (Config.airMovementActive && stack.isEnchanted()) {
+        if (Config.airMovementActive) {
             if (resetDelay > 0) {
                 resetDelay--;
             }
@@ -52,10 +57,6 @@ public class AirMovementBehavior implements CommonTickingComponent {
                 if (resetDelay == 0) {
                     airTime = 0;
                 }
-                BlockPos pos = BlockPos.containing(player.pick(15, 5, false).getLocation());
-                Level world = player.level();
-                BlockState state = world.getBlockState(pos);
-                state.getBlock();
             } else if (ExtendedCombatUtil.inAir(player, 1)) {
                 airTime++;
                 if (airTime >= multiplyAfter()) {
@@ -68,21 +69,35 @@ public class AirMovementBehavior implements CommonTickingComponent {
         }
     }
 
+    private float movementMultiplier(Player player) {
+        float m = 0;
+        ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack feet = player.getItemBySlot(EquipmentSlot.FEET);
+        float addition = maxMovementMultiplier / 4;
+        if (head.isEnchanted()) m += addition;
+        if (chest.isEnchanted()) m += addition;
+        if (legs.isEnchanted()) m += addition;
+        if (feet.isEnchanted()) m += addition;
+        return m;
+    }
+
     public int getAirTime() {
         return airTime;
     }
 
     public float movementMultiplier(float original) {
-        ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
         float multiplier = getAirTime() >= multiplyAfter() ? multiplierTicks : 1.0f;
         float multiply = EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.LEGS), ModEnchantmentEffects.SWIFTNESS.get())
                 ? 0.5f
                 : 0.0f;
+        float movementMultiplier = movementMultiplier(player);
         float slow = player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) ? 1.0f : 0.0f;
-        if (stack.isEmpty() || getAirTime() < multiplyAfter()) {
+        if (getAirTime() < multiplyAfter()) {
             return original;
         } else {
-            return original * Math.min((maxMovementMultiplier + multiply) - slow, multiplier);
+            return original * Math.min((movementMultiplier + multiply) - slow, multiplier);
         }
     }
 

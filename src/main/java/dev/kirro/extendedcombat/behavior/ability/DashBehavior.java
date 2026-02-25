@@ -2,7 +2,8 @@ package dev.kirro.extendedcombat.behavior.ability;
 
 import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.Ability;
+import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.DashPayload;
@@ -17,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
-public class DashBehavior implements CommonTickingComponent {
+public class DashBehavior implements TickingAttachment, Ability {
     private final Player player;
     private boolean canRecharge = false, hasDash = false, wasPressingKey = false;
     private int cooldown = 0, lastCooldown = 0, immunityTicks = 0;
@@ -40,8 +41,13 @@ public class DashBehavior implements CommonTickingComponent {
         tag.putInt("LastCooldown", lastCooldown);
     }
 
+    @Override
+    public EquipmentSlot slot() {
+        return EquipmentSlot.LEGS;
+    }
+
     private int level() {
-        return this.getLevel(this.player, EquipmentSlot.LEGS);
+        return this.getLevel(this.player, slot());
     }
 
     private int cooldown() {
@@ -112,11 +118,12 @@ public class DashBehavior implements CommonTickingComponent {
 
     public void use() {
         reset();
-        setImmunityTicks(6);
-        float volume = hasStealth(player.getItemBySlot(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
+        setImmunityTicks(10);
+        float volume = hasStealth(slotItem(player)) ? 0.05f : 0.25f;
         float strength = strength();
         Vec3 velocity = player.getLookAngle().normalize().scale(strength);
         player.setDeltaMovement(velocity.x(), velocity.y(), velocity.z());
+        player.causeFoodExhaustion(0.2f);
         player.fallDistance = 0;
         player.hurtMarked = true;
         player.playSound(SoundEvents.WIND_CHARGE_BURST.value(), volume, 1.0f);

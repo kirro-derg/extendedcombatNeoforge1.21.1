@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat.data;
 
+import com.mojang.serialization.Codec;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
@@ -38,6 +39,9 @@ public class ModDataAttachments {
     );
     public static final Supplier<AttachmentType<WatergelBehavior>> WATERGEL = ATTACHMENT_TYPES.register(
             "watergel", () -> AttachmentType.builder(player -> new WatergelBehavior((Player) player)).build()
+    );
+    public static final Supplier<AttachmentType<Integer>> WATERGEL_USES = ATTACHMENT_TYPES.register(
+            "watergel_uses", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
     public static void register(IEventBus eventBus) {

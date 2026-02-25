@@ -1,12 +1,12 @@
 package dev.kirro.extendedcombat.behavior.item;
 
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.TickingAttachment;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 
-public class HideWoolHoodBehavior implements CommonTickingComponent {
+public class HideWoolHoodBehavior implements TickingAttachment {
     private final Player player;
     private boolean hoodHidden, hoodUsed;
     private boolean maskHidden, maskUsed;

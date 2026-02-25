@@ -212,10 +212,10 @@ public class ModEvents {
     public static void watergelHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             WatergelBehavior watergel = minecraft.cameraEntity.getData(ModDataAttachments.WATERGEL);
-            if (watergel.getCanUse() && watergel.getCooldown() > 0 && Minecraft.renderNames()) {
+            if (watergel.has() && Minecraft.renderNames()) {
                 RenderSystem.enableBlend();
                 int x = guiGraphics.guiWidth() / 3 + 9, y = guiGraphics.guiHeight() - 7;
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < watergel.getMaxUses(); i++) {
                     guiGraphics.blitSprite(WATERGEL_BACKGROUND_TEXTURE, x, y - (i * 3), 7, 7);
                 }
                 for (int i = 0; i < watergel.getUsesLeft(); i++) {

@@ -21,16 +21,36 @@ public interface Ability {
         return 0;
     }
 
+    default float getValue(int level, int base, int defaultValue) {
+        if (level > 0) {
+            return base;
+        }
+        return defaultValue;
+    }
+
     default int getLevel(Player player, EquipmentSlot slot) {
         ItemStack stack = player.getItemBySlot(slot);
         if (stack.getItem() instanceof ArmorItem armorItem && !stack.isEmpty()) {
             ArmorMaterial material = armorItem.getMaterial().value();
             int defense = material.getDefense(ArmorItem.Type.BODY);
-            return defense<=4 ? 1 : defense <= 7 ? 2 : defense >= 11 ? 3 : 0;
-            /*if (defense <= 4) return 1;
-            if (defense <= 7) return 2;
-            if (defense >= 11) return 3;*/
+            return defense <= 4 ? 1 : defense <= 7 ? 2 : defense >= 11 ? 3 : 0;
         }
         return 0;
+    }
+
+    default int getLevel(Player player, EquipmentSlot slot, boolean condition) {
+        ItemStack stack = player.getItemBySlot(slot);
+        if (stack.getItem() instanceof ArmorItem armorItem && !stack.isEmpty() && condition) {
+            ArmorMaterial material = armorItem.getMaterial().value();
+            int defense = material.getDefense(ArmorItem.Type.BODY);
+            return defense <= 4 ? 1 : defense <= 7 ? 2 : defense >= 11 ? 3 : 0;
+        }
+        return 0;
+    }
+
+    EquipmentSlot slot();
+
+    default ItemStack slotItem(Player player) {
+        return player.getItemBySlot(this.slot());
     }
 }

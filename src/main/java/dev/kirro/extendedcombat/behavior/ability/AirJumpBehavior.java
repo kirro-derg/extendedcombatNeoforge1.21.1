@@ -1,7 +1,8 @@
 package dev.kirro.extendedcombat.behavior.ability;
 
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
-import dev.kirro.extendedcombat.api.CommonTickingComponent;
+import dev.kirro.extendedcombat.api.Ability;
+import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
@@ -14,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
-public class AirJumpBehavior implements CommonTickingComponent {
+public class AirJumpBehavior implements TickingAttachment, Ability {
     private final Player player;
     private boolean canRecharge = false, canUse = false;
     private int cooldown = 0, lastCooldown = 0, jumpCooldown = 0, jumpsLeft, ticksInAir = 0, maxJumps;
@@ -43,8 +44,13 @@ public class AirJumpBehavior implements CommonTickingComponent {
         tag.putInt("TicksInAir", ticksInAir);
     }
 
+    @Override
+    public EquipmentSlot slot() {
+        return EquipmentSlot.FEET;
+    }
+
     private int level() {
-        return this.getLevel(this.player, EquipmentSlot.FEET);
+        return this.getLevel(this.player, slot());
     }
 
     private float strength() {
@@ -65,7 +71,7 @@ public class AirJumpBehavior implements CommonTickingComponent {
 
     @Override
     public void tick() {
-        int playerCooldown = Mth.floor(this.getValue(level(), 0.5f, 0) * 20);
+        int playerCooldown = cooldown();
         maxJumps = jumpAmount();
         canUse = maxJumps > 0;
         if (canUse) {
