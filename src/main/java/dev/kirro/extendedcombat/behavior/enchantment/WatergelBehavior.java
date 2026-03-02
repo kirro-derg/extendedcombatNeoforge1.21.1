@@ -86,7 +86,6 @@ public class WatergelBehavior implements TickingAttachment, Ability {
 
             if (cooldown == 0 && usesLeft < maxUses) {
                 slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) + 1);
-                //usesLeft++;
                 setCooldown(playerCooldown);
             }
             if (usageCooldown > 0) {
@@ -140,12 +139,5 @@ public class WatergelBehavior implements TickingAttachment, Ability {
         canRecharge = false;
         usageCooldown = usageCooldown();
         slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) - 1);
-        //usesLeft--;
-    }
-
-    public void reset() {
-        setCooldown(cooldown());
-        slotItem(player).set(ModDataComponents.CHARGE, 0);
-        usesLeft = 0;
     }
 }

@@ -168,6 +168,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLE)
+                .pattern("S  ")
+                .pattern("SL ")
+                .pattern("S  ")
+                .define('S', ItemTags.PLANKS)
+                .define('L', Items.LEATHER)
+                .unlockedBy(getHasName(Items.LEATHER), has(Items.LEATHER))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHER_STEEL_UPGRADE, 2)
                 .pattern("DND")
                 .pattern("DUD")
@@ -297,6 +306,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_GREATSWORD), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.ECHO_STEEL_GREATSWORD.get())
                 .unlocks(getHasName(ModItems.ECHO_STEEL_INGOT), has(ModItems.ECHO_STEEL_INGOT))
                 .save(recipeOutput, "echo_steel_greatsword_smithing");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.WOODEN_HALBERD)
+                .pattern(" II")
+                .pattern(" I ")
+                .pattern("P  ")
+                .define('I', ItemTags.PLANKS)
+                .define('P', ModItems.POLE)
+                .unlockedBy(getHasName(ModItems.POLE), has(ModItems.POLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.STONE_HALBERD)
+                .pattern(" II")
+                .pattern(" I ")
+                .pattern("P  ")
+                .define('I', ItemTags.STONE_TOOL_MATERIALS)
+                .define('P', ModItems.POLE)
+                .unlockedBy(getHasName(ModItems.POLE), has(ModItems.POLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.IRON_HALBERD)
+                .pattern(" II")
+                .pattern(" I ")
+                .pattern("P  ")
+                .define('I', Items.IRON_INGOT)
+                .define('P', ModItems.POLE)
+                .unlockedBy(getHasName(ModItems.POLE), has(ModItems.POLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.GOLDEN_HALBERD)
+                .pattern(" II")
+                .pattern(" I ")
+                .pattern("P  ")
+                .define('I', Items.GOLD_INGOT)
+                .define('P', ModItems.POLE)
+                .unlockedBy(getHasName(ModItems.POLE), has(ModItems.POLE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DIAMOND_HALBERD)
+                .pattern(" II")
+                .pattern(" I ")
+                .pattern("P  ")
+                .define('I', Items.DIAMOND)
+                .define('P', ModItems.POLE)
+                .unlockedBy(getHasName(ModItems.POLE), has(ModItems.POLE))
+                .save(recipeOutput);
+
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ModItems.DIAMOND_HALBERD), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ModItems.NETHERITE_HALBERD.get())
+                .unlocks(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+                .save(recipeOutput, "netherite_halberd_smithing");
+
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.NETHER_STEEL_UPGRADE), Ingredient.of(ModItems.NETHERITE_HALBERD), Ingredient.of(ModItems.NETHER_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.NETHER_STEEL_HALBERD.get())
+                .unlocks(getHasName(ModItems.NETHER_STEEL_INGOT), has(ModItems.NETHER_STEEL_INGOT))
+                .save(recipeOutput, "nether_steel_halberd_smithing");
+
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(ModItems.ECHO_STEEL_UPGRADE), Ingredient.of(ModItems.NETHER_STEEL_HALBERD), Ingredient.of(ModItems.ECHO_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.ECHO_STEEL_HALBERD.get())
+                .unlocks(getHasName(ModItems.ECHO_STEEL_INGOT), has(ModItems.ECHO_STEEL_INGOT))
+                .save(recipeOutput, "echo_steel_halberd_smithing");
 
         // food recipes
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.GOLDEN_STEAK)

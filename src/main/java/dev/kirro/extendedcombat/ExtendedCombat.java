@@ -69,6 +69,15 @@ public class ExtendedCombat {
         output.accept(ModItems.NETHER_STEEL_GREATSWORD);
         output.accept(ModItems.ECHO_STEEL_GREATSWORD);
 
+        output.accept(ModItems.WOODEN_HALBERD);
+        output.accept(ModItems.STONE_HALBERD);
+        output.accept(ModItems.IRON_HALBERD);
+        output.accept(ModItems.GOLDEN_HALBERD);
+        output.accept(ModItems.DIAMOND_HALBERD);
+        output.accept(ModItems.NETHERITE_HALBERD);
+        output.accept(ModItems.NETHER_STEEL_HALBERD);
+        output.accept(ModItems.ECHO_STEEL_HALBERD);
+
         output.accept(ModItems.NETHER_STEEL_PICKAXE);
         output.accept(ModItems.ECHO_STEEL_PICKAXE);
 

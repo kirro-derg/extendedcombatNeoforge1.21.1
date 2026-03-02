@@ -24,6 +24,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
@@ -115,6 +116,17 @@ public class ModEvents {
             watergel.serverTick();
 
             XPRepairTracker.tick(player);
+        }
+    }
+
+    @SubscribeEvent
+    public static void cancelFall(LivingFallEvent event) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.player != null) {
+            DashBehavior dashBehavior = minecraft.player.getData(ModDataAttachments.DASH);
+            if (dashBehavior.getImmunityTicks() > 0) {
+                event.setDistance(0);
+            }
         }
     }
 
@@ -212,7 +224,7 @@ public class ModEvents {
     public static void watergelHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             WatergelBehavior watergel = minecraft.cameraEntity.getData(ModDataAttachments.WATERGEL);
-            if (watergel.has() && Minecraft.renderNames()) {
+            if (watergel.has() && watergel.getUsesLeft() > 0 && Minecraft.renderNames()) {
                 RenderSystem.enableBlend();
                 int x = guiGraphics.guiWidth() / 3 + 9, y = guiGraphics.guiHeight() - 7;
                 for (int i = 0; i < watergel.getMaxUses(); i++) {

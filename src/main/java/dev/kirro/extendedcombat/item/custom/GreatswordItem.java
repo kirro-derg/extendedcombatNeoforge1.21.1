@@ -83,7 +83,7 @@ public class GreatswordItem extends SwordItem {
         if (attacker.getMainHandItem().is(this) && !((Player) attacker).getCooldowns().isOnCooldown(this)) {
             int duration = ConcussionEnchantmentEffect.getDuration(attacker);
             if (EnchantmentHelper.has(stack, ModEnchantmentEffects.CONCUSSION.get())) {
-                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 10), null);
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 3), null);
                 target.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, duration), null);
                 target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration), null);
                 ((Player) attacker).getCooldowns().addCooldown(this, duration * 2);

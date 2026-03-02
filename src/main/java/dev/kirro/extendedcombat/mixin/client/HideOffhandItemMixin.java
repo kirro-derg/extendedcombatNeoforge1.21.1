@@ -22,6 +22,7 @@ public class HideOffhandItemMixin {
                                      CallbackInfo ci) {
         if (!livingEntity.isUsingItem()) {
             if (arm.equals(livingEntity.getMainArm().getOpposite()) && livingEntity.getMainHandItem().is(ModItemTags.GREATSWORDS)) ci.cancel();
+            if (arm.equals(livingEntity.getMainArm().getOpposite()) && livingEntity.getMainHandItem().is(ModItemTags.HALBERDS)) ci.cancel();
         }
     }
 }

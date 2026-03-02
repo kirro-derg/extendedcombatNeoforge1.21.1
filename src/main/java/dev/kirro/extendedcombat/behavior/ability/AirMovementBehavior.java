@@ -92,7 +92,7 @@ public class AirMovementBehavior implements TickingAttachment, Ability {
         float multiply = EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.LEGS), ModEnchantmentEffects.SWIFTNESS.get())
                 ? 0.5f
                 : 0.0f;
-        float movementMultiplier = movementMultiplier(player);
+        float movementMultiplier = Math.max(movementMultiplier(player), 1);
         float slow = player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) ? 1.0f : 0.0f;
         if (getAirTime() < multiplyAfter()) {
             return original;

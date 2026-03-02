@@ -67,16 +67,8 @@ public class HideWoolHoodBehavior implements TickingAttachment {
         this.hoodHidden = hidden;
     }
 
-    public boolean isHoodHidden() {
-        return this.hoodHidden;
-    }
-
     public void setMaskHidden(boolean hidden) {
         this.maskHidden = hidden;
-    }
-
-    public boolean isMaskHidden() {
-        return this.maskHidden;
     }
 
     public boolean isHoodUsed() {

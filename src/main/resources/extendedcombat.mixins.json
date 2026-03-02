@@ -7,7 +7,6 @@
     "ability.airJump.LivingEntityMixin",
     "ability.airmovement.PlayerMixin",
     "ability.blink.EntityMixin",
-    "ability.dash.LivingEntityMixin",
     "block.MonsterMixin",
     "block.MonsterMixin$BatMixin",
     "block.MonsterMixin$SlimeMixin",
@@ -32,7 +31,7 @@
     "client.HideOffhandItemMixin",
     "client.PlayerRendererMixin",
     "client.ScreenEffectRendererMixin",
-    "client.TwoHandedGreatswordMixin",
+    "client.ArmPoseMixin",
     "enchantment.fluidWalker.FogRendererMixin",
     "enchantment.obscurity.LivingEntityRendererMixin",
     "item.HumanoidArmorLayerMixin"

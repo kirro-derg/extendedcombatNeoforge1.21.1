@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat.item;
 
+import com.google.common.base.Suppliers;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
@@ -20,7 +21,9 @@ public interface ModItems {
     DeferredItem<Item> ECHO_STEEL_INGOT = registerItem("echo_steel_ingot",
             () -> new Item(new Item.Properties().fireResistant()));
     DeferredItem<Item> HANDLE = registerItem("handle",
-            () -> new Item(new Item.Properties().fireResistant()));
+            () -> new Item(new Item.Properties()));
+    DeferredItem<Item> POLE = registerItem("pole",
+            () -> new Item(new Item.Properties()));
     DeferredItem<Item> NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade",
             () -> new Item(new Item.Properties().fireResistant()));
     DeferredItem<Item> ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade",
@@ -46,10 +49,10 @@ public interface ModItems {
                     .attributes(GreatswordItem.createAttributes(Tiers.NETHERITE, 7, -2.5f, 0.75f))));
     DeferredItem<Item> NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
             () -> new PickSwordItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, -2.4f, 0.75f))));
+                    .attributes(PickSwordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, -2.5f, 0.75f))));
     DeferredItem<Item> ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
             () -> new AxeSwordItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.4f, 0.75f))));
+                    .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.5f, 0.75f))));
 
     DeferredItem<Item> FIRE_SWORD = registerItem("fire_sword",
             () -> new HeatBladeItem(ModToolTiers.FIRE_STEEL, new Item.Properties().fireResistant()
@@ -140,8 +143,38 @@ public interface ModItems {
     DeferredItem<Item> CHOCOLATE_MILK_BOTTLE = registerItem("chocolate_milk_bottle",
             () -> new MilkBottleItem(new Item.Properties().stacksTo(32), MilkBottleItem.MilkType.CHOCOLATE));
 
+    DeferredItem<Item> WOODEN_HALBERD = registerItem("wooden_halberd",
+            () -> new HalberdItem(Tiers.WOOD, new Item.Properties()
+                    .attributes(HalberdItem.createAttributes(Tiers.WOOD, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> STONE_HALBERD = registerItem("stone_halberd",
+            () -> new HalberdItem(Tiers.STONE, new Item.Properties().durability(Tiers.STONE.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.STONE, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> IRON_HALBERD = registerItem("iron_halberd",
+            () -> new HalberdItem(Tiers.IRON, new Item.Properties().durability(Tiers.IRON.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.IRON, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> GOLDEN_HALBERD = registerItem("golden_halberd",
+            () -> new HalberdItem(Tiers.GOLD, new Item.Properties().durability(Tiers.GOLD.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.GOLD, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> DIAMOND_HALBERD = registerItem("diamond_halberd",
+            () -> new HalberdItem(Tiers.DIAMOND, new Item.Properties().durability(Tiers.DIAMOND.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.DIAMOND, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> NETHERITE_HALBERD = registerItem("netherite_halberd",
+            () -> new HalberdItem(Tiers.NETHERITE, new Item.Properties().durability(Tiers.NETHERITE.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.NETHERITE, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> NETHER_STEEL_HALBERD = registerItem("nether_steel_halberd",
+            () -> new HalberdItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, -2.6f, 1.6f))));
+    DeferredItem<Item> ECHO_STEEL_HALBERD = registerItem("echo_steel_halberd",
+            () -> new HalberdItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.6f, 1.6f))));
+
     private static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
+    }
+
+    private static DeferredItem<Item> registerItem(String name, Item item) {
+        Supplier<Item> registeredItem = Suppliers.memoize(() -> item);
+        return ITEMS.register(name, registeredItem);
     }
 
     static void register(IEventBus eventBus) {
@@ -171,32 +204,67 @@ public interface ModItems {
         }
         if(entries.getTabKey() == CreativeModeTabs.COMBAT) {
             entries.insertAfter(Items.WOODEN_SWORD.getDefaultInstance(), WOODEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(WOODEN_GREATSWORD.toStack(), WOODEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.STONE_SWORD.getDefaultInstance(), STONE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(STONE_GREATSWORD.toStack(), STONE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.IRON_SWORD.getDefaultInstance(), IRON_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(IRON_GREATSWORD.toStack(), IRON_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.GOLDEN_SWORD.getDefaultInstance(), GOLDEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(GOLDEN_GREATSWORD.toStack(), GOLDEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.DIAMOND_SWORD.getDefaultInstance(), DIAMOND_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(DIAMOND_GREATSWORD.toStack(), DIAMOND_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.NETHERITE_SWORD.getDefaultInstance(), NETHERITE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHERITE_GREATSWORD.toStack(), NETHER_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_GREATSWORD.toStack(), ECHO_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHERITE_GREATSWORD.toStack(), NETHERITE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            entries.insertAfter(NETHERITE_HALBERD.toStack(), NETHER_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHER_STEEL_GREATSWORD.toStack(), NETHER_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            entries.insertAfter(NETHER_STEEL_HALBERD.toStack(), ECHO_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(ECHO_STEEL_GREATSWORD.toStack(), ECHO_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.NETHERITE_BOOTS.getDefaultInstance(), NETHER_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_HELMET.toStack(), NETHER_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_CHESTPLATE.toStack(), NETHER_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_LEGGINGS.toStack(), NETHER_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_BOOTS.toStack(), ECHO_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_HELMET.toStack(), ECHO_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_CHESTPLATE.toStack(), ECHO_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_LEGGINGS.toStack(), ECHO_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.TURTLE_HELMET.getDefaultInstance(), HUNTER_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(HUNTER_MASK.toStack(), NETHER_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_MASK.toStack(), ECHO_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_MASK.toStack(), HUNTER_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(HUNTER_CLOAK.toStack(), NETHER_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_CLOAK.toStack(), ECHO_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_CLOAK.toStack(), HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(HUNTER_LEGGINGS.toStack(), NETHER_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_HUNTER_LEGGINGS.toStack(), ECHO_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(ECHO_STEEL_HUNTER_LEGGINGS.toStack(), HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(HUNTER_BOOTS.toStack(), NETHER_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_HUNTER_BOOTS.toStack(), ECHO_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
         if(entries.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {

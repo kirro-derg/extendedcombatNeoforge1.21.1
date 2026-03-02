@@ -14,6 +14,7 @@ public interface ModItemTags {
     TagKey<Item> ECHO_STEEL_WEARABLES = create("echo_steel_wearables");
     TagKey<Item> ECHO_STEEL_ITEMS = create("echo_items");
     TagKey<Item> GREATSWORDS = create("greatswords");
+    TagKey<Item> HALBERDS = create("halberds");
     TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
     TagKey<Item> CLOAK = create("cloak");
     TagKey<Item> MASK = create("mask");

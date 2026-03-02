@@ -36,6 +36,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
         ;
 
+        tag(ModItemTags.HALBERDS)
+                .add(ModItems.WOODEN_HALBERD.get())
+                .add(ModItems.STONE_HALBERD.get())
+                .add(ModItems.IRON_HALBERD.get())
+                .add(ModItems.GOLDEN_HALBERD.get())
+                .add(ModItems.DIAMOND_HALBERD.get())
+                .add(ModItems.NETHERITE_HALBERD.get())
+                .add(ModItems.NETHER_STEEL_HALBERD.get())
+                .add(ModItems.ECHO_STEEL_HALBERD.get())
+        ;
+
         tag(ModItemTags.SLEEVED_ARMOR)
                 .add(Items.CHAINMAIL_CHESTPLATE)
                 .add(Items.LEATHER_CHESTPLATE)
@@ -210,6 +221,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
         ;
         tag(ItemTags.AXES)
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
+                .add(ModItems.WOODEN_HALBERD.get())
+                .add(ModItems.STONE_HALBERD.get())
+                .add(ModItems.IRON_HALBERD.get())
+                .add(ModItems.GOLDEN_HALBERD.get())
+                .add(ModItems.DIAMOND_HALBERD.get())
+                .add(ModItems.NETHERITE_HALBERD.get())
+                .add(ModItems.NETHER_STEEL_HALBERD.get())
+                .add(ModItems.ECHO_STEEL_HALBERD.get())
                 .replace(false)
         ;
         tag(ItemTags.SHOVELS)
@@ -229,6 +248,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.HOES)
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
+                .add(ModItems.ECHO_STEEL_HALBERD.get())
                 .replace(false)
         ;
 

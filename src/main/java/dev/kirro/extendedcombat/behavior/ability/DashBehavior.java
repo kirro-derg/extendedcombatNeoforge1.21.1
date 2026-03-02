@@ -118,14 +118,13 @@ public class DashBehavior implements TickingAttachment, Ability {
 
     public void use() {
         reset();
-        setImmunityTicks(10);
+        setImmunityTicks(6);
         float volume = hasStealth(slotItem(player)) ? 0.05f : 0.25f;
         float strength = strength();
         Vec3 velocity = player.getLookAngle().normalize().scale(strength);
         player.setDeltaMovement(velocity.x(), velocity.y(), velocity.z());
         player.causeFoodExhaustion(0.2f);
         player.fallDistance = 0;
-        player.hurtMarked = true;
         player.playSound(SoundEvents.WIND_CHARGE_BURST.value(), volume, 1.0f);
     }
 

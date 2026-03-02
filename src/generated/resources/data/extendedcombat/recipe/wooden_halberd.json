@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "tag": "minecraft:planks"
+    },
+    "P": {
+      "item": "extendedcombat:pole"
+    }
+  },
+  "pattern": [
+    " II",
+    " I ",
+    "P  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:wooden_halberd"
+  }
+}

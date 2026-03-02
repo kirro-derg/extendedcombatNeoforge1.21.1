@@ -27,6 +27,7 @@ import java.util.Optional;
 
 public class ModModelProvider extends ItemModelProvider {
     public static final ResourceLocation GREATSWORD_TEMPLATE = ExtendedCombat.id("item/greatsword_template_handheld");
+    public static final ResourceLocation HALBERD_TEMPLATE = ExtendedCombat.id("item/halberd_template_handheld");
     private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
@@ -48,6 +49,7 @@ public class ModModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.HANDLE.get());
+        basicItem(ModItems.POLE.get());
         basicItem(ModItems.NETHER_STEEL_INGOT.get());
         basicItem(ModItems.ECHO_STEEL_INGOT.get());
         basicItem(ModItems.NETHER_STEEL_UPGRADE.get());
@@ -79,6 +81,15 @@ public class ModModelProvider extends ItemModelProvider {
         createVariants(GREATSWORD_TEMPLATE, ModItems.NETHERITE_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.NETHER_STEEL_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.ECHO_STEEL_GREATSWORD.get());
+
+        createVariants(HALBERD_TEMPLATE, ModItems.WOODEN_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.STONE_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.IRON_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.GOLDEN_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.DIAMOND_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.NETHERITE_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.NETHER_STEEL_HALBERD.get());
+        createVariants(HALBERD_TEMPLATE, ModItems.ECHO_STEEL_HALBERD.get());
 
         createVariants(GREATSWORD_TEMPLATE, ModItems.FIRE_SWORD.get());
 

@@ -18,7 +18,7 @@ public class LivingEntityMixin {
         double value = original.call(instance, attribute);
         if (instance instanceof Player player) {
             AirJumpBehavior airJumpBehavior = player.getExistingDataOrNull(ModDataAttachments.AIR_JUMP);
-            if (airJumpBehavior.getCanUse()) {
+            if (airJumpBehavior != null && airJumpBehavior.getCanUse()) {
                 return value + airJumpBehavior.getMaxJumps() - airJumpBehavior.getJumpsLeft();
             }
         }
