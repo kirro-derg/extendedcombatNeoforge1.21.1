@@ -19,24 +19,18 @@ public class Config {
             .define("disableDurability", true);
 
     private static final ModConfigSpec.IntValue WARDING_STONE_RADIUS = BUILDER
+            .comment("Radius in which the Warding Stone will disable mob spawns")
             .defineInRange("wardingStoneActiveRadius", 55, 0, 100);
 
     private static final ModConfigSpec.BooleanValue AIR_MOVEMENT = BUILDER
             .comment("Whether to increase mobility while in air")
             .define("airMovement", true);
 
-
-    // a list of strings that are treated as resource locations for items
-    //private static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-    //        .comment("A list of items to log on common setup.")
-    //        .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
-
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean disableDurability;
     public static int wardingStoneActiveRadius;
     public static boolean airMovementActive;
-    public static Set<Item> items;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
