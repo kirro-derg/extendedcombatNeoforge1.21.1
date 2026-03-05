@@ -52,6 +52,7 @@ public class ExtendedCombat {
         output.accept(ModItems.NETHER_STEEL_INGOT);
         output.accept(ModItems.ECHO_STEEL_INGOT);
         output.accept(ModItems.HANDLE);
+        output.accept(ModItems.POLE);
         output.accept(ModItems.NETHER_STEEL_UPGRADE);
         output.accept(ModItems.ECHO_STEEL_UPGRADE);
 

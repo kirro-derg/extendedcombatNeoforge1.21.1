@@ -1,9 +1,6 @@
 {
-	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "extendedcombat:item/diamond_hammer"
-	},
-	"display": {}
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "extendedcombat:item/diamond_hammer"
+  }
 }

@@ -1,8 +1,6 @@
 {
-	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
-	"parent": "extendedcombat:item/halberd_template_handheld",
-	"textures": {
-		"layer0": "extendedcombat:item/wooden_halberd_handheld"
-	}
+  "parent": "extendedcombat:item/halberd_template_handheld",
+  "textures": {
+    "layer0": "extendedcombat:item/wooden_halberd_handheld"
+  }
 }
