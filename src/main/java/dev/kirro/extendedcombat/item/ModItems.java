@@ -4,10 +4,13 @@ import com.google.common.base.Suppliers;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -179,6 +182,7 @@ public interface ModItems {
 
     static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+        CREATIVE_MODE_TABS.register(eventBus);
     }
 
     @SubscribeEvent
@@ -288,5 +292,84 @@ public interface ModItems {
             entries.insertAfter(ModBlocks.FRAMED_GLASS_PANEL.toStack(), ModBlocks._STAINED_GLASS_PANEL.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }
+
+    DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ExtendedCombat.MOD_ID);
+
+    DeferredHolder<CreativeModeTab, CreativeModeTab> EXTENDEDCOMBAT_ITEMS = CREATIVE_MODE_TABS.register("extended_combat_items",
+            () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.extended_combat_items")).withTabsBefore(CreativeModeTabs.COMBAT)
+                    .icon(() -> NETHER_STEEL_GREATSWORD.get().getDefaultInstance()).displayItems((parameters, output) -> {
+                        output.accept(NETHER_STEEL_INGOT);
+                        output.accept(ECHO_STEEL_INGOT);
+                        output.accept(HANDLE);
+                        output.accept(POLE);
+                        output.accept(NETHER_STEEL_UPGRADE);
+                        output.accept(ECHO_STEEL_UPGRADE);
+
+                        output.accept(ModBlocks.NETHER_STEEL_BLOCK);
+                        output.accept(ModBlocks.ECHO_STEEL_BLOCK);
+                        output.accept(ModBlocks.WARDING_STONE);
+                        output.accept(ModBlocks.FRAMED_GLASS_PANEL);
+
+                        output.accept(WOODEN_GREATSWORD);
+                        output.accept(STONE_GREATSWORD);
+                        output.accept(IRON_GREATSWORD);
+                        output.accept(GOLDEN_GREATSWORD);
+                        output.accept(DIAMOND_GREATSWORD);
+                        output.accept(NETHERITE_GREATSWORD);
+                        output.accept(NETHER_STEEL_GREATSWORD);
+                        output.accept(ECHO_STEEL_GREATSWORD);
+
+                        output.accept(WOODEN_HALBERD);
+                        output.accept(STONE_HALBERD);
+                        output.accept(IRON_HALBERD);
+                        output.accept(GOLDEN_HALBERD);
+                        output.accept(DIAMOND_HALBERD);
+                        output.accept(NETHERITE_HALBERD);
+                        output.accept(NETHER_STEEL_HALBERD);
+                        output.accept(ECHO_STEEL_HALBERD);
+
+                        output.accept(NETHER_STEEL_PICKAXE);
+                        output.accept(ECHO_STEEL_PICKAXE);
+
+                        output.accept(WOODEN_HAMMER);
+                        output.accept(STONE_HAMMER);
+                        output.accept(IRON_HAMMER);
+                        output.accept(GOLDEN_HAMMER);
+                        output.accept(DIAMOND_HAMMER);
+                        output.accept(NETHERITE_HAMMER);
+                        output.accept(NETHER_STEEL_HAMMER);
+                        output.accept(ECHO_STEEL_HAMMER);
+
+                        output.accept(HUNTER_MASK);
+                        output.accept(HUNTER_CLOAK);
+                        output.accept(HUNTER_LEGGINGS);
+                        output.accept(HUNTER_BOOTS);
+                        output.accept(NETHER_STEEL_HELMET);
+                        output.accept(NETHER_STEEL_CHESTPLATE);
+                        output.accept(NETHER_STEEL_LEGGINGS);
+                        output.accept(NETHER_STEEL_BOOTS);
+                        output.accept(NETHER_STEEL_MASK);
+                        output.accept(NETHER_STEEL_CLOAK);
+                        output.accept(NETHER_STEEL_HUNTER_LEGGINGS);
+                        output.accept(NETHER_STEEL_HUNTER_BOOTS);
+                        output.accept(ECHO_STEEL_HELMET);
+                        output.accept(ECHO_STEEL_CHESTPLATE);
+                        output.accept(ECHO_STEEL_LEGGINGS);
+                        output.accept(ECHO_STEEL_BOOTS);
+                        output.accept(ECHO_STEEL_MASK);
+                        output.accept(ECHO_STEEL_CLOAK);
+                        output.accept(ECHO_STEEL_HUNTER_LEGGINGS);
+                        output.accept(ECHO_STEEL_HUNTER_BOOTS);
+                        output.accept(ECHO_REINFORCED_ELYTRA);
+
+                        output.accept(BLACK_APPLE);
+                        output.accept(GOLDEN_STEAK);
+                        output.accept(HONEY_BREAD);
+
+                        output.accept(MILK_BOTTLE);
+                        output.accept(SWEET_BERRY_MILK_BOTTLE);
+                        output.accept(CHOCOLATE_MILK_BOTTLE);
+
+                    }).build());
 
 }

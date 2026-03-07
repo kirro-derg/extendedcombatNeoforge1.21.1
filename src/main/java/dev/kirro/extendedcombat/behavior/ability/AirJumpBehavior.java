@@ -158,9 +158,7 @@ public class AirJumpBehavior implements TickingAttachment, Ability {
         jumpsLeft--;
     }
 
-    private boolean hasStealth(ItemStack chest) {
-        return EnchantmentHelper.has(chest, ModEnchantmentEffects.STEALTH.get());
-    }
+
 
     public void reset() {
         setCooldown(cooldown());

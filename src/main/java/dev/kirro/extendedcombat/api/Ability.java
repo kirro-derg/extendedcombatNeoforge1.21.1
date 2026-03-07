@@ -1,10 +1,12 @@
 package dev.kirro.extendedcombat.api;
 
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public interface Ability {
     default float getValue(int level, float base, float perLevelValue) {
@@ -52,5 +54,9 @@ public interface Ability {
 
     default ItemStack slotItem(Player player) {
         return player.getItemBySlot(this.slot());
+    }
+
+    default boolean hasStealth(ItemStack chest) {
+        return EnchantmentHelper.has(chest, ModEnchantmentEffects.STEALTH.get());
     }
 }

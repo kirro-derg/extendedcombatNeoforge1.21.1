@@ -128,10 +128,6 @@ public class DashBehavior implements TickingAttachment, Ability {
         player.playSound(SoundEvents.WIND_CHARGE_BURST.value(), volume, 1.0f);
     }
 
-    private boolean hasStealth(ItemStack chest) {
-        return EnchantmentHelper.has(chest, ModEnchantmentEffects.STEALTH.get());
-    }
-
     public void setImmunityTicks(int ticks) {
         immunityTicks = ticks;
     }
