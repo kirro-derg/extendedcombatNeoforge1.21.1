@@ -7,7 +7,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -18,6 +20,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -65,43 +69,35 @@ public class ExtendedCombatUtil {
     }
 
     public static boolean isSubmergedPartial(Entity entity) {
-        for (float i = 0.5f; i < entity.getBbHeight(); i+= 0.1f) {
-            FluidState state = entity.level().getFluidState(BlockPos.containing(entity.position().add(0, i, 0)));
-            if (!state.isEmpty() && !state.is(Fluids.EMPTY)) {
-                return true;
-            }
+        BlockPos pos = BlockPos.containing(entity.position().add(0, 0.5, 0));
+        BlockState state = entity.level().getBlockState(pos);
+        if (!state.isEmpty() && !state.getFluidState().is(Fluids.EMPTY)) {
+            return true;
         }
         return false;
     }
 
     public static boolean isSubmergedFully(Entity entity) {
-        for (float i = entity.getBbHeight() - 0.1f; i < entity.getBbHeight(); i+= 0.1f) {
-            FluidState state = entity.level().getFluidState(BlockPos.containing(entity.position().add(0, i, 0)));
-            if (!state.isEmpty() && !state.is(Fluids.EMPTY)) {
-                return true;
-            }
-        }
-        return false;
+        BlockPos pos = BlockPos.containing(entity.position());
+        BlockPos upPos = pos.above();
+        FluidState state = entity.level().getFluidState(upPos);
+        return !state.isEmpty() && !state.is(Fluids.EMPTY);
     }
 
     public static boolean isTouchingFluid(Entity entity) {
-        for (float i = 0.0f; i < entity.getBbHeight(); i+= 0.1f) {
-            FluidState state = entity.level().getFluidState(BlockPos.containing(entity.position().add(0, i, 0)));
-            if (!state.isEmpty() && !state.is(Fluids.EMPTY)) {
-                return true;
-            }
-        }
-        return false;
+        BlockPos pos = BlockPos.containing(entity.position());
+        BlockPos upPos = pos.above();
+        FluidState state = entity.level().getFluidState(pos);
+        FluidState upState = entity.level().getFluidState(upPos);
+        return (!state.isEmpty() && !state.is(Fluids.EMPTY)) || (!upState.isEmpty() && !upState.is(Fluids.EMPTY));
     }
 
     public static boolean isTouchingFluidOfType(Entity entity, TagKey<Fluid> tag) {
-        for (float i = 0.0f; i < entity.getBbHeight(); i+= 0.1f) {
-            FluidState state = entity.level().getFluidState(BlockPos.containing(entity.position().add(0, i, 0)));
-            if (!state.isEmpty() && state.is(tag)) {
-                return true;
-            }
-        }
-        return false;
+        BlockPos pos = BlockPos.containing(entity.position());
+        BlockPos upPos = pos.above();
+        FluidState state = entity.level().getFluidState(pos);
+        FluidState upState = entity.level().getFluidState(upPos);
+        return (!state.isEmpty() && state.is(tag)) || (!upState.isEmpty() && upState.is(tag));
     }
 
     public static boolean isGrounded(LivingEntity living, boolean allowWater) {

@@ -74,11 +74,11 @@ public class WatergelBehavior implements TickingAttachment, Ability {
         canUse = maxUses > 0;
         if (canUse) {
             if (!canRecharge) {
-                if (ExtendedCombatUtil.isTouchingFluidOfType(player, FluidTags.WATER)) {
+                if (player.isInWaterOrRain()) {
                     canRecharge = true;
                 }
             } else if (cooldown > 0) {
-                if (!ExtendedCombatUtil.isTouchingFluidOfType(player, FluidTags.WATER)) {
+                if (!player.isInWaterOrRain()) {
                     canRecharge = false;
                 }
                 cooldown--;

@@ -15,7 +15,6 @@
     "enchantment.fluidWalker.PowderSnowBlockMixin",
     "enchantment.obscurity.EndermanMixin",
     "enchantment.stealth.EntityMixin",
-    "enchantment.watergel.EntityMixin",
     "enchantment.watergel.TridentItemMixin",
     "item.AbstractContainerMenuMixin",
     "item.CowMixin",

@@ -1,9 +1,8 @@
 package dev.kirro.extendedcombat.mixin.enchantment.watergel;
 
-import dev.kirro.extendedcombat.ExtendedCombatUtil;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.kirro.extendedcombat.behavior.enchantment.WatergelBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,10 +27,26 @@ public abstract class TridentItemMixin {
             if (i >= 10) {
                 float f = EnchantmentHelper.getTridentSpinAttackStrength(stack, player);
                 WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
-                if (f > 0 && watergel.canUse() && watergel.getCanUse() && !player.isInWater()) {
+                if (f > 0 && watergel.canUse() && watergel.getCanUse() && !player.isInWaterOrRain()) {
                     watergel.use();
                 }
             }
         }
     }
+
+    @ModifyExpressionValue(method = "releaseUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isInWaterOrRain()Z"))
+    private boolean w(boolean original, ItemStack stack, Level level, LivingEntity entityLiving, int timeLeft) {
+        if (entityLiving instanceof Player player) {
+            WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
+            return original || watergel.canUse();
+        }
+        return original;
+    }
+
+    @ModifyExpressionValue(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isInWaterOrRain()Z"))
+    private boolean watergelled(boolean original, Level level, Player player) {
+        WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
+        return original || watergel.canUse();
+    }
+
 }
