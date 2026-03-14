@@ -142,7 +142,7 @@ public class ModEvents {
         watergelHud(guiGraphics, minecraft);
     }
 
-    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[11];
+    private static final ResourceLocation[] AIR_JUMP_TEXTURES = new ResourceLocation[4];
     private static final ResourceLocation BLINK_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/blink_background");
     private static final ResourceLocation BLINK_PROGRESS_TEXTURE = ExtendedCombat.id("hud/blink_progress");
     private static final ResourceLocation DASH_BACKGROUND_TEXTURE = ExtendedCombat.id("hud/dash_background");
@@ -228,7 +228,7 @@ public class ModEvents {
             WatergelBehavior watergel = minecraft.cameraEntity.getData(ModDataAttachments.WATERGEL);
             if (watergel.has() && watergel.getUsesLeft() > 0 && Minecraft.renderNames()) {
                 RenderSystem.enableBlend();
-                int x = guiGraphics.guiWidth() / 3 + 9, y = guiGraphics.guiHeight() - 7;
+                int x = guiGraphics.guiWidth() / 2 - 98, y = guiGraphics.guiHeight() - 7;
                 for (int i = 0; i < watergel.getMaxUses(); i++) {
                     guiGraphics.blitSprite(WATERGEL_BACKGROUND_TEXTURE, x, y - (i * 3), 7, 7);
                 }

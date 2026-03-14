@@ -13,17 +13,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.jarjar.nio.util.Lazy;
+import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterNamedRenderTypesEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.checkerframework.checker.units.qual.K;
 import org.lwjgl.glfw.GLFW;
 
@@ -33,17 +37,11 @@ import org.lwjgl.glfw.GLFW;
 @EventBusSubscriber(modid = ExtendedCombat.MOD_ID, value = Dist.CLIENT)
 public class ExtendedCombatClient {
     public ExtendedCombatClient(ModContainer container) {
-        // Allows NeoForge to create a config screen for this mod's configs.
-        // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
-        // Do not forget to add translations for your config options to the en_us.json file.
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        ExtendedCombat.LOGGER.info("HELLO FROM CLIENT SETUP");
-        ExtendedCombat.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.FRAMED_GLASS_PANEL.get(), RenderType.CUTOUT);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLACK_APPLE_BUSH.get(), RenderType.CUTOUT);
     }

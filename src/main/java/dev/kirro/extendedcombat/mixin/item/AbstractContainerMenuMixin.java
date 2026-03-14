@@ -2,7 +2,7 @@ package dev.kirro.extendedcombat.mixin.item;
 
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
-import dev.kirro.extendedcombat.item.ModDataComponents;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;

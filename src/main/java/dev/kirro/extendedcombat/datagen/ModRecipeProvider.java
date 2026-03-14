@@ -448,6 +448,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_GREATSWORD), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_GREATSWORD.get())
                 .unlocks(getHasName(ModItems.IRON_GREATSWORD), has(ModItems.IRON_GREATSWORD))
                 .save(recipeOutput, "diamond_greatsword_smithing");
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_HALBERD), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_HALBERD.get())
+                .unlocks(getHasName(ModItems.IRON_HALBERD), has(ModItems.IRON_HALBERD))
+                .save(recipeOutput, "diamond_halberd_smithing");
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_HAMMER), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_HAMMER.get())
                 .unlocks(getHasName(ModItems.IRON_HAMMER), has(ModItems.IRON_HAMMER))
                 .save(recipeOutput, "diamond_hammer_smithing");

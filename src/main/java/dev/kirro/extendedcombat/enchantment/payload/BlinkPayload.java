@@ -31,7 +31,7 @@ public record BlinkPayload() implements CustomPacketPayload {
         public void receive(BlinkPayload payload, ServerPlayNetworking.Context context) {
             ServerPlayer player = context.player();
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
-            if (blink != null && blink.hasBlink() && blink.canUse()) {
+            if (blink.hasBlink() && blink.canUse()) {
                 blink.use();
 
                 BlinkSyncPayload.broadcast(player, blink.isInvisible(), blink.getDuration());

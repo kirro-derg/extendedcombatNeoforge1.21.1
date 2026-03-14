@@ -4,7 +4,7 @@ import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.payload.*;
-import dev.kirro.extendedcombat.item.ModDataComponents;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.item.payload.HideHoodClientPayload;
 import dev.kirro.extendedcombat.item.payload.HideHoodServerPayload;
@@ -13,25 +13,15 @@ import dev.kirro.extendedcombat.villager.ModPoi;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ExtendedCombat.MOD_ID)
@@ -65,13 +55,13 @@ public class ExtendedCombat {
     }
 
     private void registerPayloads() {
-        //server
+        //server payloads
         PayloadTypeRegistry.playS2C().register(AirJumpParticlePayload.ID, AirJumpParticlePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(DashParticlePayload.ID, DashParticlePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(BlinkParticlePayload.ID, BlinkParticlePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(BlinkSyncPayload.ID, BlinkSyncPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(HideHoodServerPayload.ID, HideHoodServerPayload.CODEC);
-        // client
+        // client payloads
         PayloadTypeRegistry.playC2S().register(AirJumpPayload.ID, AirJumpPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(DashPayload.ID, DashPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(BlinkPayload.ID, BlinkPayload.CODEC);

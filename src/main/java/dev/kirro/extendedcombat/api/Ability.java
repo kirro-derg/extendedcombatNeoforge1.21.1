@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.api;
 
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -31,21 +32,22 @@ public interface Ability {
     }
 
     default int getLevel(Player player, EquipmentSlot slot) {
-        ItemStack stack = player.getItemBySlot(slot);
-        if (stack.getItem() instanceof ArmorItem armorItem && !stack.isEmpty()) {
-            ArmorMaterial material = armorItem.getMaterial().value();
-            int defense = material.getDefense(ArmorItem.Type.BODY);
-            return defense <= 4 ? 1 : defense <= 7 ? 2 : defense >= 11 ? 3 : 0;
-        }
-        return 0;
+        return common(player, slot, true);
     }
 
     default int getLevel(Player player, EquipmentSlot slot, boolean condition) {
+        return common(player, slot, condition);
+    }
+
+    default int common(Player player, EquipmentSlot slot, boolean condition) {
         ItemStack stack = player.getItemBySlot(slot);
         if (stack.getItem() instanceof ArmorItem armorItem && !stack.isEmpty() && condition) {
             ArmorMaterial material = armorItem.getMaterial().value();
             int defense = material.getDefense(ArmorItem.Type.BODY);
-            return defense <= 4 ? 1 : defense <= 7 ? 2 : defense >= 11 ? 3 : 0;
+            return defense <= 4 ? 1
+                    : defense <= 7 ? 2
+                    : defense >= 11 ? 3
+                    : 0;
         }
         return 0;
     }

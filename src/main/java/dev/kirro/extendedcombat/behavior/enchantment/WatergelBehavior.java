@@ -3,9 +3,8 @@ package dev.kirro.extendedcombat.behavior.enchantment;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
-import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.item.ModDataComponents;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
@@ -103,17 +102,9 @@ public class WatergelBehavior implements TickingAttachment, Ability {
         tick();
     }
 
-    public int getCooldown() {
-        return cooldown;
-    }
-
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
         lastCooldown = cooldown;
-    }
-
-    public int getLastCooldown() {
-        return lastCooldown;
     }
 
     public int getUsesLeft() {

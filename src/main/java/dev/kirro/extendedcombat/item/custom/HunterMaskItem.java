@@ -1,9 +1,8 @@
 package dev.kirro.extendedcombat.item.custom;
 
-import dev.kirro.extendedcombat.item.ModDataComponents;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ArmorMaterial;

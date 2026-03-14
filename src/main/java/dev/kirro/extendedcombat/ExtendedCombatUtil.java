@@ -71,10 +71,7 @@ public class ExtendedCombatUtil {
     public static boolean isSubmergedPartial(Entity entity) {
         BlockPos pos = BlockPos.containing(entity.position().add(0, 0.5, 0));
         BlockState state = entity.level().getBlockState(pos);
-        if (!state.isEmpty() && !state.getFluidState().is(Fluids.EMPTY)) {
-            return true;
-        }
-        return false;
+        return !state.isEmpty() && !state.getFluidState().is(Fluids.EMPTY);
     }
 
     public static boolean isSubmergedFully(Entity entity) {

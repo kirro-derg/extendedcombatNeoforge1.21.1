@@ -65,7 +65,7 @@ public abstract class LivingEntityMixin extends Entity {
         if ((Object) this instanceof Player player) {
             ItemStack stack = player.getItemBySlot(EquipmentSlot.FEET);
             if (stack.is(ModItemTags.NETHER_STEEL_WEARABLES) || stack.is(ModItemTags.ECHO_STEEL_WEARABLES) || stack.is(ModItemTags.HUNTER_BOOTS)) {
-                return (int) (original * 0.7f);
+                return (int) (original * 0.7);
             }
         }
         return original;

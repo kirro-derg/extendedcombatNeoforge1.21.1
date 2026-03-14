@@ -1,4 +1,4 @@
-/*package dev.kirro.extendedcombat.item.custom;
+package dev.kirro.extendedcombat.item.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -26,21 +26,21 @@ public class StatueItem extends Item {
         float placementYaw = context.getRotation();
         ItemStack itemStack = context.getItemInHand();
         if (level instanceof ServerLevel serverLevel) {
-            Consumer<StatueEntity> consumer = EntityType.createDefaultStackConfig(serverLevel, itemStack, context.getPlayer());
-            StatueEntity statueEntity = ModEntities.STATUE.create(serverLevel, consumer, pos, MobSpawnType.SPAWN_EGG, true, true);
+            //Consumer<StatueEntity> consumer = EntityType.createDefaultStackConfig(serverLevel, itemStack, context.getPlayer());
+            //StatueEntity statueEntity = ModEntities.STATUE.create(serverLevel, consumer, pos, MobSpawnType.SPAWN_EGG, true, true);
 
             if (!level.isClientSide) {
-                StatueEntity statue = new StatueEntity(ModEntities.STATUE, level);
-                statue.setYaw(placementYaw);
-                statue.setBodyYaw(placementYaw);
-                statue.refreshPositionAndAngles(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, placementYaw, 0.0f);
-                level.spawnEntity(statue);
-                level.playSound(
-                        null, statueEntity.x(), statueEntity.y(), statueEntity.z(), SoundEvents.ARMOR_STAND_PLACE, SoundSource.BLOCKS, 0.75F, 0.8F
-                );
+                //StatueEntity statue = new StatueEntity(ModEntities.STATUE, level);
+                //statue.setYaw(placementYaw);
+                //statue.setBodyYaw(placementYaw);
+                //statue.refreshPositionAndAngles(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, placementYaw, 0.0f);
+                //level.spawnEntity(statue);
+                //level.playSound(
+                //        null, statueEntity.x(), statueEntity.y(), statueEntity.z(), SoundEvents.ARMOR_STAND_PLACE, SoundSource.BLOCKS, 0.75F, 0.8F
+                //);
             }
         }
         itemStack.shrink(1);
         return InteractionResult.SUCCESS;
     }
-}*/
+}

@@ -31,7 +31,7 @@ public record DashPayload() implements CustomPacketPayload {
         public void receive(DashPayload payload, ServerPlayNetworking.Context context) {
             Player player = context.player();
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            if (dash != null && dash.hasDash() && dash.canUse()) {
+            if (dash.hasDash() && dash.canUse()) {
                 dash.use();
                 PlayerLookup.tracking(player).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, player.getId()));
             }

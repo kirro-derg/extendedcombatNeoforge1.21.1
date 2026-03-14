@@ -55,7 +55,7 @@
   "block.extendedcombat.black_apple_bush": "Black Apple Seed",
 
   "tooltip.extendedcombat.warding_stone_ln1": "Once placed, this stone will disable",
-  "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a 55 block radius",
+  "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a configurable radius",
   "tooltip.extendedcombat.warding_stone_ln3": "around itself",
 
   "tooltip.milk_bottle.milk": "Removes Neutral Status Effects",

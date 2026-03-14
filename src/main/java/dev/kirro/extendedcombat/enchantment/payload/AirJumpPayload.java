@@ -30,7 +30,7 @@ public record AirJumpPayload() implements CustomPacketPayload {
         public void receive(AirJumpPayload payload, ServerPlayNetworking.Context context) {
             Player player = context.player();
             AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
-            if (airJump != null && airJump.getCanUse() && airJump.canUse()) {
+            if (airJump.getCanUse() && airJump.canUse()) {
                 airJump.use();
                 PlayerLookup.tracking(player).forEach(foundPlayer -> AirJumpParticlePayload.send(foundPlayer, player.getId()));
             }

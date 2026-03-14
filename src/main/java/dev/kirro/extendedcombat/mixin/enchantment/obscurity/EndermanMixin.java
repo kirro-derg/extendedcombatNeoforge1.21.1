@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.mixin.enchantment.obscurity;
 
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.item.ModDataComponents;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
