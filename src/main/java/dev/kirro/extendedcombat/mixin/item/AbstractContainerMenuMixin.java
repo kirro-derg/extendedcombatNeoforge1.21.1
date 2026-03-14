@@ -1,12 +1,11 @@
 package dev.kirro.extendedcombat.mixin.item;
 
-import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
-import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.core.NonNullList;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
@@ -32,15 +31,14 @@ public class AbstractContainerMenuMixin {
         if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT && slotId >= 0 && slotId < this.slots.size()) {
             Slot slot = this.slots.get(slotId);
             ItemStack stack = slot.getItem();
-            HideWoolHoodBehavior hoodBehavior = player.getData(ModDataAttachments.HIDE_HOOD);
             if (clickType == ClickType.QUICK_MOVE && stack.getItem() instanceof WoolArmorItem) {
                 if (stack.is(ModItemTags.CLOAK)) {
-                    hoodBehavior.useHood();
                     WoolArmorItem.cycleData(stack, !stack.getOrDefault(ModDataComponents.HIDDEN, false));
+                    player.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0f, 1.0f);
                 }
                 if (stack.is(ModItemTags.MASK)) {
-                    hoodBehavior.useMask();
                     HunterMaskItem.cycleData(stack, !stack.getOrDefault(ModDataComponents.HIDDEN, false));
+                    player.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0f, 1.0f);
                 }
                 ci.cancel();
             }

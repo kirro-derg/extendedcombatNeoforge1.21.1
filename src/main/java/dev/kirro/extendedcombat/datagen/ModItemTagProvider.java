@@ -101,6 +101,21 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addTag(ModItemTags.HUNTER_LEGGINGS)
         ;
 
+        tag(ModItemTags.DASH_ENCHANTABLE)
+                .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_LEGGINGS)
+        ;
+
+        tag(ModItemTags.AIR_JUMP_ENCHANTABLE)
+                .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_BOOTS)
+        ;
+
+        tag(ModItemTags.BLINK_ENCHANTABLE)
+                .addTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.CLOAK)
+        ;
+
         tag(ModItemTags.FLAME_RESISTANT_ARMOR)
                 .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)

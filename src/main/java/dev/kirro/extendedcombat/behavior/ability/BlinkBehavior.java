@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class BlinkBehavior implements TickingAttachment, Ability {
     private final Player player;
@@ -46,7 +48,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
     }
 
     private int level() {
-        return this.getLevel(this.player, slot());
+        return this.getLevel(this.player, slot(), EnchantmentHelper.has(slotItem(player), ModEnchantmentEffects.BLINK.get()));
     }
 
     private int cooldown() {

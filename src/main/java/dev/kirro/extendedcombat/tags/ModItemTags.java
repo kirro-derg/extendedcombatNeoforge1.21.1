@@ -27,6 +27,9 @@ public interface ModItemTags {
     TagKey<Item> FLUID_WALKER_ENCHANTABLE = create("enchantable/fluid_walker");
     TagKey<Item> SWIFTNESS_ENCHANTABLE = create("enchantable/swiftness");
     TagKey<Item> WATERGEL_ENCHANTABLE = create("enchantable/watergel");
+    TagKey<Item> DASH_ENCHANTABLE = create("enchantable/dash");
+    TagKey<Item> AIR_JUMP_ENCHANTABLE = create("enchantable/air_jump");
+    TagKey<Item> BLINK_ENCHANTABLE = create("enchantable/blink");
 
     private static TagKey<Item> create(String id) {
         return TagKey.create(Registries.ITEM, ExtendedCombat.id(id));

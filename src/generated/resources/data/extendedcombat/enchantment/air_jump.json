@@ -1,11 +1,11 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.extendedcombat.concussion"
+    "translate": "enchantment.extendedcombat.air_jump"
   },
   "effects": {
-    "extendedcombat:concussion": {
-      "duration": {
+    "extendedcombat:air_jump": {
+      "vanity": {
         "type": "minecraft:add",
         "value": 1.0
       }
@@ -15,14 +15,14 @@
     "base": 10,
     "per_level_above_first": 5
   },
-  "max_level": 3,
+  "max_level": 1,
   "min_cost": {
     "base": 5,
     "per_level_above_first": 5
   },
   "slots": [
-    "mainhand"
+    "legs"
   ],
-  "supported_items": "#extendedcombat:enchantable/concussion",
+  "supported_items": "#extendedcombat:enchantable/air_jump",
   "weight": 25
 }

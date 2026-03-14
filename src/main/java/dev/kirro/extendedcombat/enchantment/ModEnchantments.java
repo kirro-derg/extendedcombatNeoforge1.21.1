@@ -28,6 +28,9 @@ public class ModEnchantments extends Enchantments {
     public static final ResourceKey<Enchantment> FLUID_WALKER = create("fluid_walker");
     public static final ResourceKey<Enchantment> SWIFTNESS = create("swiftness");
     public static final ResourceKey<Enchantment> WATERGEL = create("watergel");
+    public static final ResourceKey<Enchantment> DASH = create("dash");
+    public static final ResourceKey<Enchantment> AIR_JUMP = create("air_jump");
+    public static final ResourceKey<Enchantment> BLINK = create("blink");
 
     private static ResourceKey<Enchantment> create(String id) {
         return ResourceKey.create(Registries.ENCHANTMENT, ExtendedCombat.id(id));
@@ -74,8 +77,8 @@ public class ModEnchantments extends Enchantments {
         registerable.register(CONCUSSION, createCustom(CONCUSSION.location(),
                 items.getOrThrow(ModItemTags.CONCUSSION_ENCHANTABLE),
                 3,
-                Enchantment.dynamicCost(5, 1),
-                Enchantment.dynamicCost(10, 1),
+                Enchantment.dynamicCost(5, 5),
+                Enchantment.dynamicCost(10, 5),
                 EquipmentSlotGroup.MAINHAND,
                 ModEnchantmentEffects.CONCUSSION.get(),
                 new ConcussionEnchantmentEffect(
@@ -114,7 +117,38 @@ public class ModEnchantments extends Enchantments {
                 new WaterGelEnchantmentEffect(
                         new AddValue(LevelBasedValue.constant(1.0f))
                 )));
+
+        registerable.register(DASH, createCustom(DASH.location(),
+                items.getOrThrow(ModItemTags.DASH_ENCHANTABLE),
+                1,
+                Enchantment.dynamicCost(5, 5),
+                Enchantment.dynamicCost(10, 5),
+                EquipmentSlotGroup.LEGS,
+                ModEnchantmentEffects.DASH.get(),
+                new DashEnchantmentEffect(
+                        new AddValue(LevelBasedValue.constant(1))
+                )));
+
+        registerable.register(AIR_JUMP, createCustom(AIR_JUMP.location(),
+                items.getOrThrow(ModItemTags.AIR_JUMP_ENCHANTABLE),
+                1,
+                Enchantment.dynamicCost(5, 5),
+                Enchantment.dynamicCost(10, 5),
+                EquipmentSlotGroup.LEGS,
+                ModEnchantmentEffects.AIR_JUMP.get(),
+                new AirJumpEnchantmentEffect(
+                        new AddValue(LevelBasedValue.constant(1))
+                )));
+
+        registerable.register(BLINK, createCustom(BLINK.location(),
+                items.getOrThrow(ModItemTags.BLINK_ENCHANTABLE),
+                1,
+                Enchantment.dynamicCost(5, 5),
+                Enchantment.dynamicCost(10, 5),
+                EquipmentSlotGroup.LEGS,
+                ModEnchantmentEffects.BLINK.get(),
+                new BlinkEnchantmentEffect(
+                        new AddValue(LevelBasedValue.constant(1))
+                )));
     }
-
-
 }

@@ -209,66 +209,39 @@ public interface ModItems {
         if(entries.getTabKey() == CreativeModeTabs.COMBAT) {
             entries.insertAfter(Items.WOODEN_SWORD.getDefaultInstance(), WOODEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(WOODEN_GREATSWORD.toStack(), WOODEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.STONE_SWORD.getDefaultInstance(), STONE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(STONE_GREATSWORD.toStack(), STONE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.IRON_SWORD.getDefaultInstance(), IRON_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(IRON_GREATSWORD.toStack(), IRON_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.GOLDEN_SWORD.getDefaultInstance(), GOLDEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(GOLDEN_GREATSWORD.toStack(), GOLDEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.DIAMOND_SWORD.getDefaultInstance(), DIAMOND_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(DIAMOND_GREATSWORD.toStack(), DIAMOND_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.NETHERITE_SWORD.getDefaultInstance(), NETHERITE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHERITE_GREATSWORD.toStack(), NETHERITE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHERITE_HALBERD.toStack(), NETHER_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_GREATSWORD.toStack(), NETHER_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_HALBERD.toStack(), ECHO_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(ECHO_STEEL_GREATSWORD.toStack(), ECHO_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.NETHERITE_BOOTS.getDefaultInstance(), NETHER_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_HELMET.toStack(), NETHER_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_CHESTPLATE.toStack(), NETHER_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_LEGGINGS.toStack(), NETHER_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_BOOTS.toStack(), ECHO_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_HELMET.toStack(), ECHO_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_CHESTPLATE.toStack(), ECHO_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_LEGGINGS.toStack(), ECHO_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(Items.TURTLE_HELMET.getDefaultInstance(), HUNTER_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(HUNTER_MASK.toStack(), NETHER_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_MASK.toStack(), ECHO_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_MASK.toStack(), HUNTER_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(HUNTER_CLOAK.toStack(), NETHER_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_CLOAK.toStack(), ECHO_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_CLOAK.toStack(), HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(HUNTER_LEGGINGS.toStack(), NETHER_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_HUNTER_LEGGINGS.toStack(), ECHO_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(ECHO_STEEL_HUNTER_LEGGINGS.toStack(), HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(HUNTER_BOOTS.toStack(), NETHER_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
             entries.insertAfter(NETHER_STEEL_HUNTER_BOOTS.toStack(), ECHO_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
         if(entries.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
@@ -369,7 +342,6 @@ public interface ModItems {
                         output.accept(MILK_BOTTLE);
                         output.accept(SWEET_BERRY_MILK_BOTTLE);
                         output.accept(CHOCOLATE_MILK_BOTTLE);
-
                     }).build());
 
 }

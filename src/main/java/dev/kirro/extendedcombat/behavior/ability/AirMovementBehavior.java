@@ -63,6 +63,9 @@ public class AirMovementBehavior implements TickingAttachment, Ability {
                     multiplierTicks++;
                 }
             }
+            if (EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.FEET), ModEnchantmentEffects.FLUID_WALKER.get()) && ExtendedCombatUtil.isTouchingFluid(player)) {
+                this.bypass();
+            }
 
         } else {
             resetDelay = airTime = 0;

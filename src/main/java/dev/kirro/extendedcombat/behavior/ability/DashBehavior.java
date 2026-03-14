@@ -47,7 +47,7 @@ public class DashBehavior implements TickingAttachment, Ability {
     }
 
     private int level() {
-        return this.getLevel(this.player, slot());
+        return this.getLevel(this.player, slot(), EnchantmentHelper.has(slotItem(player), ModEnchantmentEffects.DASH.get()));
     }
 
     private int cooldown() {

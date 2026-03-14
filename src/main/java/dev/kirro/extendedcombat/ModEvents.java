@@ -6,7 +6,6 @@ import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.behavior.ability.DashBehavior;
 import dev.kirro.extendedcombat.behavior.enchantment.*;
-import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.item.custom.HammerItem;
@@ -67,16 +66,12 @@ public class ModEvents {
             AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            FluidMovementBehavior fluid = player.getData(ModDataAttachments.FLUID_MOVEMENT);
-            HideWoolHoodBehavior hood = player.getData(ModDataAttachments.HIDE_HOOD);
             WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
 
             airJump.clientTick();
             airMovement.clientTick();
             blink.clientTick();
             dash.clientTick();
-            fluid.clientTick();
-            hood.clientTick();
             watergel.clientTick();
         }
     }
@@ -104,8 +99,6 @@ public class ModEvents {
             AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            FluidMovementBehavior fluid = player.getData(ModDataAttachments.FLUID_MOVEMENT);
-            HideWoolHoodBehavior hood = player.getData(ModDataAttachments.HIDE_HOOD);
             WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
 
 
@@ -113,8 +106,6 @@ public class ModEvents {
             airMovement.serverTick();
             blink.serverTick();
             dash.serverTick();
-            fluid.serverTick();
-            hood.serverTick();
             watergel.serverTick();
 
             XPRepairTracker.tick(player);

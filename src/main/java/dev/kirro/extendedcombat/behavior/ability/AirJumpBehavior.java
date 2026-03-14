@@ -50,7 +50,7 @@ public class AirJumpBehavior implements TickingAttachment, Ability {
     }
 
     private int level() {
-        return this.getLevel(this.player, slot());
+        return this.getLevel(this.player, slot(), EnchantmentHelper.has(slotItem(player), ModEnchantmentEffects.AIR_JUMP.get()));
     }
 
     private float strength() {
