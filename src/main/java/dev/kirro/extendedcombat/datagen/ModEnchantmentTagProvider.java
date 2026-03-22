@@ -41,5 +41,17 @@ public class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
                 .remove(Enchantments.THORNS)
                 .replace(false)
         ;
+
+        tag(ModEnchantmentTags.EXTENDEDCOMBAT_ENCHANTMENTS)
+                .addOptional(ModEnchantments.OBSCURITY.location())
+                .addOptional(ModEnchantments.STEALTH.location())
+                .addOptional(ModEnchantments.CONCUSSION.location())
+                .addOptional(ModEnchantments.FLUID_WALKER.location())
+                .addOptional(ModEnchantments.SWIFTNESS.location())
+                .addOptional(ModEnchantments.WATERGEL.location())
+                .addOptional(ModEnchantments.DASH.location())
+                .addOptional(ModEnchantments.AIR_JUMP.location())
+                .addOptional(ModEnchantments.BLINK.location())
+        ;
     }
 }

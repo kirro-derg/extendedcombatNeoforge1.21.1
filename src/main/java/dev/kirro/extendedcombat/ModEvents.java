@@ -2,7 +2,6 @@ package dev.kirro.extendedcombat;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
-import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.behavior.ability.DashBehavior;
 import dev.kirro.extendedcombat.behavior.enchantment.*;
@@ -62,7 +61,7 @@ public class ModEvents {
         Minecraft client = Minecraft.getInstance();
         Player player = client.player;
         if (player != null) {
-            AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
+            /*AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
             AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
@@ -72,7 +71,11 @@ public class ModEvents {
             airMovement.clientTick();
             blink.clientTick();
             dash.clientTick();
-            watergel.clientTick();
+            watergel.clientTick();*/
+
+            for (var supplier : ModDataAttachments.ENTRIES) {
+                supplier.clientTick(player);
+            }
         }
     }
 
@@ -95,7 +98,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void serverTick(ServerTickEvent.Post event) {
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-            AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
+            /*AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
             AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
             BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
             DashBehavior dash = player.getData(ModDataAttachments.DASH);
@@ -106,7 +109,10 @@ public class ModEvents {
             airMovement.serverTick();
             blink.serverTick();
             dash.serverTick();
-            watergel.serverTick();
+            watergel.serverTick();*/
+            for (var supplier : ModDataAttachments.ENTRIES) {
+                supplier.serverTick(player);
+            }
 
             XPRepairTracker.tick(player);
         }
@@ -158,7 +164,7 @@ public class ModEvents {
     public static void airJumpHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             AirJumpBehavior airJump = minecraft.cameraEntity.getData(ModDataAttachments.AIR_JUMP);
-            if (airJump.getCanUse() && Minecraft.renderNames()) {
+            if (airJump.getCanUse() && Minecraft.renderNames() && !minecraft.cameraEntity.isSpectator()) {
                 int jumpAmount = airJump.getJumpsLeft();
                 if (jumpAmount < airJump.getMaxJumps()) {
                     RenderSystem.enableBlend();
@@ -181,7 +187,7 @@ public class ModEvents {
     public static void blinkHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             BlinkBehavior blink = minecraft.cameraEntity.getData(ModDataAttachments.BLINK);
-            if (blink.hasBlink() && blink.getCooldown() > 0 && Minecraft.renderNames()) {
+            if (blink.hasBlink() && blink.getCooldown() > 0 && blink.getDuration() == 0 && Minecraft.renderNames() && !minecraft.cameraEntity.isSpectator()) {
                 RenderSystem.enableBlend();
                 int x = guiGraphics.guiWidth() / 2 - 14, y = guiGraphics.guiHeight() / 2 - 7;
                 guiGraphics.blitSprite(BLINK_PROGRESS_TEXTURE, x, y, 6, 15);
@@ -192,6 +198,17 @@ public class ModEvents {
                 }
                 guiGraphics.setColor(1, 1, 1, 1);
                 RenderSystem.disableBlend();
+            } else if (blink.hasBlink() && blink.getDuration() > 0 && Minecraft.renderNames() && !minecraft.cameraEntity.isSpectator()) {
+                RenderSystem.enableBlend();
+                int x = guiGraphics.guiWidth() / 2 - 14, y = guiGraphics.guiHeight() / 2 - 7;
+                guiGraphics.blitSprite(BLINK_BACKGROUND_TEXTURE, x, y, 6, 15);
+                if (blink.getDuration() > 0) {
+                    guiGraphics.blitSprite(BLINK_PROGRESS_TEXTURE, 6, 15, 0, 0, x, y, 6, (int) ((blink.getDuration() / (float) blink.duration()) * 15));
+                } //else {
+                    //guiGraphics.blitSprite(BLINK_PROGRESS_TEXTURE, x, y, 6, 15);
+                //}
+                guiGraphics.setColor(1, 1, 1, 1);
+                RenderSystem.disableBlend();
             }
         }
     }
@@ -199,7 +216,7 @@ public class ModEvents {
     public static void dashHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             DashBehavior dash = minecraft.cameraEntity.getData(ModDataAttachments.DASH);
-            if (dash.hasDash() && dash.getCooldown() > 0 && Minecraft.renderNames()) {
+            if (dash.hasDash() && dash.getCooldown() > 0 && Minecraft.renderNames() && !minecraft.cameraEntity.isSpectator()) {
                 RenderSystem.enableBlend();
                 int x = guiGraphics.guiWidth() / 2 - 7, y = guiGraphics.guiHeight() / 2 - 14;
                 guiGraphics.blitSprite(DASH_PROGRESS_TEXTURE, x, y, 15, 6);
@@ -217,7 +234,7 @@ public class ModEvents {
     public static void watergelHud(GuiGraphics guiGraphics, Minecraft minecraft) {
         if (minecraft != null) {
             WatergelBehavior watergel = minecraft.cameraEntity.getData(ModDataAttachments.WATERGEL);
-            if (watergel.has() && watergel.getUsesLeft() > 0 && Minecraft.renderNames()) {
+            if (watergel.has() && watergel.getUsesLeft() > 0 && Minecraft.renderNames() && !minecraft.cameraEntity.isSpectator()) {
                 RenderSystem.enableBlend();
                 int x = guiGraphics.guiWidth() / 2 - 98, y = guiGraphics.guiHeight() - 7;
                 for (int i = 0; i < watergel.getMaxUses(); i++) {

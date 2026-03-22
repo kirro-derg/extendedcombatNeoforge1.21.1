@@ -1,0 +1,40 @@
+{
+  "values": [
+    {
+      "id": "extendedcombat:obscurity",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:stealth",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:concussion",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:fluid_walker",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:swiftness",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:watergel",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:dash",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:air_jump",
+      "required": false
+    },
+    {
+      "id": "extendedcombat:blink",
+      "required": false
+    }
+  ]
+}

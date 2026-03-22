@@ -1,6 +1,6 @@
 package dev.kirro.extendedcombat.api;
 
-public interface TickingAttachment extends Component {
+public interface TickingAttachment extends Attachment {
     default void clientTick(){
         this.tick();
     }

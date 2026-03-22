@@ -4,9 +4,13 @@ import com.google.common.base.Suppliers;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
+import dev.kirro.extendedcombat.tags.ModEnchantmentTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,6 +19,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public interface ModItems {
     DeferredRegister.Items ITEMS = DeferredRegister.createItems(ExtendedCombat.MOD_ID);
@@ -148,28 +153,28 @@ public interface ModItems {
 
     DeferredItem<Item> WOODEN_HALBERD = registerItem("wooden_halberd",
             () -> new HalberdItem(Tiers.WOOD, new Item.Properties()
-                    .attributes(HalberdItem.createAttributes(Tiers.WOOD, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.WOOD, 5, -2.6f, 1.6f))));
     DeferredItem<Item> STONE_HALBERD = registerItem("stone_halberd",
             () -> new HalberdItem(Tiers.STONE, new Item.Properties().durability(Tiers.STONE.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.STONE, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.STONE, 5, -2.6f, 1.6f))));
     DeferredItem<Item> IRON_HALBERD = registerItem("iron_halberd",
             () -> new HalberdItem(Tiers.IRON, new Item.Properties().durability(Tiers.IRON.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.IRON, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.IRON, 5, -2.6f, 1.6f))));
     DeferredItem<Item> GOLDEN_HALBERD = registerItem("golden_halberd",
             () -> new HalberdItem(Tiers.GOLD, new Item.Properties().durability(Tiers.GOLD.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.GOLD, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.GOLD, 5, -2.6f, 1.6f))));
     DeferredItem<Item> DIAMOND_HALBERD = registerItem("diamond_halberd",
             () -> new HalberdItem(Tiers.DIAMOND, new Item.Properties().durability(Tiers.DIAMOND.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.DIAMOND, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.DIAMOND, 5, -2.6f, 1.6f))));
     DeferredItem<Item> NETHERITE_HALBERD = registerItem("netherite_halberd",
             () -> new HalberdItem(Tiers.NETHERITE, new Item.Properties().durability(Tiers.NETHERITE.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.NETHERITE, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.NETHERITE, 5, -2.6f, 1.6f))));
     DeferredItem<Item> NETHER_STEEL_HALBERD = registerItem("nether_steel_halberd",
             () -> new HalberdItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(HalberdItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.NETHER_STEEL, 5, -2.6f, 1.6f))));
     DeferredItem<Item> ECHO_STEEL_HALBERD = registerItem("echo_steel_halberd",
             () -> new HalberdItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(HalberdItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.ECHO_STEEL, 5, -2.6f, 1.6f))));
 
     private static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
@@ -342,6 +347,23 @@ public interface ModItems {
                         output.accept(MILK_BOTTLE);
                         output.accept(SWEET_BERRY_MILK_BOTTLE);
                         output.accept(CHOCOLATE_MILK_BOTTLE);
+
+                        parameters.holders().lookup(Registries.ENCHANTMENT).ifPresent((enchantment) -> {
+                            generateEnchantmentBookTypes(output, enchantment, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
+                        });
                     }).build());
+
+
+    private static void generateEnchantmentBookTypes(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantments, CreativeModeTab.TabVisibility tabVisibility) {
+        enchantments.listElements().forEach((reference) -> {
+            IntStream stream = IntStream.rangeClosed(reference.value().getMinLevel(), reference.value().getMaxLevel());
+            for (int level : stream.toArray()) {
+                if (reference.is(ModEnchantmentTags.EXTENDEDCOMBAT_ENCHANTMENTS)) {
+                    ItemStack stack = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(reference, level));
+                    output.accept(stack, tabVisibility);
+                }
+            }
+        });
+    }
 
 }

@@ -109,6 +109,20 @@
   "enchantment.extendedcombat.swiftness": "Swiftness",
   "enchantment.extendedcombat.watergel": "Watergel",
 
+  "Enchantment Descriptions Compatibility": "",
+  "enchantment.extendedcombat.dash.desc": "Allows for a dash action to be performed midair",
+  "enchantment.extendedcombat.air_jump.desc": "Allows for jumping more times in midair",
+  "enchantment.extendedcombat.blink.desc": "Gives the player total invisibility for a short time",
+  "enchantment.extendedcombat.obscurity.desc": "Hides player nametag and prevents aggro of endermen by eye contact",
+  "enchantment.extendedcombat.vanity.desc": "Vanity",
+  "enchantment.extendedcombat.stealth.desc": "Hides sprinting particles and reduces the volume of some enchantment effects",
+  "enchantment.extendedcombat.keepsake.desc": "Keepsake",
+  "enchantment.extendedcombat.burst.desc": "Burst",
+  "enchantment.extendedcombat.concussion.desc": "Blinds and slows targets for a short time when hit",
+  "enchantment.extendedcombat.fluid_walker.desc": "Allows the player to walk on fluids such as water, lava, and powdered snow",
+  "enchantment.extendedcombat.swiftness.desc": "Increases maneuverability while in air",
+  "enchantment.extendedcombat.watergel.desc": "Allows for using riptide outside of water for a set number of uses, rechargeable while in water or rain",
+
   "key.extendedcombat.dash": "Dash",
   "key.extendedcombat.blink": "Blink",
 

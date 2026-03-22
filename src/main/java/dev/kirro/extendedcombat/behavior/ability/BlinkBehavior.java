@@ -55,7 +55,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
         return Mth.floor(this.getValue(level(), 15, -5f) * 20);
     }
 
-    private int duration() {
+    public int duration() {
         return Mth.floor(this.getValue(level(), 2, 3f) * 20);
     }
 
