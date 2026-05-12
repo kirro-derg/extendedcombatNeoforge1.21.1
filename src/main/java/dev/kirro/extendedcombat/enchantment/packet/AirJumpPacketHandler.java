@@ -1,19 +1,10 @@
 package dev.kirro.extendedcombat.enchantment.packet;
 
-import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record AirJumpPacketHandler(int entityId) {
