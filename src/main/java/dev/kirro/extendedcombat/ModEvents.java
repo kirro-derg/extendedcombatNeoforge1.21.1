@@ -5,8 +5,9 @@ import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.behavior.ability.DashBehavior;
 import dev.kirro.extendedcombat.behavior.enchantment.*;
-import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
+import dev.kirro.extendedcombat.behavior.item.ModRepairTracker;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
+import dev.kirro.extendedcombat.enchantment.packet.*;
 import dev.kirro.extendedcombat.item.custom.HammerItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -22,10 +23,14 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import java.util.*;
 
@@ -57,22 +62,49 @@ public class ModEvents {
     }
 
     @SubscribeEvent
+    public static void registerPacketsEvent(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("1");
+        registrar.playToServer(
+                AirJumpPacket.ID,
+                AirJumpPacket.CODEC,
+                new DirectionalPayloadHandler<>(
+                        AirJumpPacketHandler::sendToServer,
+                        AirJumpPacketHandler::sendToClient
+                )
+        );
+        registrar.playToServer(
+                DashPacket.ID,
+                DashPacket.CODEC,
+                new DirectionalPayloadHandler<>(
+                        DashPacketHandler::sendToServer,
+                        DashPacketHandler::sendToClient
+                )
+        );
+        registrar.playToServer(
+                BlinkPacket.ID,
+                BlinkPacket.CODEC,
+                new DirectionalPayloadHandler<>(
+                        BlinkPacketHandler::sendToServer,
+                        BlinkPacketHandler::sendToClient
+                )
+        );
+    }
+
+    @SubscribeEvent
+    public static void serverTick(ServerTickEvent.Post event) {
+        for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+            for (var supplier : ModDataAttachments.ENTRIES) {
+                supplier.serverTick(player);
+            }
+            ModRepairTracker.tick(player);
+        }
+    }
+
+    @SubscribeEvent
     public static void clientTick(ClientTickEvent.Post event) {
         Minecraft client = Minecraft.getInstance();
         Player player = client.player;
         if (player != null) {
-            /*AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
-            AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
-            BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
-            DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
-
-            airJump.clientTick();
-            airMovement.clientTick();
-            blink.clientTick();
-            dash.clientTick();
-            watergel.clientTick();*/
-
             for (var supplier : ModDataAttachments.ENTRIES) {
                 supplier.clientTick(player);
             }
@@ -92,29 +124,6 @@ public class ModEvents {
                 dashBehavior.reset();
                 blinkBehavior.reset();
             }
-        }
-    }
-
-    @SubscribeEvent
-    public static void serverTick(ServerTickEvent.Post event) {
-        for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-            /*AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
-            AirMovementBehavior airMovement = player.getData(ModDataAttachments.AIR_MOVEMENT);
-            BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
-            DashBehavior dash = player.getData(ModDataAttachments.DASH);
-            WatergelBehavior watergel = player.getData(ModDataAttachments.WATERGEL);
-
-
-            airJump.serverTick();
-            airMovement.serverTick();
-            blink.serverTick();
-            dash.serverTick();
-            watergel.serverTick();*/
-            for (var supplier : ModDataAttachments.ENTRIES) {
-                supplier.serverTick(player);
-            }
-
-            XPRepairTracker.tick(player);
         }
     }
 

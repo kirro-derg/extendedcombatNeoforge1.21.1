@@ -22,7 +22,7 @@ public class ModRepairManager {
                 int toRepair = Math.min(repairAmount, damage);
 
                 stack.setDamageValue(damage - toRepair);
-                xpAmount -= toRepair /2;
+                xpAmount -= toRepair / 2;
 
                 if (xpAmount <= 0) break;
             }

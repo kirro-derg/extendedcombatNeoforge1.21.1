@@ -43,6 +43,8 @@
   "item.extendedcombat.golden_steak": "Golden Steak",
   "item.extendedcombat.honey_bread": "Honey Bread",
 
+  "item.extendedcombat.repair_charm": ":3",
+
   "item.extendedcombat.milk_bottle": "Milk Bottle",
   "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk Bottle",
   "item.extendedcombat.chocolate_milk_bottle": "Chocolate Milk Bottle",
@@ -128,5 +130,10 @@
 
   "extendedcombat.configuration.disableDurability": "Disable Durability",
   "extendedcombat.configuration.airMovement": "Increase Air Movement speed",
-  "extendedcombat.configuration.wardingStoneActiveRadius": "Warding Stone Radius"
+  "extendedcombat.configuration.wardingStoneActiveRadius": "Warding Stone Radius",
+
+  "extendedcombat.configuration.allowRepairCharm": "Allow Repair Charm",
+  "extendedcombat.configuration.repairAmount": "Charm Repair Amount",
+  "extendedcombat.configuration.repairType": "Charm Repair Type",
+  "extendedcombat.configuration.repairInterval": "Charm Repair Interval"
 }

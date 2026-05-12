@@ -5,8 +5,8 @@ import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.DashPayload;
+import dev.kirro.extendedcombat.enchantment.packet.DashPacket;
+import dev.kirro.extendedcombat.enchantment.packet.DashPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -14,9 +14,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class DashBehavior implements TickingAttachment, Ability {
     private final Player player;
@@ -51,7 +51,7 @@ public class DashBehavior implements TickingAttachment, Ability {
     }
 
     private int cooldown() {
-        return Mth.floor(this.getValue(level(), 1, -0.25f) * 20);
+        return Mth.floor(this.getValue(level(), 1, -0.29f) * 20);
     }
 
     private float strength() {
@@ -86,8 +86,8 @@ public class DashBehavior implements TickingAttachment, Ability {
             boolean pressingKey = ExtendedCombatClient.DASH.get().isDown();
             if (pressingKey && !wasPressingKey && canUse() && level() > 0) {
                 use();
-                DashParticlePayload.addParticles(player);
-                DashPayload.send();
+                DashPacketHandler.addParticles(player);
+                PacketDistributor.sendToServer(new DashPacket());
             }
             wasPressingKey = pressingKey;
         } else {
@@ -123,7 +123,7 @@ public class DashBehavior implements TickingAttachment, Ability {
         float strength = strength();
         Vec3 velocity = player.getLookAngle().normalize().scale(strength);
         player.setDeltaMovement(velocity.x(), velocity.y(), velocity.z());
-        player.causeFoodExhaustion(0.2f);
+        player.causeFoodExhaustion(0.5f);
         player.fallDistance = 0;
         player.playSound(SoundEvents.WIND_CHARGE_BURST.value(), volume, 1.0f);
     }

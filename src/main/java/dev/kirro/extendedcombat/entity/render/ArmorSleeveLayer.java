@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.client.model.HumanoidModel;
@@ -40,7 +41,7 @@ public class ArmorSleeveLayer<T extends LivingEntity, M extends HumanoidModel<T>
 
     private void renderArmorPiece(PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity, EquipmentSlot slot, int packedLight, A p_model, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack stack = livingEntity.getItemBySlot(slot);
-        if (stack.getItem() instanceof ArmorItem armoritem && stack.is(ModItemTags.SLEEVED_ARMOR) && (livingEntity.getData(ModDataAttachments.BLINK).getDuration() == 0)) {
+        if (stack.getItem() instanceof ArmorItem armoritem && stack.is(ModItemTags.SLEEVED_ARMOR) && !livingEntity.isInvisible()) {
             if (armoritem.getEquipmentSlot() == slot) {
                 this.getParentModel().copyPropertiesTo(p_model);
                 this.setPartVisibility(p_model);

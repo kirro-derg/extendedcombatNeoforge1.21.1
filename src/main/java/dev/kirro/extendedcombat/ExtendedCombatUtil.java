@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat;
 
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -51,7 +52,8 @@ public class ExtendedCombatUtil {
     }
 
     public static boolean shouldHideArmour(Player player) {
-        return BLINKING_PLAYERS.contains(player.getUUID());
+        return player.getItemBySlot(EquipmentSlot.CHEST)
+                .getOrDefault(ModDataComponents.BLINK, false);
     }
 
     private static boolean crouching(Entity entity) {

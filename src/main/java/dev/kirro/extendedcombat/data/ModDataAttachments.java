@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.data;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.api.Attachment;
 import dev.kirro.extendedcombat.api.AttachmentEntry;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
@@ -25,28 +26,28 @@ public class ModDataAttachments {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, ExtendedCombat.MOD_ID);
 
     public static final Supplier<AttachmentType<AirJumpBehavior>> AIR_JUMP = register(
-            "air_jump", attachmentHolder -> new AirJumpBehavior((Player) attachmentHolder)
+            "air_jump", holder -> new AirJumpBehavior((Player) holder)
     );
     public static final Supplier<AttachmentType<AirMovementBehavior>> AIR_MOVEMENT = register(
-            "air_movement", attachmentHolder -> new AirMovementBehavior((Player) attachmentHolder)
+            "air_movement", holder -> new AirMovementBehavior((Player) holder)
     );
     public static final Supplier<AttachmentType<DashBehavior>> DASH = register(
-            "dash", attachmentHolder -> new DashBehavior((Player) attachmentHolder)
+            "dash", holder -> new DashBehavior((Player) holder)
     );
     public static final Supplier<AttachmentType<BlinkBehavior>> BLINK = register(
-            "blink", attachmentHolder -> new BlinkBehavior((Player) attachmentHolder)
+            "blink", holder -> new BlinkBehavior((Player) holder)
     );
     public static final Supplier<AttachmentType<WatergelBehavior>> WATERGEL = register(
-            "watergel", attachmentHolder -> new WatergelBehavior((Player) attachmentHolder)
+            "watergel", holder -> new WatergelBehavior((Player) holder)
     );
 
-    public static <T extends TickingAttachment> Supplier<AttachmentType<T>> register(String name, Function<IAttachmentHolder, T> value) {
+    public static <T extends Attachment> Supplier<AttachmentType<T>> register(String name, Function<IAttachmentHolder, T> value) {
         Supplier<AttachmentType<T>> type = ATTACHMENT_TYPES.register(name, () -> AttachmentType.builder(value).build());
         ENTRIES.add(new AttachmentEntry<>(type));
         return type;
     }
 
-    public static <T extends TickingAttachment> Supplier<AttachmentType<T>> register(String name, Supplier<T> value) {
+    public static <T extends Attachment> Supplier<AttachmentType<T>> register(String name, Supplier<T> value) {
         return register(name, holder -> value.get());
     }
 

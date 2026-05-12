@@ -17,6 +17,8 @@ public class ModDataComponents extends DataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> HIDDEN = register(
             "hidden", Codec.BOOL, ByteBufCodecs.BOOL);
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> BLINK = register(
+            "blink", Codec.BOOL, ByteBufCodecs.BOOL);
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> CHARGE = register(
             "charge", Codec.intRange(0, 8), ByteBufCodecs.INT);
 

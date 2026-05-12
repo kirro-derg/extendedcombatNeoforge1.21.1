@@ -3,14 +3,10 @@ package dev.kirro.extendedcombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.loot.ModLootModifiers;
 import dev.kirro.extendedcombat.villager.ModPoi;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.resources.ResourceLocation;
 
 import net.neoforged.bus.api.IEventBus;
@@ -38,31 +34,7 @@ public class ExtendedCombat {
         ModDataAttachments.register(eventBus);
         ModPoi.register(eventBus);
         ModLootModifiers.register(eventBus);
-        registerPayloads();
-
-        eventBus.addListener(ModItems::addCreative);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-    }
-
-    private void registerPayloads() {
-        //server payloads
-        PayloadTypeRegistry.playS2C().register(AirJumpParticlePayload.ID, AirJumpParticlePayload.CODEC);
-        PayloadTypeRegistry.playS2C().register(DashParticlePayload.ID, DashParticlePayload.CODEC);
-        PayloadTypeRegistry.playS2C().register(BlinkParticlePayload.ID, BlinkParticlePayload.CODEC);
-        PayloadTypeRegistry.playS2C().register(BlinkSyncPayload.ID, BlinkSyncPayload.CODEC);
-        // client payloads
-        PayloadTypeRegistry.playC2S().register(AirJumpPayload.ID, AirJumpPayload.CODEC);
-        PayloadTypeRegistry.playC2S().register(DashPayload.ID, DashPayload.CODEC);
-        PayloadTypeRegistry.playC2S().register(BlinkPayload.ID, BlinkPayload.CODEC);
-        // server receivers
-        ServerPlayNetworking.registerGlobalReceiver(AirJumpPayload.ID, new AirJumpPayload.Receiver());
-        ServerPlayNetworking.registerGlobalReceiver(DashPayload.ID, new DashPayload.Receiver());
-        ServerPlayNetworking.registerGlobalReceiver(BlinkPayload.ID, new BlinkPayload.Receiver());
-        // client receivers
-        ClientPlayNetworking.registerGlobalReceiver(AirJumpParticlePayload.ID, new AirJumpParticlePayload.Receiver());
-        ClientPlayNetworking.registerGlobalReceiver(DashParticlePayload.ID, new DashParticlePayload.Receiver());
-        ClientPlayNetworking.registerGlobalReceiver(BlinkParticlePayload.ID, new BlinkParticlePayload.Receiver());
-        ClientPlayNetworking.registerGlobalReceiver(BlinkSyncPayload.ID, BlinkSyncPayload::handle);
     }
 }

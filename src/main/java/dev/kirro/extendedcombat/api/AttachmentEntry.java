@@ -5,7 +5,7 @@ import net.neoforged.neoforge.attachment.IAttachmentHolder;
 
 import java.util.function.Supplier;
 
-public class AttachmentEntry<T extends Attachment & TickingAttachment> {
+public class AttachmentEntry<T extends Attachment> {
     private final Supplier<AttachmentType<T>> type;
 
     public AttachmentEntry(Supplier<AttachmentType<T>> type) {
@@ -13,12 +13,16 @@ public class AttachmentEntry<T extends Attachment & TickingAttachment> {
     }
 
     public void serverTick(IAttachmentHolder holder) {
-        T attachment = holder.getData(type.get());
-        attachment.serverTick();
+        T type = holder.getData(this.type.get());
+        if (type instanceof TickingAttachment attachment) {
+            attachment.serverTick();
+        }
     }
 
     public void clientTick(IAttachmentHolder holder) {
-        T attachment = holder.getData(type.get());
-        attachment.clientTick();
+        T type = holder.getData(this.type.get());
+        if (type instanceof TickingAttachment attachment) {
+            attachment.clientTick();
+        }
     }
 }

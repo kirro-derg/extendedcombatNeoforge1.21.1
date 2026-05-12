@@ -9,7 +9,6 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -229,6 +228,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.SWEET_BERRIES)
                 .unlockedBy(getHasName(ModItems.MILK_BOTTLE), has(ModItems.MILK_BOTTLE))
                 .save(recipeOutput);
+
+        //ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.REPAIR_CHARM)
+        //        .pattern(" G ")
+        //        .pattern("NNN")
+        //        .pattern(" N ")
+        //        .define('N', ModItems.ECHO_STEEL_INGOT)
+        //        .define('G', Items.GOLD_INGOT)
+        //        .unlockedBy("has_echo_steel_ingot", has(ModItems.ECHO_STEEL_INGOT))
+        //        .save(recipeOutput);
 
         // ∴ᔑ∷↸╎リ⊣  ᓭℸ ̣ 𝙹リᒷ
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WARDING_STONE)

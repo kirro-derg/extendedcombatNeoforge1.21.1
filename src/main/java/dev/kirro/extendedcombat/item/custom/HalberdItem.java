@@ -43,7 +43,7 @@ public class HalberdItem extends AxeItem {
                 .add(
                         Attributes.ENTITY_INTERACTION_RANGE,
                         new AttributeModifier(BASE_ATTACK_DAMAGE_ID, interactionRange,
-                                AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
+                                AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .build();
     }
 

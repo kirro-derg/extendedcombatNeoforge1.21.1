@@ -2,12 +2,11 @@ package dev.kirro.extendedcombat.behavior.ability;
 
 
 import dev.kirro.extendedcombat.ExtendedCombatClient;
-import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
+import dev.kirro.extendedcombat.enchantment.packet.BlinkPacket;
+import dev.kirro.extendedcombat.enchantment.packet.BlinkPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class BlinkBehavior implements TickingAttachment, Ability {
     private final Player player;
@@ -80,7 +80,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
         }
         if (duration == 0) {
             invisible = false;
-            ExtendedCombatUtil.setBlinking(player.getUUID(), false, duration);
+            PacketDistributor.sendToServer(new BlinkPacket(false));
         }
     }
 
@@ -91,8 +91,8 @@ public class BlinkBehavior implements TickingAttachment, Ability {
             boolean pressingKey = ExtendedCombatClient.BLINK.get().isDown();
             if (pressingKey && !wasPressingKey && canUse()) {
                 use();
-                BlinkParticlePayload.addParticles(player);
-                BlinkPayload.send();
+                BlinkPacketHandler.addParticles(player);
+                PacketDistributor.sendToServer(new BlinkPacket(invisible));
             }
             wasPressingKey = pressingKey;
         } else {

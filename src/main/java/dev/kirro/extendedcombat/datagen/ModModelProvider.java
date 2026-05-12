@@ -4,8 +4,6 @@ import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.model.ModelTemplate;
-import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -18,12 +16,8 @@ import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
 
 public class ModModelProvider extends ItemModelProvider {
     public static final ResourceLocation GREATSWORD_TEMPLATE = ExtendedCombat.id("item/greatsword_template_handheld");
@@ -72,6 +66,7 @@ public class ModModelProvider extends ItemModelProvider {
         basicItem(ModItems.MILK_BOTTLE.get());
         basicItem(ModItems.SWEET_BERRY_MILK_BOTTLE.get());
         basicItem(ModItems.CHOCOLATE_MILK_BOTTLE.get());
+        //basicItem(ModItems.REPAIR_CHARM.get());
 
         createVariants(GREATSWORD_TEMPLATE, ModItems.WOODEN_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.STONE_GREATSWORD.get());

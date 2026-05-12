@@ -4,16 +4,16 @@ import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
+import dev.kirro.extendedcombat.enchantment.packet.AirJumpPacket;
+import dev.kirro.extendedcombat.enchantment.packet.AirJumpPacketHandler;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class AirJumpBehavior implements TickingAttachment, Ability {
     private final Player player;
@@ -108,8 +108,8 @@ public class AirJumpBehavior implements TickingAttachment, Ability {
         tick();
         if (canUse && player.jumping && canUse()) {
             use();
-            AirJumpParticlePayload.addParticles(player);
-            AirJumpPayload.send();
+            AirJumpPacketHandler.addParticles(player);
+            PacketDistributor.sendToServer(new AirJumpPacket());
         }
     }
 

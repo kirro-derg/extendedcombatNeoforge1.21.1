@@ -1,6 +1,5 @@
 package dev.kirro.extendedcombat.item;
 
-import com.google.common.base.Suppliers;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
@@ -22,172 +21,175 @@ import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public interface ModItems {
+    float greatswordAttackSpeed = -2.6f;
+    float greatswordSweepRatio = 0.55f;
+    float halberdAttackSpeed = -2.5f;
+    float halberdAttackRange = 1.0f;
     DeferredRegister.Items ITEMS = DeferredRegister.createItems(ExtendedCombat.MOD_ID);
 
-    DeferredItem<Item> NETHER_STEEL_INGOT = registerItem("nether_steel_ingot",
+    DeferredItem<Item> NETHER_STEEL_INGOT = register("nether_steel_ingot",
             () -> new Item(new Item.Properties().fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_INGOT = registerItem("echo_steel_ingot",
+    DeferredItem<Item> ECHO_STEEL_INGOT = register("echo_steel_ingot",
             () -> new Item(new Item.Properties().fireResistant()));
-    DeferredItem<Item> HANDLE = registerItem("handle",
+    DeferredItem<Item> HANDLE = register("handle",
             () -> new Item(new Item.Properties()));
-    DeferredItem<Item> POLE = registerItem("pole",
+    DeferredItem<Item> POLE = register("pole",
             () -> new Item(new Item.Properties()));
-    DeferredItem<Item> NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade",
+    DeferredItem<Item> NETHER_STEEL_UPGRADE = register("nether_steel_upgrade",
             () -> new Item(new Item.Properties().fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade",
+    DeferredItem<Item> ECHO_STEEL_UPGRADE = register("echo_steel_upgrade",
             () -> new Item(new Item.Properties().fireResistant()));
 
-    DeferredItem<Item> WOODEN_GREATSWORD = registerItem("wooden_greatsword",
+    DeferredItem<Item> WOODEN_GREATSWORD = register("wooden_greatsword",
             () -> new GreatswordItem(Tiers.WOOD, new Item.Properties()
-                    .attributes(GreatswordItem.createAttributes(Tiers.WOOD, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> STONE_GREATSWORD = registerItem("stone_greatsword",
+                    .attributes(GreatswordItem.createAttributes(Tiers.WOOD, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> STONE_GREATSWORD = register("stone_greatsword",
             () -> new GreatswordItem(Tiers.STONE, new Item.Properties().durability(Tiers.STONE.getUses())
-                    .attributes(GreatswordItem.createAttributes(Tiers.STONE, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> IRON_GREATSWORD = registerItem("iron_greatsword",
+                    .attributes(GreatswordItem.createAttributes(Tiers.STONE, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> IRON_GREATSWORD = register("iron_greatsword",
             () -> new GreatswordItem(Tiers.IRON, new Item.Properties().durability(Tiers.IRON.getUses())
-                    .attributes(GreatswordItem.createAttributes(Tiers.IRON, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> GOLDEN_GREATSWORD = registerItem("golden_greatsword",
+                    .attributes(GreatswordItem.createAttributes(Tiers.IRON, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> GOLDEN_GREATSWORD = register("golden_greatsword",
             () -> new GreatswordItem(Tiers.GOLD, new Item.Properties().durability(Tiers.GOLD.getUses())
-                    .attributes(GreatswordItem.createAttributes(Tiers.GOLD, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> DIAMOND_GREATSWORD = registerItem("diamond_greatsword",
+                    .attributes(GreatswordItem.createAttributes(Tiers.GOLD, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> DIAMOND_GREATSWORD = register("diamond_greatsword",
             () -> new GreatswordItem(Tiers.DIAMOND, new Item.Properties().durability(Tiers.DIAMOND.getUses())
-                    .attributes(GreatswordItem.createAttributes(Tiers.DIAMOND, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> NETHERITE_GREATSWORD = registerItem("netherite_greatsword",
-            () -> new GreatswordItem(Tiers.NETHERITE, new Item.Properties().durability(Tiers.NETHERITE.getUses())
-                    .attributes(GreatswordItem.createAttributes(Tiers.NETHERITE, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
+                    .attributes(GreatswordItem.createAttributes(Tiers.DIAMOND, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> NETHERITE_GREATSWORD = register("netherite_greatsword",
+            () -> new GreatswordItem(Tiers.NETHERITE, new Item.Properties().fireResistant().durability(Tiers.NETHERITE.getUses())
+                    .attributes(GreatswordItem.createAttributes(Tiers.NETHERITE, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> NETHER_STEEL_GREATSWORD = register("nether_steel_greatsword",
             () -> new PickSwordItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, -2.5f, 0.75f))));
-    DeferredItem<Item> ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
+                    .attributes(PickSwordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+    DeferredItem<Item> ECHO_STEEL_GREATSWORD = register("echo_steel_greatsword",
             () -> new AxeSwordItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, -2.5f, 0.75f))));
+                    .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
 
-    DeferredItem<Item> FIRE_SWORD = registerItem("fire_sword",
+    DeferredItem<Item> FIRE_SWORD = register("fire_sword",
             () -> new HeatBladeItem(ModToolTiers.FIRE_STEEL, new Item.Properties().fireResistant()
                     .attributes(GreatswordItem.createAttributes(ModToolTiers.FIRE_STEEL, 7, -2.1f, 0.75f))));
 
-    DeferredItem<Item> NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
+    DeferredItem<Item> NETHER_STEEL_PICKAXE = register("nether_steel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickaxeItem.createAttributes(ModToolTiers.NETHER_STEEL, 8, -2.8f))));
-    DeferredItem<Item> ECHO_STEEL_PICKAXE = registerItem("echo_steel_pickaxe",
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.NETHER_STEEL, 0, -2.8f))));
+    DeferredItem<Item> ECHO_STEEL_PICKAXE = register("echo_steel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ECHO_STEEL, 8, -2.8f))));
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.ECHO_STEEL, 0, -2.8f))));
 
-    DeferredItem<Item> WOODEN_HAMMER = registerItem("wooden_hammer",
+    DeferredItem<Item> WOODEN_HAMMER = register("wooden_hammer",
             () -> new HammerItem(Tiers.WOOD, new Item.Properties()
                     .attributes(DiggerItem.createAttributes(Tiers.WOOD, 1f, -3.2f))));
-    DeferredItem<Item> STONE_HAMMER = registerItem("stone_hammer",
+    DeferredItem<Item> STONE_HAMMER = register("stone_hammer",
             () -> new HammerItem(Tiers.STONE, new Item.Properties()
                     .attributes(DiggerItem.createAttributes(Tiers.STONE, 1f, -3.2f))));
-    DeferredItem<Item> IRON_HAMMER = registerItem("iron_hammer",
+    DeferredItem<Item> IRON_HAMMER = register("iron_hammer",
             () -> new HammerItem(Tiers.IRON, new Item.Properties()
                     .attributes(DiggerItem.createAttributes(Tiers.IRON, 1f, -3.2f))));
-    DeferredItem<Item> GOLDEN_HAMMER = registerItem("golden_hammer",
+    DeferredItem<Item> GOLDEN_HAMMER = register("golden_hammer",
             () -> new HammerItem(Tiers.GOLD, new Item.Properties()
                     .attributes(DiggerItem.createAttributes(Tiers.GOLD, 1f, -3.2f))));
-    DeferredItem<Item> DIAMOND_HAMMER = registerItem("diamond_hammer",
+    DeferredItem<Item> DIAMOND_HAMMER = register("diamond_hammer",
             () -> new HammerItem(Tiers.DIAMOND, new Item.Properties()
                     .attributes(DiggerItem.createAttributes(Tiers.DIAMOND, 1f, -3.2f))));
-    DeferredItem<Item> NETHERITE_HAMMER = registerItem("netherite_hammer",
+    DeferredItem<Item> NETHERITE_HAMMER = register("netherite_hammer",
             () -> new HammerItem(Tiers.NETHERITE, new Item.Properties().fireResistant()
                     .attributes(DiggerItem.createAttributes(Tiers.NETHERITE, 1f, -3.2f))));
-    DeferredItem<Item> NETHER_STEEL_HAMMER = registerItem("nether_steel_hammer",
+    DeferredItem<Item> NETHER_STEEL_HAMMER = register("nether_steel_hammer",
             () -> new HammerItem(ModToolTiers.NETHER_STEEL,  new Item.Properties().fireResistant()
                     .attributes(DiggerItem.createAttributes(ModToolTiers.NETHER_STEEL, 1f, -3.2f))));
-    DeferredItem<Item> ECHO_STEEL_HAMMER = registerItem("echo_steel_hammer",
+    DeferredItem<Item> ECHO_STEEL_HAMMER = register("echo_steel_hammer",
             () -> new HammerItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
                     .attributes(DiggerItem.createAttributes(ModToolTiers.ECHO_STEEL, 1f, -3.2f))));
 
-    DeferredItem<Item> NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
+    DeferredItem<Item> NETHER_STEEL_HELMET = register("nether_steel_helmet",
             () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
-    DeferredItem<Item> NETHER_STEEL_CHESTPLATE = registerItem("nether_steel_chestplate",
+    DeferredItem<Item> NETHER_STEEL_CHESTPLATE = register("nether_steel_chestplate",
             () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
-    DeferredItem<Item> NETHER_STEEL_LEGGINGS = registerItem("nether_steel_leggings",
+    DeferredItem<Item> NETHER_STEEL_LEGGINGS = register("nether_steel_leggings",
             () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
-    DeferredItem<Item> NETHER_STEEL_BOOTS = registerItem("nether_steel_boots",
+    DeferredItem<Item> NETHER_STEEL_BOOTS = register("nether_steel_boots",
             () -> new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1).durability(8124)));
 
-    DeferredItem<Item> ECHO_STEEL_HELMET = registerItem("echo_steel_helmet",
+    DeferredItem<Item> ECHO_STEEL_HELMET = register("echo_steel_helmet",
             () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
-    DeferredItem<Item> ECHO_STEEL_CHESTPLATE = registerItem("echo_steel_chestplate",
+    DeferredItem<Item> ECHO_STEEL_CHESTPLATE = register("echo_steel_chestplate",
             () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
-    DeferredItem<Item> ECHO_STEEL_LEGGINGS = registerItem("echo_steel_leggings",
+    DeferredItem<Item> ECHO_STEEL_LEGGINGS = register("echo_steel_leggings",
             () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
-    DeferredItem<Item> ECHO_STEEL_BOOTS = registerItem("echo_steel_boots",
+    DeferredItem<Item> ECHO_STEEL_BOOTS = register("echo_steel_boots",
             () -> new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant().stacksTo(1).durability(9124)));
 
-    DeferredItem<Item> HUNTER_MASK = registerItem("hunter_mask", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.HELMET, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_MASK = registerItem("nether_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_MASK = registerItem("echo_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_MASK = register("hunter_mask", () -> new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.HELMET, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_MASK = register("nether_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_MASK = register("echo_steel_mask", () -> new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> HUNTER_CLOAK = registerItem("hunter_cloak", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_CLOAK = registerItem("nether_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_CLOAK = registerItem("echo_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_CLOAK = register("hunter_cloak", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_CLOAK = register("nether_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_CLOAK = register("echo_steel_cloak", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> HUNTER_LEGGINGS = registerItem("hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = registerItem("nether_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = registerItem("echo_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_LEGGINGS = register("hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_LEGGINGS = register("nether_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_LEGGINGS = register("echo_steel_hunter_leggings", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> HUNTER_BOOTS = registerItem("hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.BOOTS, new Item.Properties().durability(512)));
-    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = registerItem("nether_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124).fireResistant()));
-    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
+    DeferredItem<Item> HUNTER_BOOTS = register("hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.BOOTS, new Item.Properties().durability(512)));
+    DeferredItem<Item> NETHER_STEEL_HUNTER_BOOTS = register("nether_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(8124).fireResistant()));
+    DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = register("echo_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
 
-    DeferredItem<Item> ECHO_REINFORCED_ELYTRA = registerItem("echo_steel_reinforced_elytra",
+    DeferredItem<Item> ECHO_REINFORCED_ELYTRA = register("echo_steel_reinforced_elytra",
             () -> new ModElytra(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(864).rarity(Rarity.RARE)));
 
-    DeferredItem<Item> BLACK_APPLE = registerItem("black_apple",
+    DeferredItem<Item> BLACK_APPLE = register("black_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BLACK_APPLE)));
-    DeferredItem<Item> BLACK_APPLE_SEED = registerItem("black_apple_seed",
+    DeferredItem<Item> BLACK_APPLE_SEED = register("black_apple_seed",
             () -> new BlockItem(ModBlocks.BLACK_APPLE_BUSH.get(), new Item.Properties().food(ModFoodProperties.BLACK_APPLE_SEED)));
-    DeferredItem<Item> GOLDEN_STEAK = registerItem("golden_steak",
+    DeferredItem<Item> GOLDEN_STEAK = register("golden_steak",
             () -> new Item(new Item.Properties().food(ModFoodProperties.GOLDEN_STEAK)));
-    DeferredItem<Item> HONEY_BREAD = registerItem("honey_bread",
+    DeferredItem<Item> HONEY_BREAD = register("honey_bread",
             () -> new Item(new Item.Properties().food(ModFoodProperties.HONEY_BREAD)));
 
-    DeferredItem<Item> MILK_BOTTLE = registerItem("milk_bottle",
+    DeferredItem<Item> MILK_BOTTLE = register("milk_bottle",
             () -> new MilkBottleItem(new Item.Properties().stacksTo(32), MilkBottleItem.MilkType.PLAIN));
-    DeferredItem<Item> SWEET_BERRY_MILK_BOTTLE = registerItem("sweet_berry_milk_bottle",
+    DeferredItem<Item> SWEET_BERRY_MILK_BOTTLE = register("sweet_berry_milk_bottle",
             () -> new MilkBottleItem(new Item.Properties().stacksTo(32), MilkBottleItem.MilkType.SWEET_BERRY));
-    DeferredItem<Item> CHOCOLATE_MILK_BOTTLE = registerItem("chocolate_milk_bottle",
+    DeferredItem<Item> CHOCOLATE_MILK_BOTTLE = register("chocolate_milk_bottle",
             () -> new MilkBottleItem(new Item.Properties().stacksTo(32), MilkBottleItem.MilkType.CHOCOLATE));
 
-    DeferredItem<Item> WOODEN_HALBERD = registerItem("wooden_halberd",
-            () -> new HalberdItem(Tiers.WOOD, new Item.Properties()
-                    .attributes(HalberdItem.createAttributes(Tiers.WOOD, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> STONE_HALBERD = registerItem("stone_halberd",
+    DeferredItem<Item> WOODEN_HALBERD = register("wooden_halberd",
+            () -> new HalberdItem(Tiers.WOOD, new Item.Properties().durability(Tiers.WOOD.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.WOOD, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> STONE_HALBERD = register("stone_halberd",
             () -> new HalberdItem(Tiers.STONE, new Item.Properties().durability(Tiers.STONE.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.STONE, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> IRON_HALBERD = registerItem("iron_halberd",
+                    .attributes(HalberdItem.createAttributes(Tiers.STONE, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> IRON_HALBERD = register("iron_halberd",
             () -> new HalberdItem(Tiers.IRON, new Item.Properties().durability(Tiers.IRON.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.IRON, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> GOLDEN_HALBERD = registerItem("golden_halberd",
+                    .attributes(HalberdItem.createAttributes(Tiers.IRON, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> GOLDEN_HALBERD = register("golden_halberd",
             () -> new HalberdItem(Tiers.GOLD, new Item.Properties().durability(Tiers.GOLD.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.GOLD, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> DIAMOND_HALBERD = registerItem("diamond_halberd",
+                    .attributes(HalberdItem.createAttributes(Tiers.GOLD, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> DIAMOND_HALBERD = register("diamond_halberd",
             () -> new HalberdItem(Tiers.DIAMOND, new Item.Properties().durability(Tiers.DIAMOND.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.DIAMOND, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> NETHERITE_HALBERD = registerItem("netherite_halberd",
-            () -> new HalberdItem(Tiers.NETHERITE, new Item.Properties().durability(Tiers.NETHERITE.getUses())
-                    .attributes(HalberdItem.createAttributes(Tiers.NETHERITE, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> NETHER_STEEL_HALBERD = registerItem("nether_steel_halberd",
-            () -> new HalberdItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(HalberdItem.createAttributes(ModToolTiers.NETHER_STEEL, 5, -2.6f, 1.6f))));
-    DeferredItem<Item> ECHO_STEEL_HALBERD = registerItem("echo_steel_halberd",
-            () -> new HalberdItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(HalberdItem.createAttributes(ModToolTiers.ECHO_STEEL, 5, -2.6f, 1.6f))));
+                    .attributes(HalberdItem.createAttributes(Tiers.DIAMOND, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> NETHERITE_HALBERD = register("netherite_halberd",
+            () -> new HalberdItem(Tiers.NETHERITE, new Item.Properties().fireResistant().durability(Tiers.NETHERITE.getUses())
+                    .attributes(HalberdItem.createAttributes(Tiers.NETHERITE, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> NETHER_STEEL_HALBERD = register("nether_steel_halberd",
+            () -> new HalberdItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant().durability(ModToolTiers.NETHER_STEEL.getUses())
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.NETHER_STEEL, 5, halberdAttackSpeed, halberdAttackRange))));
+    DeferredItem<Item> ECHO_STEEL_HALBERD = register("echo_steel_halberd",
+            () -> new HalberdItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant().durability(ModToolTiers.ECHO_STEEL.getUses())
+                    .attributes(HalberdItem.createAttributes(ModToolTiers.ECHO_STEEL, 5, halberdAttackSpeed, halberdAttackRange))));
 
-    private static <T extends Item> DeferredItem<T> registerItem(String name, Supplier<T> item) {
+    //DeferredItem<Item> REPAIR_CHARM = register("repair_charm",
+    //        () -> new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC).stacksTo(1)));
+
+    private static <T extends Item> DeferredItem<T> register(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
-    }
-
-    private static DeferredItem<Item> registerItem(String name, Item item) {
-        Supplier<Item> registeredItem = Suppliers.memoize(() -> item);
-        return ITEMS.register(name, registeredItem);
     }
 
     static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
         CREATIVE_MODE_TABS.register(eventBus);
+        eventBus.addListener(ModItems::addCreative);
     }
 
     @SubscribeEvent
@@ -214,40 +216,52 @@ public interface ModItems {
         if(entries.getTabKey() == CreativeModeTabs.COMBAT) {
             entries.insertAfter(Items.WOODEN_SWORD.getDefaultInstance(), WOODEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(WOODEN_GREATSWORD.toStack(), WOODEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.STONE_SWORD.getDefaultInstance(), STONE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(STONE_GREATSWORD.toStack(), STONE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.IRON_SWORD.getDefaultInstance(), IRON_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(IRON_GREATSWORD.toStack(), IRON_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.GOLDEN_SWORD.getDefaultInstance(), GOLDEN_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(GOLDEN_GREATSWORD.toStack(), GOLDEN_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.DIAMOND_SWORD.getDefaultInstance(), DIAMOND_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(DIAMOND_GREATSWORD.toStack(), DIAMOND_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.NETHERITE_SWORD.getDefaultInstance(), NETHERITE_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHERITE_GREATSWORD.toStack(), NETHERITE_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHERITE_HALBERD.toStack(), NETHER_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_GREATSWORD.toStack(), NETHER_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_HALBERD.toStack(), ECHO_STEEL_GREATSWORD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(ECHO_STEEL_GREATSWORD.toStack(), ECHO_STEEL_HALBERD.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.NETHERITE_BOOTS.getDefaultInstance(), NETHER_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_HELMET.toStack(), NETHER_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_CHESTPLATE.toStack(), NETHER_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(NETHER_STEEL_LEGGINGS.toStack(), NETHER_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(NETHER_STEEL_BOOTS.toStack(), ECHO_STEEL_HELMET.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(ECHO_STEEL_HELMET.toStack(), ECHO_STEEL_CHESTPLATE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(ECHO_STEEL_CHESTPLATE.toStack(), ECHO_STEEL_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             entries.insertAfter(ECHO_STEEL_LEGGINGS.toStack(), ECHO_STEEL_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             entries.insertAfter(Items.TURTLE_HELMET.getDefaultInstance(), HUNTER_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(HUNTER_MASK.toStack(), NETHER_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_MASK.toStack(), ECHO_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(ECHO_STEEL_MASK.toStack(), HUNTER_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(HUNTER_CLOAK.toStack(), NETHER_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_CLOAK.toStack(), ECHO_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(ECHO_STEEL_CLOAK.toStack(), HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(HUNTER_LEGGINGS.toStack(), NETHER_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_HUNTER_LEGGINGS.toStack(), ECHO_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(ECHO_STEEL_HUNTER_LEGGINGS.toStack(), HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(HUNTER_BOOTS.toStack(), NETHER_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            entries.insertAfter(NETHER_STEEL_HUNTER_BOOTS.toStack(), ECHO_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(HUNTER_MASK.toStack(), HUNTER_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(HUNTER_CLOAK.toStack(), HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(HUNTER_LEGGINGS.toStack(), HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            entries.insertAfter(HUNTER_BOOTS.toStack(), NETHER_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHER_STEEL_MASK.toStack(), NETHER_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHER_STEEL_CLOAK.toStack(), NETHER_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(NETHER_STEEL_HUNTER_LEGGINGS.toStack(), NETHER_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            entries.insertAfter(NETHER_STEEL_HUNTER_BOOTS.toStack(), ECHO_STEEL_MASK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(ECHO_STEEL_MASK.toStack(), ECHO_STEEL_CLOAK.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(ECHO_STEEL_CLOAK.toStack(), ECHO_STEEL_HUNTER_LEGGINGS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            entries.insertAfter(ECHO_STEEL_HUNTER_LEGGINGS.toStack(), ECHO_STEEL_HUNTER_BOOTS.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
         if(entries.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             entries.accept(ModBlocks.NETHER_STEEL_BLOCK);
