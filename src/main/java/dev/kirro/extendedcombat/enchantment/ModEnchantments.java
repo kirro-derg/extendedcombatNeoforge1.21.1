@@ -20,17 +20,18 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 
-public class ModEnchantments extends Enchantments {
-    private static final int WEIGHT = 25;
-    public static final ResourceKey<Enchantment> OBSCURITY = create("obscurity");
-    public static final ResourceKey<Enchantment> STEALTH = create("stealth");
-    public static final ResourceKey<Enchantment> CONCUSSION = create("concussion");
-    public static final ResourceKey<Enchantment> FLUID_WALKER = create("fluid_walker");
-    public static final ResourceKey<Enchantment> SWIFTNESS = create("swiftness");
-    public static final ResourceKey<Enchantment> WATERGEL = create("watergel");
-    public static final ResourceKey<Enchantment> DASH = create("dash");
-    public static final ResourceKey<Enchantment> AIR_JUMP = create("air_jump");
-    public static final ResourceKey<Enchantment> BLINK = create("blink");
+public interface ModEnchantments {
+    int WEIGHT = 25;
+    ResourceKey<Enchantment> OBSCURITY = create("obscurity");
+    ResourceKey<Enchantment> STEALTH = create("stealth");
+    ResourceKey<Enchantment> CONCUSSION = create("concussion");
+    ResourceKey<Enchantment> FLUID_WALKER = create("fluid_walker");
+    ResourceKey<Enchantment> SWIFTNESS = create("swiftness");
+    ResourceKey<Enchantment> WATERGEL = create("watergel");
+    ResourceKey<Enchantment> DASH = create("dash");
+    ResourceKey<Enchantment> AIR_JUMP = create("air_jump");
+    ResourceKey<Enchantment> BLINK = create("blink");
+    ResourceKey<Enchantment> WAVEDASH = create("wavedash");
 
     private static ResourceKey<Enchantment> create(String id) {
         return ResourceKey.create(Registries.ENCHANTMENT, ExtendedCombat.id(id));
@@ -52,7 +53,7 @@ public class ModEnchantments extends Enchantments {
         return builder.build(id);
     }
 
-    public static void bootstrap(BootstrapContext<Enchantment> registerable) {
+    static void bootstrap(BootstrapContext<Enchantment> registerable) {
         var enchantments = registerable.lookup(Registries.ENCHANTMENT);
         var items = registerable.lookup(Registries.ITEM);
 
@@ -148,6 +149,17 @@ public class ModEnchantments extends Enchantments {
                 EquipmentSlotGroup.LEGS,
                 ModEnchantmentEffects.BLINK.get(),
                 new BlinkEnchantmentEffect(
+                        new AddValue(LevelBasedValue.constant(1))
+                )));
+
+        registerable.register(WAVEDASH, createCustom(WAVEDASH.location(),
+                items.getOrThrow(ModItemTags.WAVEDASH_ENCHANTABLE),
+                1,
+                Enchantment.dynamicCost(5, 5),
+                Enchantment.dynamicCost(10, 5),
+                EquipmentSlotGroup.CHEST,
+                ModEnchantmentEffects.WAVEDASH.get(),
+                new WavedashEnchantmentEffect(
                         new AddValue(LevelBasedValue.constant(1))
                 )));
     }

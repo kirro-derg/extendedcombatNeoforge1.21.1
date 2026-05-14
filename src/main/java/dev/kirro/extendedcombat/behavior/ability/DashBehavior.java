@@ -21,7 +21,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 public class DashBehavior implements TickingAttachment, Ability {
     private final Player player;
     private boolean canRecharge = false, hasDash = false, wasPressingKey = false;
-    private int cooldown = 0, lastCooldown = 0, immunityTicks = 0;
+    private int cooldown = 0, lastCooldown = 0, immunityTicks = 0, jumpTicks = 0, wavedashTicks = 0;
 
     public DashBehavior(Player player) {
         this.player = player;
@@ -51,11 +51,15 @@ public class DashBehavior implements TickingAttachment, Ability {
     }
 
     private int cooldown() {
-        return Mth.floor(this.getValue(level(), 1, -0.29f) * 20);
+        return Mth.floor(this.getValue(level(), 1, -0.20f) * 20);
+    }
+
+    private int wavedashTicks() {
+        return Mth.floor(this.getValue(this.getLevel(player, slot(), ModEnchantmentEffects.WAVEDASH.get(), EquipmentSlot.CHEST), 3));
     }
 
     private float strength() {
-        return this.getValue(level(), 0.85f, 0.3f);
+        return this.getValue(level(), 0.8f, 0.3f);
     }
 
     @Override
@@ -71,8 +75,15 @@ public class DashBehavior implements TickingAttachment, Ability {
                 cooldown--;
             }
         } else {
+            jumpTicks = 0;
             canRecharge = false;
             setCooldown(0);
+        }
+        if (canWavedash()) {
+            setCooldown(0);
+        }
+        if (wavedashTicks > 0) {
+            wavedashTicks--;
         }
         if (immunityTicks > 0) {
             immunityTicks--;
@@ -83,16 +94,25 @@ public class DashBehavior implements TickingAttachment, Ability {
     public void clientTick() {
         tick();
         if (hasDash && !player.isSpectator() && player == Minecraft.getInstance().player) {
+            if (player.jumping) {
+                jumpTicks = Math.min(2, ++jumpTicks);
+            } else {
+                jumpTicks = 0;
+            }
             boolean pressingKey = ExtendedCombatClient.DASH.get().isDown();
             if (pressingKey && !wasPressingKey && canUse() && level() > 0) {
                 use();
                 DashPacketHandler.addParticles(player);
-                PacketDistributor.sendToServer(new DashPacket());
+                PacketDistributor.sendToServer(new DashPacket(player.getId()));
             }
             wasPressingKey = pressingKey;
         } else {
             wasPressingKey = false;
         }
+    }
+
+    public boolean canWavedash() {
+        return jumpTicks < 2 && wavedashTicks > 0 && player.onGround();
     }
 
     public int getCooldown() {
@@ -118,6 +138,7 @@ public class DashBehavior implements TickingAttachment, Ability {
 
     public void use() {
         reset();
+        wavedashTicks = wavedashTicks();
         setImmunityTicks(6);
         float volume = hasStealth(slotItem(player)) ? 0.05f : 0.25f;
         float strength = strength();
@@ -139,5 +160,7 @@ public class DashBehavior implements TickingAttachment, Ability {
     public void reset() {
         setCooldown(cooldown());
         canRecharge = false;
+        wavedashTicks = 0;
+        jumpTicks = 0;
     }
 }

@@ -142,6 +142,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.NETHER_STEEL_MASK.get())
                 .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
                 .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
+                .add(ModItems.ECHO_REINFORCED_ELYTRA.get())
         ;
 
         tag(ModItemTags.NETHER_STEEL_ITEMS)
@@ -166,11 +167,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_PICKAXE.get())
                 .add(ModItems.ECHO_STEEL_HAMMER.get())
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
+                .add(ModItems.ECHO_STEEL_HALBERD.get())
         ;
 
         tag(ModItemTags.WATERGEL_ENCHANTABLE)
                 .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
                 .addTag(ModItemTags.HUNTER_LEGGINGS)
+        ;
+
+        tag(ModItemTags.WAVEDASH_ENCHANTABLE)
+                .addTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.CLOAK)
         ;
 
         tag(ItemTags.PIGLIN_LOVED)
@@ -182,9 +189,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         ;
 
         tag(ItemTags.DURABILITY_ENCHANTABLE)
-                .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
-                .addTag(ModItemTags.NETHER_STEEL_ITEMS)
-                .add(ModItems.ECHO_REINFORCED_ELYTRA.get())
+                .remove(ModItemTags.NETHER_STEEL_WEARABLES)
+                .remove(ModItemTags.NETHER_STEEL_ITEMS)
                 .add(ModItems.WOODEN_HAMMER.get())
                 .add(ModItems.STONE_HAMMER.get())
                 .add(ModItems.IRON_HAMMER.get())

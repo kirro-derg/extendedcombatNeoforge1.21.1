@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat;
 
+import com.mojang.logging.LogUtils;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
@@ -13,13 +14,14 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
+import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ExtendedCombat.MOD_ID)
 public class ExtendedCombat {
 
     public static final String MOD_ID = "extendedcombat";
-    //public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static ResourceLocation id(String id) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, id);

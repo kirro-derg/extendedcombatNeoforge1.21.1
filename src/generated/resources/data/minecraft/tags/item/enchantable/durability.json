@@ -1,8 +1,9 @@
 {
-  "values": [
+  "remove": [
     "#extendedcombat:nether_steel_wearables",
-    "#extendedcombat:nether_steel_items",
-    "extendedcombat:echo_steel_reinforced_elytra",
+    "#extendedcombat:nether_steel_items"
+  ],
+  "values": [
     "extendedcombat:wooden_hammer",
     "extendedcombat:stone_hammer",
     "extendedcombat:iron_hammer",

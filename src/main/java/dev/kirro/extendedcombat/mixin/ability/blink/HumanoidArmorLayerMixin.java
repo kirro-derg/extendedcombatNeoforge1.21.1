@@ -21,7 +21,7 @@ public class HumanoidArmorLayerMixin<T extends LivingEntity> {
             BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
             if (player.isInvisible() && blinkBehavior.getDuration() > 0) {
                 ci.cancel();
-            } else if (ExtendedCombatUtil.shouldHideArmour(player)) {
+            } else if (ExtendedCombatUtil.blink(player)) {
                 ci.cancel();
             }
         }

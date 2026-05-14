@@ -17,7 +17,7 @@ public class ArmPoseMixin {
     private static void extendedcombat$getArmPoseDR(AbstractClientPlayer player, InteractionHand hand,
                                                     CallbackInfoReturnable<ArmPose> cir) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.is(ModItemTags.GREATSWORDS)) cir.setReturnValue(ArmPose.CROSSBOW_HOLD);
+        if (stack.is(ModItemTags.GREATSWORDS)) cir.setReturnValue(ArmPose.BOW_AND_ARROW);
         if (stack.is(ModItemTags.HALBERDS)) cir.setReturnValue(ArmPose.BLOCK);
     }
 }

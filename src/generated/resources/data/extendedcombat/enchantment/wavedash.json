@@ -1,11 +1,11 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.extendedcombat.blink"
+    "translate": "enchantment.extendedcombat.wavedash"
   },
   "effects": {
-    "extendedcombat:blink": {
-      "blink": {
+    "extendedcombat:wavedash": {
+      "wavedash": {
         "type": "minecraft:add",
         "value": 1.0
       }
@@ -21,8 +21,8 @@
     "per_level_above_first": 5
   },
   "slots": [
-    "legs"
+    "chest"
   ],
-  "supported_items": "#extendedcombat:enchantable/blink",
+  "supported_items": "#extendedcombat:enchantable/wavedash",
   "weight": 25
 }

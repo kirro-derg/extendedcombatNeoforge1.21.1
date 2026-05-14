@@ -23,7 +23,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -64,28 +63,28 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerPacketsEvent(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar("1");
-        registrar.playToServer(
+        registrar.playBidirectional(
                 AirJumpPacket.ID,
                 AirJumpPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        AirJumpPacketHandler::sendToServer,
-                        AirJumpPacketHandler::sendToClient
+                        AirJumpPacketHandler::serverPlayHandler,
+                        AirJumpPacketHandler::clientPlayHandler
                 )
         );
-        registrar.playToServer(
+        registrar.playBidirectional(
                 DashPacket.ID,
                 DashPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        DashPacketHandler::sendToServer,
-                        DashPacketHandler::sendToClient
+                        DashPacketHandler::serverPlayHandler,
+                        DashPacketHandler::clientPlayHandler
                 )
         );
-        registrar.playToServer(
+        registrar.playBidirectional(
                 BlinkPacket.ID,
                 BlinkPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        BlinkPacketHandler::sendToServer,
-                        BlinkPacketHandler::sendToClient
+                        BlinkPacketHandler::serverPlayHandler,
+                        BlinkPacketHandler::clientPlayHandler
                 )
         );
     }

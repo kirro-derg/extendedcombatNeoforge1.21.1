@@ -73,17 +73,15 @@ public class AirMovementBehavior implements TickingAttachment, Ability {
     }
 
     private float movementMultiplier(Player player) {
-        float m = 0;
         ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
         ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
         ItemStack feet = player.getItemBySlot(EquipmentSlot.FEET);
-        float addition = maxMovementMultiplier / 4;
-        if (head.isEnchanted()) m += addition;
-        if (chest.isEnchanted()) m += addition;
-        if (legs.isEnchanted()) m += addition;
-        if (feet.isEnchanted()) m += addition;
-        return m;
+        if (head.isEnchanted()
+                && chest.isEnchanted()
+                && legs.isEnchanted()
+                && feet.isEnchanted()) return maxMovementMultiplier;
+        else return 0;
     }
 
     public int getAirTime() {

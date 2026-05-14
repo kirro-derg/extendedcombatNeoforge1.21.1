@@ -30,6 +30,7 @@ public interface ModItemTags {
     TagKey<Item> DASH_ENCHANTABLE = create("enchantable/dash");
     TagKey<Item> AIR_JUMP_ENCHANTABLE = create("enchantable/air_jump");
     TagKey<Item> BLINK_ENCHANTABLE = create("enchantable/blink");
+    TagKey<Item> WAVEDASH_ENCHANTABLE = create("enchantable/wavedash");
 
     private static TagKey<Item> create(String id) {
         return TagKey.create(Registries.ITEM, ExtendedCombat.id(id));

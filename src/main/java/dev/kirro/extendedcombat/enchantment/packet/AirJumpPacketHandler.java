@@ -1,25 +1,31 @@
 package dev.kirro.extendedcombat.enchantment.packet;
 
+import dev.kirro.extendedcombat.api.PlayerLookup;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record AirJumpPacketHandler(int entityId) {
+public record AirJumpPacketHandler() {
 
-    public static void sendToClient(final AirJumpPacket packet, final IPayloadContext context) {
+    public static void clientPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
         Player player = context.player();
         AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
         if (airJump.getCanUse() && airJump.canUse()) {
             airJump.use();
-            PlayerLookup.tracking(player).forEach(foundPlayer -> addParticles(player));
+            PacketDistributor.sendToAllPlayers(new AirJumpPacket(player.getId()));
         }
     }
 
-    public static void sendToServer(final AirJumpPacket packet, final IPayloadContext context) {
-
+    public static void serverPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
+        Player player = context.player();
+        Level level = player.level();
+        Entity entity = level.getEntity(packet.entityId());
+        addParticles(entity);
     }
 
     public static void addParticles(Entity entity) {
