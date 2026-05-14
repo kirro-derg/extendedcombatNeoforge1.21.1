@@ -1,5 +1,7 @@
 package dev.kirro.extendedcombat;
 
+import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
+import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.tags.ModItemTags;
@@ -51,9 +53,24 @@ public class ExtendedCombatUtil {
         else BLINKING_PLAYERS.remove(playerId);
     }
 
-    public static boolean shouldHideArmour(Player player) {
-        return player.getItemBySlot(EquipmentSlot.CHEST)
-                .getOrDefault(ModDataComponents.BLINK, false);
+    public static boolean shouldHideArmour(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
+
+            if (!stack.isEmpty()) {
+                return player.isInvisible() && stack.getOrDefault(ModDataComponents.BLINK, false);
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean blink(LivingEntity player) {
+        ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
+        return stack.getOrDefault(ModDataComponents.BLINK, false);
     }
 
     private static boolean crouching(Entity entity) {

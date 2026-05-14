@@ -1,32 +1,38 @@
 package dev.kirro.extendedcombat.enchantment.packet;
 
-import dev.kirro.extendedcombat.ExtendedCombatUtil;
+import dev.kirro.extendedcombat.ExtendedCombat;
+import dev.kirro.extendedcombat.api.PlayerLookup;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 
-public record BlinkPacketHandler(int entityId) {
+public record BlinkPacketHandler() {
 
-    public static void sendToClient(final BlinkPacket packet, final IPayloadContext context) {
+    public static void clientPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
         Player player = context.player();
         BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
+        player.getItemBySlot(EquipmentSlot.CHEST).set(ModDataComponents.BLINK, packet.invisible());
+
         if (blink.hasBlink() && blink.canUse()) {
             blink.use();
-
-            PlayerLookup.tracking(player).forEach(foundPlayer -> addParticles(player));
+            PacketDistributor.sendToAllPlayers(new BlinkPacket(player.getId(),true));
         }
     }
 
-    public static void sendToServer(final BlinkPacket packet, final IPayloadContext context) {
+    public static void serverPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
         Player player = context.player();
-        BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
-        ExtendedCombatUtil.setBlinking(player.getUUID(), blink.isInvisible(), blink.getDuration());
-        blink.slotItem(player).set(ModDataComponents.BLINK, blink.isInvisible());
+        Level level = player.level();
+        Entity entity = level.getEntity(packet.entityId());
+        addParticles(entity);
     }
 
     public static void addParticles(Entity entity) {

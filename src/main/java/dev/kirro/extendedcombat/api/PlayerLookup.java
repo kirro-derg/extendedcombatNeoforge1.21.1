@@ -1,7 +1,7 @@
-package dev.kirro.extendedcombat.enchantment.packet;
+package dev.kirro.extendedcombat.api;
 
-import net.fabricmc.fabric.mixin.networking.accessor.EntityTrackerAccessor;
-import net.fabricmc.fabric.mixin.networking.accessor.ServerChunkLoadingManagerAccessor;
+import dev.kirro.extendedcombat.mixin.server.EntityTrackerAccessor;
+import dev.kirro.extendedcombat.mixin.server.ServerChunkLoadingManagerAccessor;
 import net.minecraft.server.level.ChunkMap;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerPlayer;

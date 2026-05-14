@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MilkBottleItem extends Item {
-    private static final int MAX_USE_TIME = 32;
+    private static final int MAX_USE_TIME = 16;
     protected final MilkType type;
 
     public MilkBottleItem(Properties settings, MilkType type) {

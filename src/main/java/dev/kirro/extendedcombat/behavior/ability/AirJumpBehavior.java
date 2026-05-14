@@ -109,7 +109,7 @@ public class AirJumpBehavior implements TickingAttachment, Ability {
         if (canUse && player.jumping && canUse()) {
             use();
             AirJumpPacketHandler.addParticles(player);
-            PacketDistributor.sendToServer(new AirJumpPacket());
+            PacketDistributor.sendToServer(new AirJumpPacket(player.getId()));
         }
     }
 

@@ -4,13 +4,16 @@ package dev.kirro.extendedcombat.behavior.ability;
 import dev.kirro.extendedcombat.ExtendedCombatClient;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
+import dev.kirro.extendedcombat.data.ModDataComponents;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.enchantment.packet.BlinkPacket;
 import dev.kirro.extendedcombat.enchantment.packet.BlinkPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -80,7 +83,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
         }
         if (duration == 0) {
             invisible = false;
-            PacketDistributor.sendToServer(new BlinkPacket(false));
+            slotItem(player).set(ModDataComponents.BLINK, false);
         }
     }
 
@@ -92,7 +95,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
             if (pressingKey && !wasPressingKey && canUse()) {
                 use();
                 BlinkPacketHandler.addParticles(player);
-                PacketDistributor.sendToServer(new BlinkPacket(invisible));
+                PacketDistributor.sendToServer(new BlinkPacket(player.getId(),true));
             }
             wasPressingKey = pressingKey;
         } else {
@@ -118,7 +121,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
     }
 
     public boolean canUse() {
-        return cooldown == 0 && duration == 0;
+        return cooldown == 0;
     }
 
     public boolean isInvisible() {
@@ -132,6 +135,7 @@ public class BlinkBehavior implements TickingAttachment, Ability {
     public void use() {
         reset();
         setInvisible(true);
+        slotItem(player).set(ModDataComponents.BLINK, true);
         player.playSound(SoundEvents.TRIAL_SPAWNER_AMBIENT_OMINOUS, 1.0f, 1.0f);
     }
 

@@ -1,12 +1,14 @@
 package dev.kirro.extendedcombat.api;
 
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public interface Ability {
@@ -37,6 +39,14 @@ public interface Ability {
 
     default int getLevel(Player player, EquipmentSlot slot, boolean condition) {
         return common(player, slot, condition);
+    }
+
+    default int getLevel(Player player, EquipmentSlot slot, DataComponentType<?> enchantment) {
+        return common(player, slot, EnchantmentHelper.has(slotItem(player), enchantment));
+    }
+
+    default int getLevel(Player player, EquipmentSlot slot, DataComponentType<?> enchantment, EquipmentSlot supportSlot) {
+        return common(player, slot, EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.CHEST), enchantment));
     }
 
     default int common(Player player, EquipmentSlot slot, boolean condition) {

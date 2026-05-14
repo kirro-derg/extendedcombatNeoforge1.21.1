@@ -5,7 +5,7 @@
   },
   "effects": {
     "extendedcombat:blink": {
-      "vanity": {
+      "blink": {
         "type": "minecraft:add",
         "value": 1.0
       }

@@ -136,7 +136,7 @@ public interface ModItems {
     DeferredItem<Item> ECHO_STEEL_HUNTER_BOOTS = register("echo_steel_hunter_boots", () -> new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().durability(9124).fireResistant()));
 
     DeferredItem<Item> ECHO_REINFORCED_ELYTRA = register("echo_steel_reinforced_elytra",
-            () -> new ModElytra(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(864).rarity(Rarity.RARE)));
+            () -> new ModElytra(new Item.Properties().durability(864).rarity(Rarity.RARE)));
 
     DeferredItem<Item> BLACK_APPLE = register("black_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.BLACK_APPLE)));

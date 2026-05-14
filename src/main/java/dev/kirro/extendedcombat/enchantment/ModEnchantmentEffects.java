@@ -32,6 +32,8 @@ public class ModEnchantmentEffects {
             "air_jump", AirJumpEnchantmentEffect.CODEC);
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlinkEnchantmentEffect>> BLINK = register(
             "blink", BlinkEnchantmentEffect.CODEC);
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<WavedashEnchantmentEffect>> WAVEDASH = register(
+            "wavedash", WavedashEnchantmentEffect.CODEC);
 
     public static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name, Codec<T> codec) {
         return REGISTRAR.registerComponentType(name, builder -> builder.persistent(codec));

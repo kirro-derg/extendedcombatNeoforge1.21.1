@@ -15,7 +15,7 @@ public class EntityMixin {
     public boolean isInvisible(boolean original) {
         if ((Object) this instanceof Player player) {
             BlinkBehavior blinkBehavior = player.getData(ModDataAttachments.BLINK);
-            if (blinkBehavior.isInvisible() && blinkBehavior.getDuration() > 0 || ExtendedCombatUtil.shouldHideArmour(player)) {
+            if (blinkBehavior.isInvisible() && blinkBehavior.getDuration() > 0 || ExtendedCombatUtil.blink(player)) {
                 return true;
             }
         }

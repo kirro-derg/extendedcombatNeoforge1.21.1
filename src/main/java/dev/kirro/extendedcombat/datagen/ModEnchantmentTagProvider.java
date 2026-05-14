@@ -33,6 +33,7 @@ public class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
                 .addOptional(ModEnchantments.DASH.location())
                 .addOptional(ModEnchantments.AIR_JUMP.location())
                 .addOptional(ModEnchantments.BLINK.location())
+                .addOptional(ModEnchantments.WAVEDASH.location())
                 .remove(Enchantments.UNBREAKING)
                 .remove(Enchantments.BANE_OF_ARTHROPODS)
                 .remove(Enchantments.SMITE)
@@ -52,6 +53,7 @@ public class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
                 .addOptional(ModEnchantments.DASH.location())
                 .addOptional(ModEnchantments.AIR_JUMP.location())
                 .addOptional(ModEnchantments.BLINK.location())
+                .addOptional(ModEnchantments.WAVEDASH.location())
         ;
     }
 }

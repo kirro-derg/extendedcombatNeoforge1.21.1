@@ -43,6 +43,10 @@
     {
       "id": "extendedcombat:blink",
       "required": false
+    },
+    {
+      "id": "extendedcombat:wavedash",
+      "required": false
     }
   ]
 }
