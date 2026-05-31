@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class WoolArmorItem extends ModArmorItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+    public void appendHoverText(ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
         if (stack.getItem() instanceof WoolArmorItem item) {
             ResourceLocation id = ResourceLocation.parse(item.getMaterial().getRegisteredName());
             tooltip.add(Component.translatable("tooltip.extendedcombat." + id.getPath() + ".cloak_tooltip").withStyle(ChatFormatting.BLUE));

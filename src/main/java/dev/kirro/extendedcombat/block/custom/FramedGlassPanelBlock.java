@@ -1,6 +1,5 @@
 package dev.kirro.extendedcombat.block.custom;
 
-import net.minecraft.core.BlockBox;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,6 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumMap;
@@ -65,7 +65,7 @@ public class FramedGlassPanelBlock extends Block implements SimpleWaterloggedBlo
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext ctx) {
         Direction dir = state.getValue(FACING);
         boolean isHoldingBlock = false;
 
@@ -101,7 +101,7 @@ public class FramedGlassPanelBlock extends Block implements SimpleWaterloggedBlo
     }
 
     @Override
-    protected boolean skipRendering(BlockState state, BlockState adjacentState, Direction direction) {
+    protected boolean skipRendering(@NotNull BlockState state, BlockState adjacentState, @NotNull Direction direction) {
         if (adjacentState.is(this)) {
             Direction adjacentFacing = adjacentState.getValue(FACING);
             Direction currentFacing = state.getValue(FACING);
@@ -113,17 +113,17 @@ public class FramedGlassPanelBlock extends Block implements SimpleWaterloggedBlo
     }
 
     @Override
-    protected boolean useShapeForLightOcclusion(BlockState state) {
+    protected boolean useShapeForLightOcclusion(@NotNull BlockState state) {
         return false;
     }
 
     @Override
-    protected FluidState getFluidState(BlockState state) {
+    protected @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.defaultFluidState() : super.getFluidState(state);
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }

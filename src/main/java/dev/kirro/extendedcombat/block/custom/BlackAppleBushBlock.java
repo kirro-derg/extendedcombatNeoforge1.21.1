@@ -28,6 +28,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlock {
     public static final MapCodec<BlackAppleBushBlock> CODEC = simpleCodec(BlackAppleBushBlock::new);
@@ -41,17 +42,17 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    protected MapCodec<BlackAppleBushBlock> codec() {
+    protected @NotNull MapCodec<BlackAppleBushBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader world, @NotNull BlockPos pos, @NotNull BlockState state) {
         return new ItemStack(ModItems.BLACK_APPLE_SEED.get());
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return SMALL_SHAPE;
         } else {
@@ -65,7 +66,7 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource random) {
         int i = state.getValue(AGE);
         if (i < 3 && random.nextInt(5) == 0 && world.getRawBrightness(pos.above(), 0) >= 0) {
            if (!world.getBlockState(pos.above()).is(Blocks.TRIPWIRE)) {
@@ -77,7 +78,7 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean bl = i == 3;
         return !bl && stack.is(Items.BONE_MEAL)
@@ -86,7 +87,7 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
         int i = state.getValue(AGE);
         if (i == 3) {
             popResource(world, pos, new ItemStack(ModItems.BLACK_APPLE.get(), 1));
@@ -101,7 +102,7 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public @NotNull BlockState playerWillDestroy(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState state, Player player) {
         if (!player.isCreative()) {
             if (state.getValue(AGE) == 3) {
                 popResource(world, pos, new ItemStack(ModItems.BLACK_APPLE.get(), 1));
@@ -119,17 +120,17 @@ public class BlackAppleBushBlock extends ModBushBlock implements BonemealableBlo
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader levelReader, @NotNull BlockPos blockPos, BlockState blockState) {
         return blockState.getValue(AGE) < 3;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public void performBonemeal(ServerLevel serverLevel, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, BlockState blockState) {
         int i = Math.min(3, blockState.getValue(AGE) + 1);
         serverLevel.setBlock(blockPos, blockState.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }

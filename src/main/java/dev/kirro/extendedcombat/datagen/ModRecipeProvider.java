@@ -10,6 +10,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +20,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.NETHER_STEEL_BLOCK, ModItems.NETHER_STEEL_INGOT);
         twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ECHO_STEEL_BLOCK, ModItems.ECHO_STEEL_INGOT);
 
@@ -165,7 +166,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', Items.STICK)
                 .define('L', Items.LEATHER)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
-                .save(recipeOutput);
+                .save(recipeOutput, ExtendedCombat.id("handle_from_leather"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HANDLE)
+                .pattern(" LS")
+                .pattern("LSL")
+                .pattern("SL ")
+                .define('S', Items.STICK)
+                .define('L', ItemTags.WOOL)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(recipeOutput, ExtendedCombat.id("handle_from_wool"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLE)
                 .pattern("S  ")
@@ -174,7 +184,89 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ItemTags.PLANKS)
                 .define('L', Items.LEATHER)
                 .unlockedBy(getHasName(Items.LEATHER), has(Items.LEATHER))
-                .save(recipeOutput);
+                .save(recipeOutput, ExtendedCombat.id("pole_from_leather"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.POLE)
+                .pattern("S  ")
+                .pattern("SL ")
+                .pattern("S  ")
+                .define('S', ItemTags.PLANKS)
+                .define('L', ItemTags.WOOL)
+                .unlockedBy(getHasName(Items.LEATHER), has(Items.LEATHER))
+                .save(recipeOutput, ExtendedCombat.id("pole_from_wool"));
+
+        // sleeves
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CHAINMAIL_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("chainmail_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LEATHER_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.LEATHER)
+                .unlockedBy(getHasName(Items.LEATHER), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("leather_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.IRON_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.IRON_INGOT)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("iron_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.GOLD_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.GOLD_INGOT)
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("gold_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DIAMOND_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.DIAMOND)
+                .unlockedBy(getHasName(Items.DIAMOND), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("diamond_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHERITE_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.NETHERITE_SCRAP)
+                .unlockedBy(getHasName(Items.NETHERITE_SCRAP), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("netherite_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHER_STEEL_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.GILDED_BLACKSTONE)
+                .unlockedBy(getHasName(Items.GILDED_BLACKSTONE), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("nether_steel_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ECHO_STEEL_SLEEVE)
+                .pattern("W ")
+                .pattern("WE")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .define('E', Items.ECHO_SHARD)
+                .unlockedBy(getHasName(Items.ECHO_SHARD), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("echo_steel_sleeve"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WOOL_SLEEVE)
+                .pattern("W ")
+                .pattern("WW")
+                .pattern("W ")
+                .define('W', ItemTags.WOOL)
+                .unlockedBy(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
+                .save(recipeOutput, ExtendedCombat.id("wool_sleeve"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NETHER_STEEL_UPGRADE, 2)
                 .pattern("DND")
@@ -453,15 +545,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(Items.IRON_SWORD), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, Items.DIAMOND_SWORD)
                 .unlocks(getHasName(Items.IRON_SWORD), has(Items.IRON_SWORD))
                 .save(recipeOutput, "diamond_sword_smithing");
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_HAMMER), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_HAMMER.get())
+                .unlocks(getHasName(ModItems.IRON_HAMMER), has(ModItems.IRON_HAMMER))
+                .save(recipeOutput, "diamond_hammer_smithing");
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_GREATSWORD), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_GREATSWORD.get())
                 .unlocks(getHasName(ModItems.IRON_GREATSWORD), has(ModItems.IRON_GREATSWORD))
                 .save(recipeOutput, "diamond_greatsword_smithing");
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_HALBERD), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_HALBERD.get())
                 .unlocks(getHasName(ModItems.IRON_HALBERD), has(ModItems.IRON_HALBERD))
                 .save(recipeOutput, "diamond_halberd_smithing");
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.DIAMOND), Ingredient.of(ModItems.IRON_HAMMER), Ingredient.of(Items.DIAMOND), RecipeCategory.COMBAT, ModItems.DIAMOND_HAMMER.get())
-                .unlocks(getHasName(ModItems.IRON_HAMMER), has(ModItems.IRON_HAMMER))
-                .save(recipeOutput, "diamond_hammer_smithing");
+
 
         // hammer recipes
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.WOODEN_HAMMER)

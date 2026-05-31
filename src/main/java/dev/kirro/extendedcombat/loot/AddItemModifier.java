@@ -11,15 +11,26 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddItemModifier extends LootModifier {
     public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(
-                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(e -> e.item)).apply(inst, AddItemModifier::new));
-    private final Item item;
+                    BuiltInRegistries.ITEM.byNameCodec().listOf().fieldOf("items").forGetter(e -> e.items)).apply(inst, AddItemModifier::new));
+    private final List<Item> items = new ArrayList<>();
 
-    public AddItemModifier(LootItemCondition[] conditionsIn, Item item) {
+    public AddItemModifier(LootItemCondition[] conditionsIn, List<Item> items) {
         super(conditionsIn);
-        this.item = item;
+        this.items.addAll(items);
+    }
+
+    public static AddItemModifier of (LootItemCondition[] conditionsIn, Item... items) {
+        return new AddItemModifier(conditionsIn, List.of(items));
+    }
+
+    public static AddItemModifier of (LootItemCondition[] conditionsIn, List<Item> items) {
+        return new AddItemModifier(conditionsIn, items);
     }
 
     @Override
@@ -29,7 +40,9 @@ public class AddItemModifier extends LootModifier {
                 return generatedLoot;
             }
         }
-        generatedLoot.add(new ItemStack(this.item));
+        for (Item item : this.items) {
+            generatedLoot.add(new ItemStack(item));
+        }
 
         return generatedLoot;
     }

@@ -5,13 +5,17 @@ import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
 import dev.kirro.extendedcombat.tags.ModEnchantmentTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -59,15 +63,11 @@ public interface ModItems {
             () -> new GreatswordItem(Tiers.NETHERITE, new Item.Properties().fireResistant().durability(Tiers.NETHERITE.getUses())
                     .attributes(GreatswordItem.createAttributes(Tiers.NETHERITE, 7, greatswordAttackSpeed, greatswordSweepRatio))));
     DeferredItem<Item> NETHER_STEEL_GREATSWORD = register("nether_steel_greatsword",
-            () -> new PickSwordItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
+            () -> new GreatswordItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
+                    .attributes(GreatswordItem.createAttributes(ModToolTiers.NETHER_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
     DeferredItem<Item> ECHO_STEEL_GREATSWORD = register("echo_steel_greatsword",
-            () -> new AxeSwordItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
-                    .attributes(PickSwordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
-
-    DeferredItem<Item> FIRE_SWORD = register("fire_sword",
-            () -> new HeatBladeItem(ModToolTiers.FIRE_STEEL, new Item.Properties().fireResistant()
-                    .attributes(GreatswordItem.createAttributes(ModToolTiers.FIRE_STEEL, 7, -2.1f, 0.75f))));
+            () -> new GreatswordItem(ModToolTiers.ECHO_STEEL, new Item.Properties().fireResistant()
+                    .attributes(GreatswordItem.createAttributes(ModToolTiers.ECHO_STEEL, 7, greatswordAttackSpeed, greatswordSweepRatio))));
 
     DeferredItem<Item> NETHER_STEEL_PICKAXE = register("nether_steel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.NETHER_STEEL, new Item.Properties().fireResistant()
@@ -181,6 +181,25 @@ public interface ModItems {
 
     //DeferredItem<Item> REPAIR_CHARM = register("repair_charm",
     //        () -> new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC).stacksTo(1)));
+
+    DeferredItem<Item> CHAINMAIL_SLEEVE = register("chainmail_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> LEATHER_SLEEVE = register("leather_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> IRON_SLEEVE = register("iron_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> GOLD_SLEEVE = register("gold_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> DIAMOND_SLEEVE = register("diamond_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> NETHERITE_SLEEVE = register("netherite_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> NETHER_STEEL_SLEEVE = register("nether_steel_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> ECHO_STEEL_SLEEVE = register("echo_steel_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
+    DeferredItem<Item> WOOL_SLEEVE = register("wool_sleeve",
+            () -> new Item(new Item.Properties().stacksTo(1)));
 
     private static <T extends Item> DeferredItem<T> register(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
@@ -353,6 +372,16 @@ public interface ModItems {
                         output.accept(ECHO_STEEL_HUNTER_LEGGINGS);
                         output.accept(ECHO_STEEL_HUNTER_BOOTS);
                         output.accept(ECHO_REINFORCED_ELYTRA);
+
+                        output.accept(CHAINMAIL_SLEEVE);
+                        output.accept(LEATHER_SLEEVE);
+                        output.accept(IRON_SLEEVE);
+                        output.accept(GOLD_SLEEVE);
+                        output.accept(DIAMOND_SLEEVE);
+                        output.accept(NETHERITE_SLEEVE);
+                        output.accept(NETHER_STEEL_SLEEVE);
+                        output.accept(ECHO_STEEL_SLEEVE);
+                        output.accept(WOOL_SLEEVE);
 
                         output.accept(BLACK_APPLE);
                         output.accept(GOLDEN_STEAK);

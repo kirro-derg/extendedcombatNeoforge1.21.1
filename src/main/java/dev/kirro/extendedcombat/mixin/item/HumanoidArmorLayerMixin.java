@@ -2,7 +2,7 @@ package dev.kirro.extendedcombat.mixin.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.data.ModDataComponents;
+import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
@@ -56,7 +56,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
             ci.cancel();
             if (armorItem.getEquipmentSlot() == slot) {
                 this.getParentModel().copyPropertiesTo(p_model);
-                this.setPartVisibility(p_model, slot, itemstack);
+                this.extendedcombat$setPartVisibility(p_model, slot, itemstack);
                 Model model = this.getArmorModelHook(livingEntity, itemstack, slot, p_model);
                 boolean flag = this.usesInnerModel(slot);
                 ArmorMaterial armormaterial = armorItem.getMaterial().value();
@@ -86,18 +86,13 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
     }
 
     @Unique
-    protected void setPartVisibility(A model, EquipmentSlot slot, ItemStack stack) {
+    protected void extendedcombat$setPartVisibility(A model, EquipmentSlot slot, ItemStack stack) {
         model.setAllVisible(false);
         switch (slot) {
-            case HEAD -> {
-                if (!stack.getOrDefault(ModDataComponents.HIDDEN, false)) {
-                    model.head.visible = true;
-                }
-            }
+            case HEAD ->
+                model.head.visible = !HunterMaskItem.isHidden(stack);
             case CHEST -> {
-                if (!stack.getOrDefault(ModDataComponents.HIDDEN, false)) {
-                    model.hat.visible = true;
-                }
+                model.hat.visible = !WoolArmorItem.isHidden(stack);
                 model.body.visible = true;
                 model.rightArm.visible = true;
                 model.leftArm.visible = true;

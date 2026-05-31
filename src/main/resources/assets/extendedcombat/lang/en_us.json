@@ -43,7 +43,15 @@
   "item.extendedcombat.golden_steak": "Golden Steak",
   "item.extendedcombat.honey_bread": "Honey Bread",
 
-  "item.extendedcombat.repair_charm": ":3",
+  "item.extendedcombat.chainmail_sleeve": "Chainmail Sleeve",
+  "item.extendedcombat.leather_sleeve": "Leather Sleeve",
+  "item.extendedcombat.iron_sleeve": "Iron Sleeve",
+  "item.extendedcombat.gold_sleeve": "Gold Sleeve",
+  "item.extendedcombat.diamond_sleeve": "Diamond Sleeve",
+  "item.extendedcombat.netherite_sleeve": "Netherite Sleeve",
+  "item.extendedcombat.nether_steel_sleeve": "Nether Steel Sleeve",
+  "item.extendedcombat.echo_steel_sleeve": "Echo Steel Sleeve",
+  "item.extendedcombat.wool_sleeve": "Wool Sleeve",
 
   "item.extendedcombat.milk_bottle": "Milk Bottle",
   "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk Bottle",
@@ -116,7 +124,7 @@
   "enchantment.extendedcombat.dash.desc": "Allows for a dash action to be performed midair",
   "enchantment.extendedcombat.air_jump.desc": "Allows for jumping more times in midair",
   "enchantment.extendedcombat.blink.desc": "Gives the player total invisibility for a short time",
-  "enchantment.extendedcombat.obscurity.desc": "Hides player nametag and prevents aggro of endermen by eye contact",
+  "enchantment.extendedcombat.obscurity.desc": "Hides player nametag and prevents angering endermen by eye contact",
   "enchantment.extendedcombat.vanity.desc": "Hides the piece of armour enchanted with it",
   "enchantment.extendedcombat.stealth.desc": "Hides sprinting particles and reduces the volume of some enchantment effects",
   "enchantment.extendedcombat.keepsake.desc": "Removes durability of the enchanted item",
@@ -131,11 +139,17 @@
   "key.extendedcombat.blink": "Blink",
 
   "extendedcombat.configuration.disableDurability": "Disable Durability",
-  "extendedcombat.configuration.airMovement": "Increase Air Movement speed",
+  "extendedcombat.configuration.disableDurability.tooltip": "Whether To Disable Item Durability",
+
   "extendedcombat.configuration.wardingStoneActiveRadius": "Warding Stone Radius",
+  "extendedcombat.configuration.wardingStoneActiveRadius.tooltip": "Radius In Which The Warding Stone Will Disable Mob Spawning",
+
+  "extendedcombat.configuration.airMovement": "Increase Airborne Agility",
+  "extendedcombat.configuration.airMovement.tooltip": "Whether To Increase Agility While midair When Wearing A Full Set Of Enchanted Armor",
 
   "extendedcombat.configuration.allowRepairCharm": "Allow Repair Charm",
   "extendedcombat.configuration.repairAmount": "Charm Repair Amount",
   "extendedcombat.configuration.repairType": "Charm Repair Type",
   "extendedcombat.configuration.repairInterval": "Charm Repair Interval"
+
 }

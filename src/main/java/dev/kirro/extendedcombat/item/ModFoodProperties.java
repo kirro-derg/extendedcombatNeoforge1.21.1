@@ -9,7 +9,7 @@ public class ModFoodProperties {
     public static final FoodProperties BLACK_APPLE = new FoodProperties.Builder()
             .nutrition(6)
             .saturationModifier(1.2f)
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 5 * 20, 1), 1.0f)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 2 * 20, 1), 1.0f)
             .build();
     public static final FoodProperties BLACK_APPLE_SEED = new FoodProperties.Builder()
             .nutrition(2)

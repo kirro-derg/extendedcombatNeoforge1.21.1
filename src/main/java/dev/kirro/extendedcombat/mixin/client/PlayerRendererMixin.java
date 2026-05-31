@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.entity.ModModelLayers;
 import dev.kirro.extendedcombat.entity.render.ArmorSleeveLayer;
 import dev.kirro.extendedcombat.entity.render.ModElytraLayer;
+import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -19,19 +20,24 @@ import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.CuriosDataProvider;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+
+import java.util.Map;
 
 @Mixin(PlayerRenderer.class)
 public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
@@ -51,35 +57,26 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
                 ctx.getModelSet()));
     }
 
-    @Inject(method = "renderHand", at = @At("HEAD"), cancellable = true)
-    private void renderHand(PoseStack poseStack, MultiBufferSource buffer, int combinedLight, AbstractClientPlayer player,
-                            ModelPart arm, ModelPart sleeve, CallbackInfo ci) {
+    @Inject(method = "renderHand", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"), cancellable = true)
+    private void renderSleeve(PoseStack poseStack, MultiBufferSource buffer, int combinedLight, AbstractClientPlayer player, ModelPart rendererArm, ModelPart rendererArmwear, CallbackInfo ci) {
         ItemStack stack = extendedcombat$getArmor(player);
         IClientItemExtensions extensions = IClientItemExtensions.of(stack);
         int i = extensions.getDefaultDyeColor(stack);
-        if (extendedcombat$getArmor(player).is(ModItemTags.SLEEVED_ARMOR)) {
+        if (stack.is(ModItemTags.SLEEVES)) {
             ci.cancel();
-            PlayerModel<AbstractClientPlayer> playermodel = this.getModel();
-            this.setModelProperties(player);
-            playermodel.attackTime = 0.0F;
-            playermodel.crouching = false;
-            playermodel.swimAmount = 0.0F;
-            playermodel.setupAnim(player, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-            arm.xRot = 0.0F;
-            ResourceLocation resourcelocation = extendedcombat$getTextureId(stack);
-            arm.render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(player.getSkin().texture())), combinedLight, OverlayTexture.NO_OVERLAY);
-            sleeve.xRot = 0.0F;
-            sleeve.render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(resourcelocation)), combinedLight, OverlayTexture.NO_OVERLAY, i);
+            rendererArmwear.
+                    render(poseStack, buffer.getBuffer(RenderType.entityTranslucent(extendedcombat$getTextureId(stack))),
+                            combinedLight, OverlayTexture.NO_OVERLAY, i);
         }
     }
 
     @Unique
     private ResourceLocation extendedcombat$getTextureId(ItemStack stack) {
         ResourceLocation texturePath = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        ResourceLocation truncatedPath = ResourceLocation.parse(texturePath.getPath().replace("_chestplate", "").replace("_reinforced_elytra", ""));
+        ResourceLocation truncatedPath = ResourceLocation.parse(texturePath.getPath().replace("_chestplate", ""));
 
-        if (!(stack.getItem() instanceof WoolArmorItem)) {
-            return ExtendedCombat.id("textures/models/armor/" + truncatedPath.getPath() + "_sleeve_overlay.png");
+        if (!(stack.is(ModItems.WOOL_SLEEVE))) {
+            return ExtendedCombat.id("textures/models/armor/" + texturePath.getPath() + "_overlay.png");
         } else {
             return ExtendedCombat.id("textures/models/armor/wool.png");
         }
@@ -87,6 +84,12 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
 
     @Unique
     private ItemStack extendedcombat$getArmor(LivingEntity entity) {
-        return entity.getItemBySlot(EquipmentSlot.CHEST);
+        if (CuriosApi.getCuriosInventory(entity).isPresent()) {
+            var curiosInventory = CuriosApi.getCuriosInventory(entity).get();
+            var curios = curiosInventory.getCurios();
+            ICurioStacksHandler inventory = curios.get("right_sleeve");
+            if (inventory != null) return inventory.getStacks().getStackInSlot(0);
+        }
+        return new ItemStack(ModItems.HANDLE.get());
     }
 }

@@ -15,7 +15,7 @@ public interface ModItemTags {
     TagKey<Item> ECHO_STEEL_ITEMS = create("echo_items");
     TagKey<Item> GREATSWORDS = create("greatswords");
     TagKey<Item> HALBERDS = create("halberds");
-    TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
+    TagKey<Item> SLEEVES = create("sleeves");
     TagKey<Item> CLOAK = create("cloak");
     TagKey<Item> MASK = create("mask");
     TagKey<Item> HUNTER_LEGGINGS = create("hunter_leggings");
@@ -31,8 +31,14 @@ public interface ModItemTags {
     TagKey<Item> AIR_JUMP_ENCHANTABLE = create("enchantable/air_jump");
     TagKey<Item> BLINK_ENCHANTABLE = create("enchantable/blink");
     TagKey<Item> WAVEDASH_ENCHANTABLE = create("enchantable/wavedash");
+    TagKey<Item> SLEEVES_LEFT = create("left_sleeve", "curios");
+    TagKey<Item> SLEEVES_RIGHT = create("right_sleeve", "curios");
 
     private static TagKey<Item> create(String id) {
         return TagKey.create(Registries.ITEM, ExtendedCombat.id(id));
+    }
+
+    private static TagKey<Item> create(String id, String namespace) {
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, id));
     }
 }

@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
 public class ModModelProvider extends ItemModelProvider {
     public static final ResourceLocation GREATSWORD_TEMPLATE = ExtendedCombat.id("item/greatsword_template_handheld");
     public static final ResourceLocation HALBERD_TEMPLATE = ExtendedCombat.id("item/halberd_template_handheld");
-    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
         trimMaterials.put(TrimMaterials.IRON, 0.2F);
@@ -68,6 +68,16 @@ public class ModModelProvider extends ItemModelProvider {
         basicItem(ModItems.CHOCOLATE_MILK_BOTTLE.get());
         //basicItem(ModItems.REPAIR_CHARM.get());
 
+        basicItem(ModItems.CHAINMAIL_SLEEVE.get());
+        basicItem(ModItems.LEATHER_SLEEVE.get());
+        basicItem(ModItems.IRON_SLEEVE.get());
+        basicItem(ModItems.GOLD_SLEEVE.get());
+        basicItem(ModItems.DIAMOND_SLEEVE.get());
+        basicItem(ModItems.NETHERITE_SLEEVE.get());
+        basicItem(ModItems.NETHER_STEEL_SLEEVE.get());
+        basicItem(ModItems.ECHO_STEEL_SLEEVE.get());
+        basicItem(ModItems.WOOL_SLEEVE.get());
+
         createVariants(GREATSWORD_TEMPLATE, ModItems.WOODEN_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.STONE_GREATSWORD.get());
         createVariants(GREATSWORD_TEMPLATE, ModItems.IRON_GREATSWORD.get());
@@ -85,8 +95,6 @@ public class ModModelProvider extends ItemModelProvider {
         createVariants(HALBERD_TEMPLATE, ModItems.NETHERITE_HALBERD.get());
         createVariants(HALBERD_TEMPLATE, ModItems.NETHER_STEEL_HALBERD.get());
         createVariants(HALBERD_TEMPLATE, ModItems.ECHO_STEEL_HALBERD.get());
-
-        createVariants(GREATSWORD_TEMPLATE, ModItems.FIRE_SWORD.get());
 
         trimmedArmorItem(ModItems.NETHER_STEEL_BOOTS);
         trimmedArmorItem(ModItems.NETHER_STEEL_LEGGINGS);

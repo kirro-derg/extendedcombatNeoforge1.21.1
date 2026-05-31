@@ -1,6 +1,5 @@
 package dev.kirro.extendedcombat.enchantment.packet;
 
-import dev.kirro.extendedcombat.api.PlayerLookup;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record AirJumpPacketHandler() {
 
-    public static void clientPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
+    public static void serverPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
         Player player = context.player();
         AirJumpBehavior airJump = player.getData(ModDataAttachments.AIR_JUMP);
         if (airJump.getCanUse() && airJump.canUse()) {
@@ -21,7 +20,7 @@ public record AirJumpPacketHandler() {
         }
     }
 
-    public static void serverPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
+    public static void clientPlayHandler(final AirJumpPacket packet, final IPayloadContext context) {
         Player player = context.player();
         Level level = player.level();
         Entity entity = level.getEntity(packet.entityId());

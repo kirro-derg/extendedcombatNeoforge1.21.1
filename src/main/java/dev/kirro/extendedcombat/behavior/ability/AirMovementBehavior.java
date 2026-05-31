@@ -5,7 +5,6 @@ import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffects;
@@ -13,14 +12,11 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class AirMovementBehavior implements TickingAttachment, Ability {
     private final Player player;
     private int resetDelay = 0, airTime = 0, multiplierTicks = 0;
     private final int multiplyAfter = 10;
-    private final float maxMovementMultiplier = 3.0f;
 
     public AirMovementBehavior(Player player) {
         this.player = player;
@@ -80,8 +76,8 @@ public class AirMovementBehavior implements TickingAttachment, Ability {
         if (head.isEnchanted()
                 && chest.isEnchanted()
                 && legs.isEnchanted()
-                && feet.isEnchanted()) return maxMovementMultiplier;
-        else return 0;
+                && feet.isEnchanted()) return 2.5f;
+        else return 1;
     }
 
     public int getAirTime() {
@@ -93,7 +89,7 @@ public class AirMovementBehavior implements TickingAttachment, Ability {
         float multiply = EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.LEGS), ModEnchantmentEffects.SWIFTNESS.get())
                 ? 0.5f
                 : 0.0f;
-        float movementMultiplier = Math.max(movementMultiplier(player), 1);
+        float movementMultiplier = movementMultiplier(player);
         float slow = player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) ? 1.0f : 0.0f;
         if (getAirTime() < multiplyAfter()) {
             return original;

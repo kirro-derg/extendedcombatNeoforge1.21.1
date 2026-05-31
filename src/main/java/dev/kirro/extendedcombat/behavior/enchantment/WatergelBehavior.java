@@ -1,16 +1,15 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import dev.kirro.extendedcombat.ExtendedCombatUtil;
 import dev.kirro.extendedcombat.api.Ability;
 import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffects;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class WatergelBehavior implements TickingAttachment, Ability {
@@ -87,19 +86,10 @@ public class WatergelBehavior implements TickingAttachment, Ability {
                 slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) + 1);
                 setCooldown(playerCooldown);
             }
-            if (usageCooldown > 0) {
-                usageCooldown--;
-            }
         } else {
             canRecharge = false;
             setCooldown(0);
-            usageCooldown = 0;
         }
-    }
-
-    @Override
-    public void clientTick() {
-        tick();
     }
 
     public void setCooldown(int cooldown) {
@@ -108,7 +98,7 @@ public class WatergelBehavior implements TickingAttachment, Ability {
     }
 
     public int getUsesLeft() {
-        return usesLeft;
+        return slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0);
     }
 
     public int getMaxUses() {
@@ -120,7 +110,7 @@ public class WatergelBehavior implements TickingAttachment, Ability {
     }
 
     public boolean canUse() {
-        return usageCooldown == 0 && usesLeft > 0 && !ExtendedCombatUtil.isTouchingFluidOfType(player, FluidTags.WATER);
+        return !player.getCooldowns().isOnCooldown(Items.TRIDENT) && getUsesLeft() > 0 && !player.isInWaterOrRain();
     }
 
     public void use() {
@@ -128,7 +118,7 @@ public class WatergelBehavior implements TickingAttachment, Ability {
             setCooldown(cooldown());
         }
         canRecharge = false;
-        usageCooldown = usageCooldown();
+        player.getCooldowns().addCooldown(Items.TRIDENT, usageCooldown());
         slotItem(player).set(ModDataComponents.CHARGE, slotItem(player).getOrDefault(ModDataComponents.CHARGE, 0) - 1);
     }
 }

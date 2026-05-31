@@ -1,6 +1,10 @@
 {
   "entries": [
-    "extendedcombat:echo_steel_upgrade_to_warden"
+    "extendedcombat:echo_steel_upgrade_to_warden",
+    "extendedcombat:black_apple_to_nether_bridge",
+    "extendedcombat:golden_steak_to_abandoned_mineshaft",
+    "extendedcombat:halberd_and_greatsword_to_village_weaponsmith",
+    "extendedcombat:hammer_to_village_toolsmith"
   ],
   "replace": false
 }

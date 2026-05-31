@@ -1,22 +1,17 @@
 package dev.kirro.extendedcombat.enchantment;
 
 import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.datagen.ModDataPackProvider;
 import dev.kirro.extendedcombat.enchantment.custom.*;
-import dev.kirro.extendedcombat.tags.ModEnchantmentTags;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 
@@ -37,9 +32,9 @@ public interface ModEnchantments {
         return ResourceKey.create(Registries.ENCHANTMENT, ExtendedCombat.id(id));
     }
 
-    private static <E> Enchantment create(ResourceLocation id, HolderSet<Item> supportedItems, int maxLevel, EquipmentSlotGroup slot,
+    private static <E> Enchantment create(ResourceLocation id, HolderSet<Item> supportedItems, EquipmentSlotGroup slot,
                                           DataComponentType<E> component, E value) {
-        Enchantment.Builder builder = Enchantment.enchantment(Enchantment.definition(supportedItems, WEIGHT, maxLevel,
+        Enchantment.Builder builder = Enchantment.enchantment(Enchantment.definition(supportedItems, WEIGHT, 1,
                 Enchantment.dynamicCost(5, 6), Enchantment.dynamicCost(20, 6), 2, slot))
                 .withSpecialEffect(component, value);
         return builder.build(id);
@@ -59,7 +54,6 @@ public interface ModEnchantments {
 
         registerable.register(OBSCURITY, create(OBSCURITY.location(),
                 items.getOrThrow(ModItemTags.OBSCURITY_ENCHANTABLE),
-                1,
                 EquipmentSlotGroup.HEAD,
                 ModEnchantmentEffects.OBSCURITY.get(),
                 new ObscurityEnchantmentEffect(
@@ -68,7 +62,6 @@ public interface ModEnchantments {
 
         registerable.register(STEALTH, create(STEALTH.location(),
                 items.getOrThrow(ModItemTags.STEALTH_ENCHANTABLE),
-                1,
                 EquipmentSlotGroup.CHEST,
                 ModEnchantmentEffects.STEALTH.get(),
                 new StealthEnchantmentEffect(

@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,13 +33,13 @@ public class MilkBottleItem extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity user) {
         if (user instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!world.isClientSide) {
+        if (!level.isClientSide) {
             switch (type) {
                 case PLAIN ->
                         ExtendedCombatUtil.removeEffectOfType(user, MobEffectCategory.NEUTRAL);
@@ -58,7 +59,7 @@ public class MilkBottleItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
         MilkType milkType = this.type;
         switch (milkType) {
             case PLAIN -> tooltip.add(Component.translatable("tooltip.milk_bottle.milk").withStyle(ChatFormatting.BLUE));
@@ -69,44 +70,43 @@ public class MilkBottleItem extends Item {
     }
 
 
-
     public MilkType getType() {
         return this.type;
     }
 
     @Override
-    public int getUseDuration(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity user) {
         return MAX_USE_TIME;
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
         return UseAnim.DRINK;
     }
 
     @Override
-    public SoundEvent getDrinkingSound() {
+    public @NotNull SoundEvent getDrinkingSound() {
         return SoundEvents.HONEY_DRINK;
     }
 
     @Override
-    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+    public @NotNull ItemStack getCraftingRemainingItem(@NotNull ItemStack stack) {
         return new ItemStack(Items.GLASS_BOTTLE);
     }
 
     @Override
-    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+    public @NotNull Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
         return super.getTooltipImage(stack);
     }
 
     @Override
-    public SoundEvent getEatingSound() {
+    public @NotNull SoundEvent getEatingSound() {
         return SoundEvents.HONEY_DRINK;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-        return ItemUtils.startUsingInstantly(world, user, hand);
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player user, @NotNull InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(level, user, hand);
     }
 
     public enum MilkType implements StringRepresentable {
@@ -125,7 +125,7 @@ public class MilkBottleItem extends Item {
         }
 
         @Override
-        public String getSerializedName() {
+        public @NotNull String getSerializedName() {
             return this.name;
         }
     }

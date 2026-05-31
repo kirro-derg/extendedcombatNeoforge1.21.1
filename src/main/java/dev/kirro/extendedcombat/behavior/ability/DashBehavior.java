@@ -80,7 +80,7 @@ public class DashBehavior implements TickingAttachment, Ability {
             setCooldown(0);
         }
         if (canWavedash()) {
-            setCooldown(0);
+            if (player.jumping) setCooldown(0);
         }
         if (wavedashTicks > 0) {
             wavedashTicks--;
@@ -95,7 +95,7 @@ public class DashBehavior implements TickingAttachment, Ability {
         tick();
         if (hasDash && !player.isSpectator() && player == Minecraft.getInstance().player) {
             if (player.jumping) {
-                jumpTicks = Math.min(2, ++jumpTicks);
+                jumpTicks++;
             } else {
                 jumpTicks = 0;
             }
@@ -112,7 +112,7 @@ public class DashBehavior implements TickingAttachment, Ability {
     }
 
     public boolean canWavedash() {
-        return jumpTicks < 2 && wavedashTicks > 0 && player.onGround();
+        return jumpTicks < 3 && wavedashTicks > 0 && player.onGround();
     }
 
     public int getCooldown() {

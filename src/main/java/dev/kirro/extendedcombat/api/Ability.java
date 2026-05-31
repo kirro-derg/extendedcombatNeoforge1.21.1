@@ -46,7 +46,7 @@ public interface Ability {
     }
 
     default int getLevel(Player player, EquipmentSlot slot, DataComponentType<?> enchantment, EquipmentSlot supportSlot) {
-        return common(player, slot, EnchantmentHelper.has(player.getItemBySlot(EquipmentSlot.CHEST), enchantment));
+        return common(player, slot, EnchantmentHelper.has(player.getItemBySlot(supportSlot), enchantment));
     }
 
     default int common(Player player, EquipmentSlot slot, boolean condition) {

@@ -11,8 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-
-import javax.swing.text.html.BlockView;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class ModBushBlock extends Block {
     protected ModBushBlock(BlockBehaviour.Properties properties) {
@@ -20,7 +19,7 @@ public abstract class ModBushBlock extends Block {
     }
 
     @Override
-    protected abstract MapCodec<? extends ModBushBlock> codec();
+    protected abstract @NotNull MapCodec<? extends ModBushBlock> codec();
 
     protected boolean canPlantOnTop(BlockState floor, LevelReader world, BlockPos pos) {
         return floor.is(Blocks.NETHERRACK) || floor.is(Blocks.SOUL_SAND) || floor.is(Blocks.SOUL_SOIL) ||
@@ -28,27 +27,25 @@ public abstract class ModBushBlock extends Block {
     }
 
     @Override
-    protected BlockState updateShape(
-            BlockState state, Direction direction, BlockState neighborState, LevelAccessor levelAccessor, BlockPos pos, BlockPos neighborPos
-    ) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         return !state.canSurvive(levelAccessor, pos)
                 ? Blocks.AIR.defaultBlockState()
                 : super.updateShape(state, direction, neighborState, levelAccessor, pos, neighborPos);
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader world, BlockPos pos) {
         BlockPos blockPos = pos.below();
         return this.canPlantOnTop(world.getBlockState(blockPos), world, blockPos);
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
         return state.getFluidState().isEmpty();
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType type) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType type) {
         return (type == PathComputationType.AIR && !this.hasCollision) || super.isPathfindable(state, type);
     }
 }

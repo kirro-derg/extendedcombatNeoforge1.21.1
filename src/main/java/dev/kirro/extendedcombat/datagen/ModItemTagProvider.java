@@ -6,10 +6,12 @@ import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +22,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(@NotNull HolderLookup.Provider provider) {
         tag(ModItemTags.ALWAYS_HAS_DURABILITY)
                 .add(Items.MACE)
         ;
@@ -47,17 +49,20 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_HALBERD.get())
         ;
 
-        tag(ModItemTags.SLEEVED_ARMOR)
-                .add(Items.CHAINMAIL_CHESTPLATE)
-                .add(Items.LEATHER_CHESTPLATE)
-                .add(Items.IRON_CHESTPLATE)
-                .add(Items.GOLDEN_CHESTPLATE)
-                .add(Items.DIAMOND_CHESTPLATE)
-                .add(Items.NETHERITE_CHESTPLATE)
-                .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
-                .add(ModItems.ECHO_STEEL_CHESTPLATE.get())
-                .add(ModItems.ECHO_REINFORCED_ELYTRA.get())
-                .addTag(ModItemTags.CLOAK)
+        tag(ModItemTags.SLEEVES)
+                .add(ModItems.CHAINMAIL_SLEEVE.get())
+                .add(ModItems.LEATHER_SLEEVE.get())
+                .add(ModItems.IRON_SLEEVE.get())
+                .add(ModItems.GOLD_SLEEVE.get())
+                .add(ModItems.DIAMOND_SLEEVE.get())
+                .add(ModItems.NETHERITE_SLEEVE.get())
+                .add(ModItems.NETHER_STEEL_SLEEVE.get())
+                .add(ModItems.ECHO_STEEL_SLEEVE.get())
+                .add(ModItems.WOOL_SLEEVE.get())
+        ;
+
+        tag(ItemTags.DYEABLE)
+                .add(ModItems.LEATHER_SLEEVE.get())
         ;
 
         tag(ModItemTags.REPAIRABLE_ITEMS)
@@ -270,25 +275,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.HOES)
                 .add(ModItems.ECHO_STEEL_GREATSWORD.get())
                 .add(ModItems.ECHO_STEEL_HALBERD.get())
+                .add(ModItems.ECHO_STEEL_HAMMER.get())
+                .add(ModItems.ECHO_STEEL_PICKAXE.get())
                 .replace(false)
         ;
-
-        /*tag(ItemTags.ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_HELMET.get())
-                .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
-                .add(ModItems.NETHER_STEEL_LEGGINGS.get())
-                .add(ModItems.NETHER_STEEL_BOOTS.get())
-                .add(ModItems.ECHO_STEEL_BOOTS.get())
-                .add(ModItems.ECHO_STEEL_LEGGINGS.get())
-                .add(ModItems.ECHO_STEEL_CHESTPLATE.get())
-                .add(ModItems.ECHO_STEEL_HELMET.get())
-                .add(ModItems.NETHER_STEEL_CLOAK.get())
-                .add(ModItems.NETHER_STEEL_MASK.get())
-                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
-                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
-                .replace(false)
-        ;*/
-
 
         tag(ItemTags.HEAD_ARMOR)
                 .add(ModItems.NETHER_STEEL_HELMET.get())
@@ -298,6 +288,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_MASK.get())
                 .replace(false)
         ;
+
         tag(ItemTags.CHEST_ARMOR)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
                 .add(ModItems.HUNTER_CLOAK.get())
@@ -307,6 +298,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_REINFORCED_ELYTRA.get())
                 .replace(false)
         ;
+
         tag(ItemTags.LEG_ARMOR)
                 .add(ModItems.NETHER_STEEL_LEGGINGS.get())
                 .add(ModItems.HUNTER_LEGGINGS.get())
@@ -315,6 +307,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
                 .replace(false)
         ;
+
         tag(ItemTags.FOOT_ARMOR)
                 .add(ModItems.NETHER_STEEL_BOOTS.get())
                 .add(ModItems.HUNTER_BOOTS.get())
@@ -324,33 +317,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .replace(false)
         ;
 
-        /*tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_HELMET.get())
-                .add(ModItems.NETHER_STEEL_MASK.get())
-                .add(ModItems.ECHO_STEEL_HELMET.get())
-                .add(ModItems.ECHO_STEEL_MASK.get())
-                .replace(false)
+        tag(ModItemTags.SLEEVES_LEFT)
+                .addTag(ModItemTags.SLEEVES)
         ;
-        tag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_CHESTPLATE.get())
-                .add(ModItems.NETHER_STEEL_CLOAK.get())
-                .add(ModItems.ECHO_STEEL_CHESTPLATE.get())
-                .add(ModItems.ECHO_STEEL_CLOAK.get())
-                .replace(false)
+
+        tag(ModItemTags.SLEEVES_RIGHT)
+                .addTag(ModItemTags.SLEEVES)
         ;
-        tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_LEGGINGS.get())
-                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS.get())
-                .add(ModItems.ECHO_STEEL_LEGGINGS.get())
-                .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS.get())
-                .replace(false)
-        ;
-        tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_BOOTS.get())
-                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS.get())
-                .add(ModItems.ECHO_STEEL_BOOTS.get())
-                .add(ModItems.ECHO_STEEL_HUNTER_BOOTS.get())
-                .replace(false)
-        ;*/
     }
 }

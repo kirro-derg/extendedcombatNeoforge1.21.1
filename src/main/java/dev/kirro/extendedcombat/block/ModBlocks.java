@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -50,7 +51,7 @@ public interface ModBlocks {
             () -> new WardingStoneBlock(BlockBehaviour.Properties.of()
                     .strength(1f).sound(SoundType.DEEPSLATE_BRICKS).noOcclusion().lightLevel(state -> 4)) {
                 @Override
-                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln1"));
                     tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln2"));
                     tooltipComponents.add(Component.translatable("tooltip.extendedcombat.warding_stone_ln3"));

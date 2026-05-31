@@ -4,14 +4,12 @@ import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.enchantment.ModEnchantments;
 import dev.kirro.extendedcombat.tags.ModEnchantmentTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EnchantmentTagsProvider;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -22,7 +20,7 @@ public class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         tag(EnchantmentTags.IN_ENCHANTING_TABLE)
                 .addOptional(ModEnchantments.OBSCURITY.location())
                 .addOptional(ModEnchantments.STEALTH.location())

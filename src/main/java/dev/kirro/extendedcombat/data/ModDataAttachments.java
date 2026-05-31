@@ -3,7 +3,6 @@ package dev.kirro.extendedcombat.data;
 import dev.kirro.extendedcombat.ExtendedCombat;
 import dev.kirro.extendedcombat.api.Attachment;
 import dev.kirro.extendedcombat.api.AttachmentEntry;
-import dev.kirro.extendedcombat.api.TickingAttachment;
 import dev.kirro.extendedcombat.behavior.ability.AirJumpBehavior;
 import dev.kirro.extendedcombat.behavior.ability.AirMovementBehavior;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;

@@ -16,8 +16,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation PLAYER_SLEEVES = createSleeveLayer("player");
 
 
-    private static ModelLayerLocation register(String path, String model) {
-        ModelLayerLocation modellayerlocation = create(path, model);
+    private static ModelLayerLocation register(String path) {
+        ModelLayerLocation modellayerlocation = create(path, "sleeves");
         if (!ModelLayers.ALL_MODELS.add(modellayerlocation)) {
             throw new IllegalStateException("Duplicate registration for " + modellayerlocation);
         } else {
@@ -30,7 +30,7 @@ public class ModModelLayers {
     }
 
     private static ModelLayerLocation createSleeveLayer(String id) {
-        return register(id, "sleeves");
+        return register(id);
     }
 
     @SubscribeEvent

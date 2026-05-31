@@ -13,8 +13,8 @@ public class ModLootModifiers {
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIERS =
             DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, ExtendedCombat.MOD_ID);
 
-    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> ECHO_STEEL_UPGRADE =
-            LOOT_MODIFIERS.register("echo_steel_upgrade", () -> AddItemModifier.CODEC);
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> ADD_ITEM =
+            LOOT_MODIFIERS.register("add_item", () -> AddItemModifier.CODEC);
 
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIERS.register(eventBus);

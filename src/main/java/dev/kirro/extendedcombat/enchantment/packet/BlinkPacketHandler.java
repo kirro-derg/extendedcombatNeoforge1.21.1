@@ -1,12 +1,9 @@
 package dev.kirro.extendedcombat.enchantment.packet;
 
-import dev.kirro.extendedcombat.ExtendedCombat;
-import dev.kirro.extendedcombat.api.PlayerLookup;
 import dev.kirro.extendedcombat.behavior.ability.BlinkBehavior;
 import dev.kirro.extendedcombat.data.ModDataAttachments;
 import dev.kirro.extendedcombat.data.ModDataComponents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +14,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record BlinkPacketHandler() {
 
-    public static void clientPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
+    public static void serverPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
         Player player = context.player();
         BlinkBehavior blink = player.getData(ModDataAttachments.BLINK);
         player.getItemBySlot(EquipmentSlot.CHEST).set(ModDataComponents.BLINK, packet.invisible());
@@ -28,7 +25,7 @@ public record BlinkPacketHandler() {
         }
     }
 
-    public static void serverPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
+    public static void clientPlayHandler(final BlinkPacket packet, final IPayloadContext context) {
         Player player = context.player();
         Level level = player.level();
         Entity entity = level.getEntity(packet.entityId());

@@ -67,24 +67,24 @@ public class ModEvents {
                 AirJumpPacket.ID,
                 AirJumpPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        AirJumpPacketHandler::serverPlayHandler,
-                        AirJumpPacketHandler::clientPlayHandler
+                        AirJumpPacketHandler::clientPlayHandler,
+                        AirJumpPacketHandler::serverPlayHandler
                 )
         );
         registrar.playBidirectional(
                 DashPacket.ID,
                 DashPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        DashPacketHandler::serverPlayHandler,
-                        DashPacketHandler::clientPlayHandler
+                        DashPacketHandler::clientPlayHandler,
+                        DashPacketHandler::serverPlayHandler
                 )
         );
         registrar.playBidirectional(
                 BlinkPacket.ID,
                 BlinkPacket.CODEC,
                 new DirectionalPayloadHandler<>(
-                        BlinkPacketHandler::serverPlayHandler,
-                        BlinkPacketHandler::clientPlayHandler
+                        BlinkPacketHandler::clientPlayHandler,
+                        BlinkPacketHandler::serverPlayHandler
                 )
         );
     }

@@ -1,6 +1,0 @@
-{
-  "parent": "extendedcombat:item/greatsword_template_handheld",
-  "textures": {
-    "layer0": "extendedcombat:item/fire_sword_handheld"
-  }
-}
